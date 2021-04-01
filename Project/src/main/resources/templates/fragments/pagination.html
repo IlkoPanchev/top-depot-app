@@ -1,0 +1,53 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="selectPageAndSize (path, pageSizes, selectedPageSize, result, pager, keyword, selectedSortOption, sortDirection)">
+        <div class="pagination justify-content-end pagination-sm text-dark">
+            <input id="selectedSortOption" type="hidden" th:attr="name='selectedSortOption'"
+                   th:value="${selectedSortOption}"/>
+            <span class="item-data" th:text="|Total pages: ${result.getTotalPages()}       Total results: ${result.getTotalElements()}|"></span>
+            <span class="ml-5">Results per page :</span><select class="rounded" id="pageSizeSelect" onchange="changePageSize()">
+            <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                    th:value="${pageSize}"
+                    th:selected="${pageSize} == ${selectedPageSize}"></option>
+        </select>
+        </div>
+        <div th:if="${result.getTotalPages() > 1}">
+            <!--         class="form-group col-md-11 pagination-centered">-->
+            <ul class="pagination justify-content-end pagination-sm">
+                <li th:class="${result.getNumber() == 0} ? disabled"><a
+                        class="page-link rounded"
+                        th:href="@{${path} + '?pageSize=' + ${selectedPageSize} + '&page=1&keyword=' + ${keyword} +  '&sortOption=' + ${selectedSortOption} + '&sortDirection=' + ${sortDirection}}">&laquo;</a>
+                    <!--                    th:href="@{/orders/all/pageable(pageSize=${selectedPageSize}, page=1, keyword=${keyword}, sortOption=${selectedSortOption})}">&laquo;</a>-->
+                </li>
+                <li th:class="${result.getNumber() == 0} ? disabled"><a
+                        class="page-link rounded"
+                        th:href="@{${path} + '?pageSize=' + ${selectedPageSize} + '&page=' + ${result.getNumber()} +  '&keyword=' + ${keyword} +  '&sortOption=' + ${selectedSortOption} + '&sortDirection=' + ${sortDirection}}">&larr;</a>
+                    <!--                    th:href="@{/orders/all/pageable(pageSize=${selectedPageSize}, page=${orders.number}, keyword=${keyword}, sortOption=${selectedSortOption})}">&larr;</a>-->
+                </li>
+                <li
+                        th:class="${result.getNumber() == (page - 1)} ? 'active pointer-disabled'"
+                        th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                    <a class="page-link rounded"
+                       th:href="@{${path} + '?pageSize=' + ${selectedPageSize} + '&page=' + ${page} +  '&keyword=' + ${keyword} +  '&sortOption=' + ${selectedSortOption} + '&sortDirection=' + ${sortDirection}}"
+                       th:text="${page}"></a>
+                    <!--                   th:href="@{/orders/all/pageable(pageSize=${selectedPageSize}, page=${page}, keyword=${keyword}, sortOption=${selectedSortOption})}"-->
+                    <!--                   th:text="${page}"></a>-->
+                </li>
+                <li
+                        th:class="${result.getNumber() + 1 == result.getTotalPages()} ? disabled">
+                    <a class="page-link rounded"
+                       th:href="@{${path} + '?pageSize=' + ${selectedPageSize} + '&page=' + ${result.getNumber() + 2} +  '&keyword=' + ${keyword} +  '&sortOption=' + ${selectedSortOption} + '&sortDirection=' + ${sortDirection}}">&rarr;</a>
+                    <!--                <a class="page-link rounded"-->
+                    <!--                   th:href="@{/orders/all/pageable(pageSize=${selectedPageSize}, page=${orders.number + 2}, keyword=${keyword}, sortOption=${selectedSortOption})}">&rarr;</a>-->
+
+
+                </li>
+                <li
+                        th:class="${result.getNumber() + 1 == result.getTotalPages()} ? disabled">
+                    <a class="page-link rounded"
+                       th:href="@{${path} + '?pageSize=' + ${selectedPageSize} + '&page=' + ${result.getTotalPages()} +  '&keyword=' + ${keyword} +  '&sortOption=' + ${selectedSortOption} + '&sortDirection=' + ${sortDirection}}">&raquo;</a>
+                    <!--                   th:href="@{/orders/all/pageable(pageSize=${selectedPageSize}, page=${orders.getTotalPages()}, keyword=${keyword}, sortOption=${selectedSortOption})}">&raquo;</a>-->
+                </li>
+            </ul>
+        </div>
+    </div>
+</th:block>

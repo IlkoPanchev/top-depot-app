@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<main>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <th:block th:include="~{fragments/nav}"></th:block>
+                </div>
+            </div>
+            <div class="container mt-lg-5 bg-transparent h-100">
+                <h4 class="w-100 text-dark text-right mt-3">UNAUTHORIZED ERRORS</h4>
+            </div>
+            <br/>
+
+            <br/><br/>
+
+            <br/><br/>
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 mx-auto">
+                <div class="table-responsive text-dark">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">URI</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">DateTime</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="u : ${unauthorizedErrors}" th:object="${u}">
+                            <th scope="row" th:text="${u.getURI()}">URI</th>
+                            <td th:text="${u.getUsername()}">Username</td>
+                            <td th:text="${#temporals.format(u.getLocalDateTime(), 'dd.MM.yyyy HH:mm')}">DateTime</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

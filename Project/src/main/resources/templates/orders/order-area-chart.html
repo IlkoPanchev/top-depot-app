@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+    <script th:inline="javascript">
+
+        /*<![CDATA[*/
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        let oneName = [[${ordersLastWeekDatesMap[1]}]];
+        let oneValue = [[${ordersLastWeekTurnoverMap[1]}]];
+        let twoName = [[${ordersLastWeekDatesMap[2]}]];
+        let twoValue = [[${ordersLastWeekTurnoverMap[2]}]];
+        let threeName = [[${ordersLastWeekDatesMap[3]}]];
+        let threeValue = [[${ordersLastWeekTurnoverMap[3]}]];
+        let fourName = [[${ordersLastWeekDatesMap[4]}]];
+        let fourValue = [[${ordersLastWeekTurnoverMap[4]}]];
+        let fiveName = [[${ordersLastWeekDatesMap[5]}]];
+        let fiveValue = [[${ordersLastWeekTurnoverMap[5]}]];
+        let sixName = [[${ordersLastWeekDatesMap[6]}]];
+        let sixValue = [[${ordersLastWeekTurnoverMap[6]}]];
+        let sevenName = [[${ordersLastWeekDatesMap[7]}]];
+        let sevenValue = [[${ordersLastWeekTurnoverMap[7]}]];
+
+        function drawChart() {
+            let data = google.visualization.arrayToDataTable([
+                ['WeekDays', 'Turnover'],
+                [oneName, oneValue],
+                [twoName, twoValue],
+                [threeName, threeValue],
+                [fourName, fourValue],
+                [fiveName, fiveValue],
+                [sixName, sixValue],
+                [sevenName, sevenValue]
+            ]);
+
+            let options = {
+                title: 'Turnover last week',
+                vAxis: {title: 'Turnover'},
+                isStacked: true
+            };
+
+            let chart = new google.visualization.SteppedAreaChart(document.getElementById('ordersAreaChart'));
+            chart.draw(data, options);
+        }
+
+        $(window).resize(function () {
+            drawChart();
+        });
+
+        /*]]>*/
+    </script>
+</head>
+
+<body>
+<main>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <th:block th:include="~{fragments/nav}"></th:block>
+                </div>
+            </div>
+            <div class="container mt-lg-5 bg-transparent h-100">
+                <h4 class="w-100 text-dark text-right mt-3">LAST WEEK TURNOVER</h4>
+            </div>
+            <br/> <br/>
+            <div class="col-md-6 rounded" style="margin-left: auto; margin-right: auto">
+                <div id="ordersAreaChart" class="chart rounded"></div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

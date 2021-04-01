@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container ">
+        <th:block th:include="~{fragments/nav}"></th:block>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 class="w-100 text-dark text-right mt-3" th:text="|EDIT ORDER &#8470;${session.editOrderData.getId()}|">EDIT ORDER</h4>
+        </div>
+        <th:block th:include="~{fragments/order-customer-data}"></th:block>
+        <div style="margin: 0 auto; padding-bottom: 0; padding-top: 0" align="center"
+             class="bg-transparent tm-block text-dark">
+            <a th:unless="${session.editOrderData.isClosed()}" th:href="@{/items/all/pageable/editOrder}"
+               class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded">Add Item
+            </a>
+        </div>
+        <br/><br/>
+        <div id="replace_div" class="table-responsive text-dark">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Item &#8470;</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col" th:unless="${session.editOrderData.isClosed()}">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="orderLine : ${session.editOrderData.orderLineEntities}">
+                    <td scope="row" th:text="${orderLine.item.id}"></td>
+                    <td th:text="${orderLine.item.name}"></td>
+                    <td><span th:text="${orderLine.item.price}"></span></td>
+                    <th:block>
+                        <td th:if="${session.editOrderData.isClosed()}" th:text="${orderLine.quantity}">
+                        </td>
+                        <td th:unless="${session.editOrderData.isClosed()}">
+                            <input type="hidden" th:attr="name='id'" th:value="${orderLine.item.id}"/>
+                            <input type="number" style="width: 5em" min="1"
+                                   th:value="${orderLine.quantity}"
+                                   name="quantity"
+                                   class="rounded border border-dark quantity"/>
+                            <button class="btn-sm btn-href btn-outline-primary update rounded">
+                                Update
+                            </button>
+                        </td>
+                    </th:block>
+                    <td><span th:text="${orderLine.subtotal}"></span></td>
+                    <td th:unless="${session.editOrderData.isClosed()}">
+                        <button
+                                class="btn-sm btn-href btn-outline-primary open-remove-dialog rounded"
+                                data-toggle="modal"
+                                data-target="#removeModal"
+                                th:data-id="${orderLine.item.id}">
+                            Remove
+                        </button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td th:unless="${session.editOrderData.isClosed()}" colspan="6">
+                        TOTAL: <span th:text="${session.editOrderData.getTotalAmount()}"></span>
+                    </td>
+                    <td th:if="${session.editOrderData.isClosed()}" colspan="5">
+                        TOTAL: <span th:text="${session.editOrderData.getTotalAmount()}"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div style="display: inline; margin-left: auto; margin-right: auto" class="bg-transparent tm-block">
+                <a th:href="@{/orders/edit/cancel}"
+                   class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded">Cancel</a>
+                <a th:unless="${session.editOrderData.isClosed()}" th:href="@{/orders/edit/complete}"
+                   class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded">Complete</a>
+                <a th:href="@{/orders/edit/save}"
+                   class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded">Save</a>
+            </div>
+        </div>
+        <div th:replace="fragments/remove-dialog.html :: removeDialog(path='/orders/editOrder/remove')"></div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

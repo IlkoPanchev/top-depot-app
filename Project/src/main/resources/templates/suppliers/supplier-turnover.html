@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+    <th:block th:include="~{fragments/head-date-picker}"></th:block>
+</head>
+<body>
+<main>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <th:block th:include="~{fragments/nav}"></th:block>
+                </div>
+            </div>
+            <div class="container mt-lg-5 bg-transparent h-100">
+                <h4 class="w-100 text-dark text-right mt-3">SUPPLIER TURNOVER</h4>
+            </div>
+            <br/>
+            <div th:replace="fragments/search-date-picker.html :: searchDatePicker(path=${path}, keyword=${keyword})">
+            </div>
+            <br/><br/>
+            <div align="center">
+                <p th:unless="${suppliers.isEmpty()}" th:text="'Turnover ' + ${fromDate} + ' - ' + ${toDate}">
+                    Turnover</p>
+            </div>
+            <br/><br/>
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 mx-auto">
+            <div class="table-responsive text-dark">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Supplier Name</th>
+                        <th scope="col">Turnover</th>
+                        <th scope="col">Items</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:object="${supplier}" th:each="supplier : ${suppliers}">
+                        <th scope="row" th:text="${supplier.getName()}">Name</th>
+                        <td th:text="${supplier.getTurnover()}">Email</td>
+                        <td th:text="${supplier.getSoldItems()}">Region/td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

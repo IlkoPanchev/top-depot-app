@@ -1,0 +1,16 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div align="center" th:fragment="searchDatePicker(path, keyword)">
+        <form th:action="@{${path}}">
+            <i class="fa fa-search text-primary" aria-hidden="true"></i><span> </span><input type="text" name="keyword"
+                                                                                id="keyword"
+                                                                                placeholder=" Name..."
+                                                                                th:value="${keyword}"
+                                                                                class="rounded border border-dark" required/>
+            <label for="fromDate">From Date</label>
+            <input type="text" id="fromDate" name="fromDate" class="rounded border border-dark" autocomplete="off" required>
+            <label for="toDate">To Date</label>
+            <input type="text" id="toDate" name="toDate" class="rounded border border-dark" autocomplete="off" required>
+            <input type="submit" value="Search" class="date-search rounded border border-primary text-primary"/>&nbsp;
+        </form>
+    </div>
+</th:block>

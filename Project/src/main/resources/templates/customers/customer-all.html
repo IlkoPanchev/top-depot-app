@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container">
+        <th:block th:include="~{fragments/nav}"></th:block>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 class="w-100 text-dark text-right mt-3">CUSTOMERS</h4>
+        </div>
+
+        <div align="center" class="text-light">
+            <a class="btn-href"
+               th:href="@{/customers/add}">
+                <button class="btn-href btn-outline-primary btn-sm rounded">Add Customer
+                </button>
+            </a>
+            <br/><br/>
+            <div th:replace="fragments/search-form.html :: searchForm(path=${path}, selectedPageSize=${selectedPageSize}, page=1, keyword=${keyword},
+         selectedSortOption=${selectedSortOption}, sortDirection=${sortDirection})">
+            </div>
+            <div th:replace="fragments/select-sort-option.html :: selectSortOption(path=${path}, selectedPageSize=${selectedPageSize},
+         keyword=${keyword}, sortDirection=${sortDirection}, selectedSortOption=${selectedSortOption}, sortOptions=${sortOptions})">
+            </div>
+            <div class="table-responsive text-dark">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Company ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Company',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Person ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Person',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Email ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Email',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Region ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Region',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='City ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='City',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Street ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Street',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Phone ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Phone',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:object="${customer}" th:each="customer : ${customers}">
+                        <th scope="row" th:text="${customer.companyName}">Name</th>
+                        <td th:text="${customer.personName}">Name</td>
+                        <td th:text="${customer.email}">Email</td>
+                        <td th:text="${customer.getAddress().getRegion()}">Region/td>
+                        <td th:text="${customer.getAddress().getCity()}">City</td>
+                        <td th:text="${customer.getAddress().getStreet()}">Street</td>
+                        <td th:text="${customer.getAddress().getPhone()}">Phone</td>
+                        <td>
+                            <a th:unless="${customer.isBlocked()}" th:href="@{/customers/edit/(id = ${customer.id})}"
+                               class="btn-href">
+                                <button class="btn-href btn-outline-primary btn-sm rounded"><i
+                                        class="fa fa-pencil"
+                                        aria-hidden="true"></i> Edit
+                                </button>
+                            </a>
+                            <button th:unless="${customer.isBlocked()}"
+                                    class="open-block-dialog btn-href btn-outline-primary btn-sm rounded"
+                                    data-toggle="modal"
+                                    data-target="#blockModal"
+                                    th:data-id="*{id}">
+                                Block
+                            </button>
+                            <button th:if="${customer.isBlocked()}"
+                                    class="open-unblock-dialog btn-href btn-outline-primary btn-sm rounded"
+                                    data-toggle="modal"
+                                    data-target="#unblockModal"
+                                    th:data-id="*{id}">
+                                Unblock
+                            </button>
+                            <div th:replace="fragments/block-dialog.html :: blockDialog(entity='customer', entities='customers')"></div>
+                            <div th:replace="fragments/unblock-dialog.html :: unblockDialog(entity='customer', entities='customers')"></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br/><br/>
+        <div th:replace="fragments/pagination.html :: selectPageAndSize (path=${path}, pageSizes=${pageSizes}, selectedPageSize=${selectedPageSize},
+     result=${result}, pager=${pager}, keyword=${keyword}, selectedSortOption=${selectedSortOption}, sortDirection=${sortDirection})">
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+
+</html>

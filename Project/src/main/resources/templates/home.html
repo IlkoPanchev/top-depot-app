@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+    <!--    Calendar-->
+    <script src="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.min.js"
+            integrity="sha384-0LaRLH/U5g8eCAwewLGQRyC/O+g0kXh8P+5pWpzijxwYczD3nKETIqUyhuA8B/UB"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.min.css"
+          integrity="sha384-44GnAqZy9yUojzFPjdcUpP822DGm1ebORKY8pe6TkHuqJ038FANyfBYBpRvw8O9w" crossorigin="anonymous">
+</head>
+
+<body>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <th:block th:include="~{fragments/nav}"></th:block>
+            </div>
+        </div>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 class="w-100 text-light text-right">DASHBOARD</h4>
+        </div>
+        <br/>
+        <div class="container">
+            <div class="row">
+                <div class="col" style="margin-left: auto; margin-right: auto; margin-bottom: 10px">
+                    <div class="bg-white tm-block h-100">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="tm-block-title d-inline-block">Last Created Orders</h3>
+                            </div>
+                        </div>
+                        <ul class="tm-list-group tm-list-group-alternate-color tm-list-group-pad">
+                            <li th:each="order : ${lastCreatedOrders}">
+                                <a th:href="@{/orders/complete/open/(id = ${order.id})} "
+                                   th:text="'&#8470;' + ${order.id + ' created on ' + #temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}"
+                                   class="tm-list-group-item">Text</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col" style="margin-left: auto; margin-right: auto; margin-bottom: 10px">
+                    <div class="bg-white tm-block h-100">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="tm-block-title d-inline-block">Last Updated Orders</h3>
+                            </div>
+                        </div>
+                        <ul class="tm-list-group tm-list-group-alternate-color tm-list-group-pad">
+                            <li th:each="order : ${lastUpdatedOrders}">
+                                <a th:href="@{/orders/complete/open/(id = ${order.id})} "
+                                   th:text="'&#8470;' + ${order.id + ' updated on ' + #temporals.format(order.updatedOn, 'dd.MM.yyyy HH:mm')}"
+                                   class="tm-list-group-item">Text</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col" style="margin-left: auto; margin-right: auto; margin-bottom: 10px">
+                    <div class="bg-white tm-block h-100">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="tm-block-title d-inline-block">Last Completed Orders</h3>
+                            </div>
+                        </div>
+                        <ul class="tm-list-group tm-list-group-alternate-color tm-list-group-pad">
+                            <li th:each="order : ${lastCompletedOrders}">
+                                <a th:if="${#authorization.expression('hasRole(''MANAGER'')')}"
+                                   th:href="@{/orders/complete/open/(id = ${order.id})} "
+                                   th:text="'&#8470;' + ${order.id + ' completed on ' + #temporals.format(order.updatedOn, 'dd.MM.yyyy HH:mm')}"
+                                   class="tm-list-group-item">Text</a>
+                                <a th:unless="${#authorization.expression('hasRole(''MANAGER'')')}"
+                                   th:href="@{/orders/archive/view/(id = ${order.id})}"
+                                   th:text="'&#8470;' + ${order.id + ' completed on ' + #temporals.format(order.updatedOn, 'dd.MM.yyyy HH:mm')}"
+                                   class="tm-list-group-item">Text</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

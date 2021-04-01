@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container ">
+        <th:block th:include="~{fragments/nav}"></th:block>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 class="w-100 text-dark text-right mt-3">ORDERS</h4>
+        </div>
+
+        <div align="center" class="text-dark">
+            <a class="btn-href" sec:authorize="hasRole('MANAGER')" th:href="@{/customers/all/newOrder}">
+                <button class="btn-href btn-outline-primary btn-sm rounded">New Order
+                </button>
+            </a>
+            <a class="btn-href" th:if="${session.orderData}" th:href="@{/orders/open/draft}">
+                <button class="btn-href btn-outline-primary btn-sm rounded">Continue Draft
+                </button>
+            </a>
+            <br/><br/>
+            <div th:replace="fragments/search-form.html :: searchForm(path=${path}, selectedPageSize=${selectedPageSize}, page=1, keyword=${keyword},
+         selectedSortOption=${selectedSortOption}, sortDirection=${sortDirection})">
+            </div>
+            <div th:replace="fragments/select-sort-option.html :: selectSortOption(path=${path}, selectedPageSize=${selectedPageSize},
+         keyword=${keyword}, sortDirection=${sortDirection}, selectedSortOption=${selectedSortOption}, sortOptions=${sortOptions})">
+            </div>
+            <div class="table-responsive text-dark">
+                <table class="table table-sm table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">
+                            Order &#8470;
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Created On ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Created',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Updated On ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Updated',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Company ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Company',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Person ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Person',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Completed ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Completed',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Archive ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Archive',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Total ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Total',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${orders}">
+                        <th scope="row" th:text="${order.id}">Order Number</th>
+                        <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">Created On</td>
+                        <td th:text="${#temporals.format(order.updatedOn, 'dd.MM.yyyy HH:mm')}">Description</td>
+                        <td th:text="${order.customer.companyName}">Company name</td>
+                        <td th:text="${order.customer.personName}">Person name</td>
+                        <!--                <td th:text="${order.isClosed()} ? 'Yes' : 'No'">Completed</td>-->
+                        <!--                <td th:text="${order.isArchives()}  ? 'Yes' : 'No'">Archive</td>-->
+                        <td th:if="${order.isClosed()}"><i class="fa fa-check" aria-hidden="true"></i></td>
+                        <td th:unless="${order.isClosed()}"><i class="fa fa-times" aria-hidden="true"></i></td>
+                        <td th:if="${order.isArchives()}"><i class="fa fa-check" aria-hidden="true"></i></td>
+                        <td th:unless="${order.isArchives()}"><i class="fa fa-times" aria-hidden="true"></i></td>
+                        <td th:text="${order.total}">Total Amount</td>
+                        <td>
+                            <th:block th:if="${order.isClosed()}">
+                                <a class="btn-href" th:if="${order.isArchives()}" th:href="@{/orders/archive/view/(id = ${order.id})}">
+                                    <button class="btn-href btn-outline-primary btn-sm rounded"> View
+                                    </button>
+                                </a>
+                            </th:block>
+
+                            <th:block th:unless="${order.isArchives()}">
+                                <a class="btn-href" th:unless="${order.isClosed()}" th:href="@{/orders/complete/open/(id = ${order.id})}">
+                                    <button class="btn-href btn-outline-primary btn-sm rounded"> Complete
+                                    </button>
+                                </a>
+                            </th:block>
+
+                            <th:block sec:authorize="hasRole('MANAGER')">
+
+                                <a class="btn-href" th:unless="${order.isClosed()}" th:href="@{/orders/edit/(id = ${order.id})}">
+                                    <button class="btn-href btn-outline-primary btn-sm rounded"><i
+                                            class="fa fa-pencil"
+                                            aria-hidden="true"></i> Edit
+                                    </button>
+                                   </a>
+
+                                <th:block th:unless="${order.isArchives()}">
+                                    <a class="btn-href" th:if="${order.isClosed()}" th:href="@{/orders/complete/open/(id = ${order.id})}">
+                                        <button class="btn-href btn-outline-primary btn-sm rounded"> Incomplete
+                                        </button>
+                                    </a>
+                                    <a class="btn-href" th:if="${order.isClosed()}" th:href="@{/orders/archive/open/(id = ${order.id})}">
+                                        <button class="btn-href btn-outline-primary btn-sm rounded"> Archive
+                                        </button>
+                                    </a>
+                                </th:block>
+                            </th:block>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br/>
+        <div th:replace="fragments/pagination.html :: selectPageAndSize (path=${path}, pageSizes=${pageSizes}, selectedPageSize=${selectedPageSize},
+     result=${result}, pager=${pager}, keyword=${keyword}, selectedSortOption=${selectedSortOption}, sortDirection=${sortDirection})">
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

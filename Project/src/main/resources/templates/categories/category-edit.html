@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container ">
+        <th:block th:include="~{fragments/nav}"></th:block>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 class="w-100 text-dark text-right mt-3">EDIT CATEGORY</h4>
+        </div>
+        <br/>
+        <div class="row tm-mt-big">
+            <div class="col-12 mx-auto tm-login-col">
+                <div class="bg-white col-xl-8 col-lg-8 col-md-8 col-sm-6 mx-auto tm-block rounded border border-primary text-secondary">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <form th:action="@{/categories/edit}" th:method="PATCH"
+                                  th:object="${categoryAddBindingModel}"
+                                  enctype="multipart/form-data"
+                                  class="tm-login-form">
+                                <input type="hidden" th:attr="name='id'" th:value="*{id}"/>
+                                <div class="input-group">
+                                    <label for="name"
+                                           class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Name</label>
+                                    <input th:field="*{name}" th:errorclass="border-danger" name="name" type="text" required readonly
+                                           class="form-control validate  bg-white border border-secondary rounded text-dark"
+                                           id="name" placeholder="Enter category name">
+                                    <th:block th:each="e : ${#fields.errors('name')}">
+                                        <div class="mx-auto">
+                                            <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                        </div>
+                                    </th:block>
+                                    <div th:if="${categoryExists}" class="mx-auto text-center">
+                                        <span class="text-danger err-msg">A category with this name already exists.</span>
+                                    </div>
+                                </div>
+                                <div class="input-group mt-3">
+                                    <label for="description"
+                                           class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Description</label>
+                                    <textarea name="description" th:field="*{description}" th:errorclass="border-danger" type="text"
+                                           class="form-control validate bg-white border border-secondary rounded text-dark"
+                                              id="description"></textarea>
+                                    <th:block th:each="e : ${#fields.errors('description')}">
+                                        <div class="mx-auto text-center">
+                                            <br/>
+                                            <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                        </div>
+                                    </th:block>
+                                </div>
+                                <br/>
+                                <div class="input-group">
+                                    <a th:href="@{/categories/all/pageable}"
+                                       class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded mt-3">Cancel</a>
+                                    <button type="submit"
+                                            class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded mt-3">Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+
+</html>

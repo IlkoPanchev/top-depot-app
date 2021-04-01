@@ -1,0 +1,23 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div class="row">
+        <div class="bg-transparent text-dark rounded customer-data-table">
+<!--            <p>CUSTOMER DATA</p>-->
+            <div class="customer-data-row" >
+                <h5 class="customer-data" th:text="${orderViewBindingModel.customer.companyName}"> </h5>
+            </div>
+            <div class="customer-data-row" >
+                <span class="customer-data" th:text="${orderViewBindingModel.customer.personName}"></span>
+            </div>
+            <div class="customer-data-row" >
+                <span class="customer-data" th:text="${orderViewBindingModel.customer.email}"></span>
+            </div>
+            <div class="customer-data-row" >
+                <span class="customer-data" th:text="${orderViewBindingModel.customer.address.city}"></span>
+                <span class="customer-data" th:text="${orderViewBindingModel.customer.address.street}"></span>
+            </div>
+            <div class="customer-data-row" >
+                <span class="customer-data" th:text="${orderViewBindingModel.customer.address.phone}"></span>
+            </div>
+        </div>
+    </div>
+</th:block>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container text-dark">
+        <th:block th:include="~{fragments/nav}"></th:block>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 class="w-100 rounded text-right text-dark mt-3">USERS</h4>
+        </div>
+        <div align="center" class="text-dark">
+            <a class="btn-href"
+               th:href="@{/users/register}">
+                <button class="btn-href btn-outline-primary btn-sm rounded">Register New
+                    User
+                </button>
+            </a>
+            <br/><br/>
+            <div th:replace="fragments/search-form.html :: searchForm(path=${path}, selectedPageSize=${selectedPageSize}, page=1, keyword=${keyword},
+         selectedSortOption=${selectedSortOption}, sortDirection=${sortDirection})">
+            </div>
+            <div th:replace="fragments/select-sort-option.html :: selectSortOption(path=${path}, selectedPageSize=${selectedPageSize},
+         keyword=${keyword}, sortDirection=${sortDirection}, selectedSortOption=${selectedSortOption}, sortOptions=${sortOptions})">
+            </div>
+            <div class="table-responsive text-dark">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Username ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Username',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Email ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Email',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Department ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Department',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:object="${user}" th:each="user : ${users}">
+                        <!--                <td th:text="${supplier.id}">Id</td>-->
+                        <th scope="row" th:text="${user.username}">Username"</th>
+                        <td th:text="${user.email}">Email</td>
+                        <td th:text="${user.department}">Department/td>
+                        <td>
+                            <a class="btn-href"
+                               th:href="@{/users/edit/(id = ${user.id})}">
+                                <button class="btn-href btn-outline-primary btn-sm rounded"><i
+                                        class="fa fa-pencil"
+                                        aria-hidden="true"></i> Edit
+                                </button>
+                            </a>
+                            <a class="btn-href" th:href="@{/users/roles/addRole/(id = ${user.id})}">
+                                <button class="btn-href btn-outline-primary btn-sm rounded">Add role</button>
+                            </a>
+                            <a class="btn-href" th:href="@{/users/roles/remove/(id = ${user.id})}">
+                                <button class="btn-href btn-outline-primary btn-sm rounded">Remove role</button>
+                            </a>
+                        <button th:if="${user.isEnabled()}"
+                                class="open-block-dialog btn-href btn-outline-primary btn-sm rounded"
+                                data-toggle="modal"
+                                data-target="#blockModal"
+                                th:data-id="*{id}">
+                            Block
+                        </button>
+                        <button th:unless="${user.isEnabled()}"
+                                class="open-unblock-dialog btn-href btn-outline-primary btn-sm rounded"
+                                data-toggle="modal"
+                                data-target="#unblockModal"
+                                th:data-id="*{id}">
+                            Unblock
+                        </button>
+                        <div th:replace="fragments/block-dialog.html :: blockDialog(entity='user', entities='users')"></div>
+                        <div th:replace="fragments/unblock-dialog.html :: unblockDialog(entity='user', entities='users')"></div>
+<!--                            <button-->
+<!--                                    class="open-delete-dialog btn-href btn-outline-primary  btn-sm rounded"-->
+<!--                                    data-toggle="modal"-->
+<!--                                    data-target="#deleteModal"-->
+<!--                                    th:data-id="*{id}">-->
+<!--                                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete-->
+<!--                            </button>-->
+<!--                            <div th:replace="fragments/delete-dialog.html :: deleteDialog(entity='user', entities='users')"></div>-->
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br/>
+        <div th:replace="fragments/pagination.html :: selectPageAndSize (path=${path}, pageSizes=${pageSizes}, selectedPageSize=${selectedPageSize},
+     result=${result}, pager=${pager}, keyword=${keyword}, selectedSortOption=${selectedSortOption}, sortDirection=${sortDirection})">
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

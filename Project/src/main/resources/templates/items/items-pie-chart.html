@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+    <th:block th:include="~{fragments/head-date-picker}"></th:block>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChartQuantity);
+        google.charts.setOnLoadCallback(drawChartTurnover);
+
+        function drawChartQuantity() {
+            let oneName = [[${itemsNamesMap[3]}]];
+            let oneValue = [[${itemsQuantityMap[3]}]];
+            let twoName = [[${itemsNamesMap[4]}]];
+            let twoValue = [[${itemsQuantityMap[4]}]];
+            let threeName = [[${itemsNamesMap[5]}]];
+            let threeValue = [[${itemsQuantityMap[5]}]];
+            let title = 'Period: ' + [[${fromDate}]] + ' - ' + [[${toDate}]];
+
+
+            let dataPie = google.visualization.arrayToDataTable([
+                ['Items', 'Quantity'],
+                [oneName, oneValue],
+                [twoName, twoValue],
+                [threeName, threeValue]
+            ]);
+
+            let optionsPie = {
+                title: title,
+                is3D: true,
+                backgroundColor: '#ddd'
+            };
+
+            let chartPie = new google.visualization
+                .PieChart(document.getElementById('googlePieChartQuantity'));
+            chartPie.draw(dataPie, optionsPie);
+        }
+
+
+        function drawChartTurnover() {
+            let oneName = [[${itemsNamesMap[3]}]];
+            let oneValue = [[${itemsTurnoverMap[3]}]];
+            let twoName = [[${itemsNamesMap[4]}]];
+            let twoValue = [[${itemsTurnoverMap[4]}]];
+            let threeName = [[${itemsNamesMap[5]}]];
+            let threeValue = [[${itemsTurnoverMap[5]}]];
+            let title = 'Best selling items turnover ' + [[${fromDate}]] + ' - ' + [[${toDate}]];
+
+
+            let dataPie = google.visualization.arrayToDataTable([
+                ['Items', 'Quantity'],
+                [oneName, oneValue],
+                [twoName, twoValue],
+                [threeName, threeValue]
+            ]);
+
+            let optionsPie = {
+                title: title,
+                is3D: true,
+                backgroundColor: '#ddd'
+            };
+
+            let chartPie = new google.visualization
+                .PieChart(document.getElementById('googlePieChartTurnover'));
+            chartPie.draw(dataPie, optionsPie);
+        }
+
+        /*]]>*/
+    </script>
+</head>
+<body>
+<main>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <th:block th:include="~{fragments/nav}"></th:block>
+                </div>
+            </div>
+            <div class="container mt-lg-5 bg-transparent h-100">
+                <h4 class="w-100 text-dark text-right mt-3">BEST SELLING ITEMS</h4>
+            </div>
+            <div th:replace="fragments/date-picker.html :: datePicker(path=${path})">
+            </div>
+            <br/>
+            <div class="col-md-6 rounded" style="margin-left: auto; margin-right: auto">
+                <div id="googlePieChartQuantity" class="chart rounded"></div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 mx-auto">
+                <div class="table-responsive text-dark">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Sold Items</th>
+                            <th scope="col">Turnover</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row" th:text="${itemsNamesMap[3]}">Item name</th>
+                            <td th:text="${itemsQuantityMap[3]}">Sold items</td>
+                            <td th:text="${itemsTurnoverMap[3]}">Turnover</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" th:text="${itemsNamesMap[4]}">Item name</th>
+                            <td th:text="${itemsQuantityMap[4]}">Sold items</td>
+                            <td th:text="${itemsTurnoverMap[4]}">Turnover</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" th:text="${itemsNamesMap[5]}">Item name</th>
+                            <td th:text="${itemsQuantityMap[5]}">Sold items</td>
+                            <td th:text="${itemsTurnoverMap[5]}">Turnover</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--            <div class="row">-->
+            <!--                <div class="tm-block col-md-6 ml-auto">-->
+            <!--                    <div class="col" style="margin-left: auto; margin-right: auto">-->
+            <!--                        <div id="googlePieChartQuantity" class="chart rounded"></div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="tm-block col-md-6 mr-auto">-->
+            <!--                    <div class="col" style="margin-left: auto; margin-right: auto">-->
+            <!--                        <div id="googlePieChartTurnover" class="chart rounded"></div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--        </div>-->
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

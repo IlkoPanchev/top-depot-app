@@ -1,0 +1,16 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+        <div th:fragment="selectSortOption(path, selectedPageSize, keyword, sortDirection, selectedSortOption, sortOptions)">
+        <div class="pagination justify-content-end pagination-sm text-dark mt-3">
+            <input id="path" name="path" type="hidden"  th:value="*{path}"/>
+            <input id="selectedPageSize" name="selectedPageSize" type="hidden"  th:value="*{selectedPageSize}"/>
+<!--            <input id="keyword" name="keyword" type="hidden"  th:value="*{keyword}"/>-->
+            <input id="sortDirection" name="sortDirection" type="hidden"  th:value="*{sortDirection}"/>
+            Sort results by :<select class="rounded order-results" id="sortOptionSelect" onchange="selectSortOption()">
+
+            <option th:each="option : ${sortOptions}" th:text="${option}"
+                    th:value="${option}"
+                    th:selected="${option} == ${selectedSortOption}"></option>
+        </select>
+        </div>
+    </div>
+</th:block>

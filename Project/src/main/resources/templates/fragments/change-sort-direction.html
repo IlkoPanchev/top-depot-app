@@ -1,0 +1,10 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <th th:fragment="changeSortDirection (path, columnName, selectedPageSize, keyword, selectedSortOption,sortOptionName,  sortDirection, reversedSortDirection)">
+        <span th:text="${columnName}">Field name</span><a th:if="${sortDirection} == 'desc' and ${selectedSortOption} == ${sortOptionName}"
+                      th:href="@{${path} + '?pageSize=' + ${selectedPageSize} + '&page=1&keyword=' + ${keyword} + '&sortOption=' + ${selectedSortOption} + '&sortDirection=' + ${reversedSortDirection}}"><i
+            class="fa fa-caret-square-o-up" aria-hidden="true"></i></a>
+        <a th:if="${sortDirection} == 'asc' and ${selectedSortOption} == ${sortOptionName}"
+           th:href="@{${path} + '?pageSize=' + ${selectedPageSize} + '&page=1&keyword=' + ${keyword} + '&sortOption=' + ${selectedSortOption} + '&sortDirection=' + ${reversedSortDirection}}"><i
+                class="fa fa-caret-square-o-down" aria-hidden="true"></i></a>
+    </th>
+</th:block>

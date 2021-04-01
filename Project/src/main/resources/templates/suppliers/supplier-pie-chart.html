@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+    <th:block th:include="~{fragments/head-date-picker}"></th:block>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            let oneName = [[${suppliersNamesMap[3]}]];
+            let oneValue = [[${suppliersTurnoverMap[3]}]];
+            let twoName = [[${suppliersNamesMap[4]}]];
+            let twoValue = [[${suppliersTurnoverMap[4]}]];
+            let threeName = [[${suppliersNamesMap[5]}]];
+            let threeValue = [[${suppliersTurnoverMap[5]}]];
+            let title = 'Best suppliers by turnover \n Period: ' + [[${fromDate}]] + ' - ' + [[${toDate}]];
+            let titleOne = oneName + ': ' + oneValue + ' \u20AC';
+            let titleTwo = twoName + ': ' + twoValue + ' \u20AC';
+            let titleThree = threeName + ': ' + threeValue + ' \u20AC';
+
+
+            let dataPie = google.visualization.arrayToDataTable([
+                ['Supplier', 'Turnover'],
+                [titleOne, oneValue],
+                [titleTwo, twoValue],
+                [titleThree, threeValue]
+            ]);
+
+            let optionsPie = {
+                title: title,
+                is3D: true,
+                backgroundColor: '#ddd'
+            };
+
+            let chartPie = new google.visualization
+                .PieChart(document.getElementById('supplierPieChart'));
+            chartPie.draw(dataPie, optionsPie);
+        }
+
+        $(window).resize(function () {
+            drawChart();
+        });
+
+        /*]]>*/
+    </script>
+</head>
+<body>
+<main>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <th:block th:include="~{fragments/nav}"></th:block>
+                </div>
+            </div>
+            <div class="container mt-lg-5 bg-transparent h-100">
+                <h4 class="w-100 text-dark text-right mt-3">BEST SUPPLIERS</h4>
+            </div>
+            <br/>
+            <br/>
+            <div th:replace="fragments/date-picker.html :: datePicker(path=${path})">
+            </div>
+            <br/>
+            <br/>
+            <div class="col-md-6 rounded" style="margin-left: auto; margin-right: auto">
+                <div id="supplierPieChart" class="chart rounded"></div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

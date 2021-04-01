@@ -1,0 +1,48 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="draftOrderOrderLinesTable">
+        <div><p>AJAX</p></div>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Item &#8470;</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orderLine : ${session.orderData.orderLineEntities}">
+                <th scope="row" th:text="${orderLine.item.id}"></th>
+                <td th:text="${orderLine.item.name}"></td>
+                <td><span th:text="${orderLine.item.price}"></span></td>
+                <td>
+                    <input type="hidden"  th:attr="name='id'" th:value="${orderLine.item.id}"/>
+                    <input type="number" style="width: 5em" min="1" th:value="${orderLine.quantity}"
+                           name="quantity"
+                           class="rounded"/>
+                    <button class="btn-sm btn-outline-primary update-draft rounded">
+                        Update
+                    </button>
+                </td>
+                <td><span th:text="${orderLine.subtotal}"></span></td>
+                <td>
+                    <button
+                            class="btn-sm btn-outline-primary open-remove-dialog rounded"
+                            data-toggle="modal"
+                            data-target="#removeModal"
+                            th:data-id="${orderLine.item.id}">
+                        Remove
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    TOTAL: <span th:text="${session.orderData.getTotalAmount()}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</th:block>

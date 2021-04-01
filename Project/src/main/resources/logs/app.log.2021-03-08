@@ -1,0 +1,1 @@
+2021-03-08 06:33:40 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@75b42fc3]][GET][/login]

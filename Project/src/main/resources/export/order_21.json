@@ -1,0 +1,40 @@
+{
+  "id": 21,
+  "createdOn": "24-02-2021 14:37:54",
+  "updatedOn": "24-02-2021 14:38:17",
+  "customer": {
+    "id": 1,
+    "companyName": "Abc",
+    "personName": "Angel Dimov",
+    "email": "ilko_panchev@mail.bg",
+    "isBlocked": false,
+    "address": {
+      "id": 3,
+      "region": "Sofia",
+      "city": "Sofia",
+      "street": "Tintyava 15",
+      "phone": "0887586666"
+    }
+  },
+  "orderLineEntities": [
+    {
+      "id": 38,
+      "item": {
+        "id": 3,
+        "name": "Lenovo DS1000",
+        "description": "tablet",
+        "price": 2000.00,
+        "location": "F1-B4-H3",
+        "category": "laptops",
+        "supplier": "Cantek",
+        "isBlocked": false
+      },
+      "quantity": 1,
+      "subtotal": 2000.00
+    }
+  ],
+  "isClosed": true,
+  "isArchives": false,
+  "isDeleted": false,
+  "total": 2000.00
+}

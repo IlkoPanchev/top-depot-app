@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container ">
+        <th:block th:include="~{fragments/nav}"></th:block>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 class="w-100 text-dark text-right mt-3">EDIT PROFILE</h4>
+        </div>
+        <br/>
+        <div class="row tm-mt-big">
+            <div class="col-12 mx-auto tm-login-col">
+                <div class="bg-white col-xl-8 col-lg-8 col-md-8 col-sm-6 mx-auto tm-block rounded border border-primary text-secondary">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <form th:action="@{/users/profile}" th:method="POST" th:object="${userRegisterBindingModel}"
+                                  class="tm-login-form">
+                                <div class="input-group">
+                                    <input type="hidden" th:attr="name='id'" th:value="*{id}"/>
+                                    <label for="username"
+                                           class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Username</label>
+                                    <input th:field="*{username}" th:errorclass="border-danger" name="username" type="text" required readonly
+                                           class="form-control validate bg-white border border-secondary rounded text-dark"
+                                           id="username">
+                                    <th:block th:each="e : ${#fields.errors('username')}">
+                                        <div class="mx-auto">
+                                            <br/>
+                                            <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                        </div>
+                                    </th:block>
+                                </div>
+                                <div class="input-group mt-4">
+                                    <label for="password"
+                                           class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Password</label>
+                                    <input name="password" type="password" th:errorclass="border-danger" required
+                                           class="form-control validate bg-white border border-secondary rounded text-dark"
+                                           id="password">
+                                    <th:block th:each="e : ${#fields.errors('password')}">
+                                        <div class="mx-auto text-center">
+                                            <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                        </div>
+                                    </th:block>
+                                </div>
+                                <div class="input-group mt-4">
+                                    <label for="confirmPassword"
+                                           class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label pt-0">Confirm
+                                        Password</label>
+                                    <input name="confirmPassword" th:errorclass="border-danger" type="password" required
+                                           class="form-control validate bg-white border border-secondary rounded text-dark"
+                                           id="confirmPassword">
+                                    <th:block th:if="${confirmPasswordCorrect}">
+                                        <div class="mx-auto text-center">
+                                            <span th:text="'Password and confirm password do not match!'"
+                                                class="text-danger err-msg">Text</span>
+                                        </div>
+                                    </th:block>
+                                </div>
+                                <div class="input-group mt-2">
+                                    <label for="email"
+                                           class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Email</label>
+                                    <input name="email" th:field="*{email}" th:errorclass="border-danger" type="email" required
+                                           class="form-control validate  bg-white border border-secondary rounded text-dark"
+                                           id="email" placeholder="Enter email">
+                                    <th:block th:each="e : ${#fields.errors('email')}">
+                                        <div class="mx-auto text-center">
+                                            <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                        </div>
+                                    </th:block>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="department"
+                                           class="ccol-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Select
+                                        department</label>
+                                    <select th:errorclass="border-danger" class="browser-default custom-select bg-white border border-secondary rounded text-dark"
+                                            id="department" name="department">
+                                        <option class="dropdown-item" value="">Select department</option>
+                                        <th:block th:each="d : ${T(warehouse.departments.model.DepartmentName).values()}">
+                                            <option class="dropdown-item" th:text="${d}" th:value="${d}"
+                                                    th:selected="${d.name()} == *{department?.name()}">Pesho
+                                            </option>
+                                        </th:block>
+                                    </select>
+                                    <th:block th:each="e : ${#fields.errors('department')}">
+                                        <div class="mx-auto text-center">
+                                            <small th:text="${e}" class="text-danger err-msg">Will be replaced by e</small>
+                                        </div>
+                                    </th:block>
+                                </div>
+                                <br/>
+                                <input type="hidden" th:attr="name='role'" th:value="ROLE_USER"/>
+                                <div class="input-group">
+                                    <a th:href="@{/}"
+                                       class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded mt-3">Cancel</a>
+                                    <button type="submit"
+                                            class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded mt-3">Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+
+</html>

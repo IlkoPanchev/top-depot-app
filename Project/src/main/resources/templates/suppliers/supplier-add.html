@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container">
+        <th:block th:include="~{fragments/nav}"></th:block>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 class="w-100 text-dark text-right mt-3">ADD SUPPLIER</h4>
+        </div>
+        <br/>
+        <div class="row tm-mt-big">
+            <div class="col-12 mx-auto tm-login-col">
+                <div class="bg-white col-xl-8 col-lg-8 col-md-8 col-sm-6 mx-auto tm-block rounded border border-primary text-secondary">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <form th:action="@{/suppliers/add}" th:method="POST" class="tm-login-form"
+                                  th:object="${supplierAddBindingModel}">
+                                <div>
+                                    <input type="hidden" th:attr="name='id'" th:value="*{id}"/>
+                                    <div class="input-group mt-3">
+                                        <label for="name"
+                                               class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Name</label>
+                                        <input th:field="*{name}" th:errorclass="border-danger" name="name" type="text" required
+                                               class="form-control validate bg-white border border-secondary rounded text-dark"
+                                               id="name">
+                                        <th:block th:each="e : ${#fields.errors('name')}">
+                                            <div class="mx-auto text-center">
+                                                <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                            </div>
+                                        </th:block>
+                                        <div th:if="${supplierExists}" class="mx-auto text-center">
+                                            <span class="text-danger err-msg">A supplier with this name already exists.</span>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mt-3">
+                                        <label for="email"
+                                               class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Email</label>
+                                        <input th:field="*{email}" th:errorclass="border-danger" name="email" type="email" required
+                                               class="form-control validate bg-white border border-secondary rounded text-dark"
+                                               id="email">
+                                        <th:block th:each="e : ${#fields.errors('email')}">
+                                            <div class="mx-auto text-center error-field">
+                                                <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                </div>
+                                <div th:object="${addressAddBindingModel}">
+                                    <div class="input-group mt-3">
+                                        <input type="hidden" th:attr="name='id'" th:value="*{id}"/>
+                                        <label for="region"
+                                               class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Region</label>
+                                        <input name="region" th:field="*{region}" th:errorclass="border-danger" type="text" required
+                                               class="form-control validate bg-white border border-secondary rounded text-dark"
+                                               id="region">
+                                        <th:block th:each="e : ${#fields.errors('region')}">
+                                            <div class="mx-auto text-center">
+                                                <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                    <div class="input-group mt-3">
+                                        <label for="city"
+                                               class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">City</label>
+                                        <input name="city" th:field="*{city}" th:errorclass="border-danger" type="text" required
+                                               class="form-control validate bg-white border border-secondary rounded text-dark"
+                                               id="city">
+
+                                        <th:block th:each="e : ${#fields.errors('city')}">
+                                            <div class="mx-auto text-center">
+                                                <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                    <div class="input-group mt-3">
+                                        <label for="street"
+                                               class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Street</label>
+                                        <input name="street" th:field="*{street}" th:errorclass="border-danger" type="text" required
+                                               class="form-control validate bg-white border border-secondary rounded text-dark"
+                                               id="street">
+
+                                        <th:block th:each="e : ${#fields.errors('street')}">
+                                            <div class="mx-auto text-center">
+                                                <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                    <div class="input-group mt-3">
+                                        <label for="phone"
+                                               class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Phone</label>
+                                        <input name="street" th:field="*{phone}" th:errorclass="border-danger" type="text" required
+                                               class="form-control validate bg-white border border-secondary rounded text-dark"
+                                               id="phone">
+
+                                        <th:block th:each="e : ${#fields.errors('phone')}">
+                                            <div class="mx-auto text-center">
+                                                <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                </div>
+                                <div class="input-group mt-3">
+                                    <a th:href="@{/suppliers/all/pageable}"
+                                       class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded  mt-3">Cancel</a>
+                                    <button type="submit"
+                                            class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded mt-3">
+                                        Save
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+
+</html>

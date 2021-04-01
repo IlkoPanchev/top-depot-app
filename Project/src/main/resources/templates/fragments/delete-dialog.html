@@ -1,0 +1,34 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="deleteDialog(entity, entities)">
+        <div class="modal fade" id="deleteModal" tabindex="-1"
+             role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-secondary" id="exampleModalLabel">Delete <span th:text="${entity}">text</span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-secondary">
+                        Are you sure that you want to delete this <span th:text="${entity}">text</span>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary rounded " data-dismiss="modal">Close</button>
+                        <form
+                                id="formDelete"
+                                th:action="@{'/' + ${entities} + '/delete'}"
+                                th:method="delete">
+                            <input id="deleteId" name="deleteId" type="hidden" value=""/>
+                            <button id="btnDelete" type="submit" class="btn btn-sm btn-primary rounded">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</th:block>

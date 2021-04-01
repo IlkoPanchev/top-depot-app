@@ -1,0 +1,20 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="searchForm(path ,selectedPageSize, page, keyword, selectedSortOption, sortDirection)">
+        <form th:action="@{${path} + '?keyword=' + ${keyword}}" autocomplete="off">
+            <!--                <span> </span><i class="fa fa-search" aria-hidden="true"></i>-->
+            <button type="submit" class="btn-submit text-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+
+            &nbsp;<input placeholder=" Search ..." type="text" name="keyword" id="keyword" class="border border-dark rounded"
+                         size="30" th:value="${keyword}" required/>
+            <input type="hidden" th:attr="name='pageSize'" th:value="${selectedPageSize}"/>
+            <input type="hidden" th:attr="name='page'" th:value="${page}"/>
+            <input type="hidden" th:attr="name='sortOption'" th:value="${selectedSortOption}"/>
+            <input type="hidden" th:attr="name='sortDirection'" th:value="${sortDirection}"/>
+
+            <button class="btn-submit text-primary" id="btnClear" type="button" onclick="clearSearch()"><i
+                    class="fa fa-times" aria-hidden="true"></i></button>
+            <!--                <input type="submit" value="Search" class="btn-sm btn-outline-primary search-clear rounded"/>&nbsp;-->
+            <!--                <input type="button" value="Clear" id="btnClear" class="btn-sm btn-outline-primary search-clear rounded" onclick="clearSearch()"/>-->
+        </form>
+    </div>
+</th:block>

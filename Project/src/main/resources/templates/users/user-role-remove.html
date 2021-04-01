@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container ">
+        <th:block th:include="~{fragments/nav}"></th:block>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 class="w-100 text-dark text-right mt-3">REMOVE ROLE</h4>
+        </div>
+        <br/>
+        <div class="row tm-mt-big">
+            <div class="col-12 mx-auto tm-login-col">
+                <div class="bg-white col-xl-7 col-lg-7 col-md-7 col-sm-5 mx-auto tm-block rounded border border-primary text-secondary">
+                    <div class="row mt-2">
+                        <div th:object="${user}" class="col-12">
+                            <div class="row">
+                                <div class="mx-auto">
+                                    <p class="col-form-label">Username : </p>
+                                    <p class="text-dark" th:text="*{username}">username</p>
+                                </div>
+                                <div class="mx-auto" th:object="${userRoles}">
+                                    <p class="col-form-label">Current roles:</p>
+                                    <th:block th:each="r : ${userRoles}">
+                                        <p class="text-dark" th:text="${r}" th:value="${r}">Pesho</p>
+                                    </th:block>
+                                </div>
+                            </div>
+
+                            <form th:action="@{/users/roles/remove}" th:method="POST">
+                                <div class="form-group text-center">
+                                    <input type="hidden" th:attr="name='userId'" th:value="*{id}"/>
+                                    <label for="role"
+                                           class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-form-label tex-left">Remove role</label>
+                                    <div th:object="${roleAddBindingModel}">
+                                        <select th:field="*{role}" th:errorclass="bg-danger"
+                                                class="browser-default custom-select bg-transparent text-dark border border-secondary rounded
+                                                col-xl-8 col-lg-8 col-md-8 col-sm-8 col-form-label mx-auto"
+                                                id="role" name="role">
+                                            <option class="dropdown-item" value="">Select Role</option>
+                                            <option class="dropdown-item"
+                                                    th:each="o : ${T(warehouse.users.model.RoleName).values()}"
+                                                    th:text="${o}"
+                                                    th:value="${o}" th:selected="${o.name()} == *{role}">Male
+                                            </option>
+                                        </select>
+                                        <div class="mx-auto text-center">
+                                            <small th:if="${#fields.errors('role')}" th:errors="*{role}"
+                                                   class="text-danger err-msg">Will be replaced by
+                                                e</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <a th:href="@{/users/all/pageable}"
+                                       class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded mt-3">Cancel</a>
+                                    <button type="submit"
+                                            class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded mt-3">
+                                        Remove
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--    <th:block th:include="~{fragments/head}"></th:block>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<main>-->
+<!--    <div class="container ">-->
+<!--        <th:block th:include="~{fragments/nav}"></th:block>-->
+<!--        <div class="container mt-lg-5 bg-transparent h-100">-->
+<!--            <h4 class="w-100 text-dark text-right mt-3">REMOVE ROLE</h4>-->
+<!--        </div>-->
+<!--        <br/>-->
+<!--        <div class="row tm-mt-big">-->
+<!--            <div class="col-12 mx-auto tm-login-col">-->
+<!--                <div class="bg-white col-xl-7 col-lg-7 col-md-7 col-sm-5 mx-auto tm-block rounded border border-primary text-secondary">-->
+<!--                    <div class="row mt-2">-->
+<!--                        <div class="col-12">-->
+<!--                            <form th:action="@{/users/roles/remove}" th:method="POST">-->
+<!--                                <div  th:object="${user}">-->
+<!--                                    <input type="hidden" th:attr="name='userId'" th:value="*{id}"/>-->
+<!--                                    <p class="col-form-label">Username :</p>-->
+<!--                                    <p class="text-dark" th:text="*{username}">username</p>-->
+<!--                                </div>-->
+<!--                                <div  th:object="${userRoles}">-->
+
+<!--                                    <p class="col-form-label">Current roles:</p>-->
+<!--                                    <th:block th:each="r : ${userRoles}">-->
+<!--                                        <p class="text-dark" th:text="${r}" th:value="${r}">role</p>-->
+<!--                                    </th:block>-->
+<!--                                </div>-->
+<!--                                <div class="form-group">-->
+
+<!--                                    <label for="role"-->
+<!--                                           class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-form-label">Remove-->
+<!--                                        role</label>-->
+<!--                                    <select class="browser-default custom-select bg-transparent text-dark border border-dark rounded"-->
+<!--                                            id="role" name="role">-->
+<!--                                        <option class="dropdown-item"-->
+<!--                                                th:each="o : ${T(warehouse.users.model.RoleName).values()}"-->
+<!--                                                th:text="${o}"-->
+<!--                                                th:value="${o}" th:selected="${o.name()} == *{role}">role-->
+<!--                                        </option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+
+<!--                                <div class="input-group">-->
+<!--                                    <a th:href="@{/users/all/pageable}"-->
+<!--                                       class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded mt-3">Cancel</a>-->
+<!--                                    <button type="submit"-->
+<!--                                            class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded mt-3">Remove-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</main>-->
+<!--<th:block th:include="~{fragments/footer}"></th:block>-->
+<!--</body>-->
+
+<!--</html>-->
+
+

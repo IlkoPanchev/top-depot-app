@@ -1,0 +1,44 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="itemData()">
+        <div style="text-align: center">
+            <h5 class="item-data">Item &#8470;<span
+                    th:text="*{id}"></span></h5>
+        </div>
+        <div class="row">
+            <div class="bg-transparent text-dark rounded item-data-table">
+                <div class="row">
+                    <div>
+                        <div class="row item-data-row ">
+                            <span class="font-weight-bold item-data" th:text="|Name              |">Name</span>
+                            <span class="overflow-visible" th:text="*{name}"></span>
+                        </div>
+                        <div class="row item-data-row">
+                            <span class="font-weight-bold item-data" th:text="|Description    |">Description</span>
+                            <div class="overflow-visible" th:text="*{description}"></div>
+
+                        </div>
+                        <div class="row item-data-row">
+                            <span class="font-weight-bold item-data" th:text="|Price                |">Price </span>
+                            <span class="overflow-visible" th:text="*{price}"></span>
+                        </div>
+                        <div class="row item-data-row">
+                            <span class="font-weight-bold item-data" th:text="|Location         |">Location </span>
+                            <span class="overflow-visible" th:text="*{location}"></span>
+                        </div>
+                        <div class="row item-data-row">
+                            <span class="font-weight-bold item-data" th:text="|Category         |">Category </span>
+                            <span class="overflow-visible" th:text="*{category}"></span>
+                        </div>
+                        <div class="row item-data-row">
+                            <span class="font-weight-bold item-data" th:text="|Supplier          |">Supplier </span>
+                            <span class="overflow-visible" th:text="*{supplier}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-transparent text-dark rounded item-data-table">
+                <img th:src="*{img}" width="200px">
+            </div>
+        </div>
+    </div>
+</th:block>

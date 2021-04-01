@@ -1,0 +1,16 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div align="center" th:fragment="datePicker(path)">
+        <form th:action="@{${path}}">
+            <label for="fromDate">From Date</label>
+            <input type="text" id="fromDate" name="fromDate" class="rounded border border-dark" autocomplete="off" required>
+            <label for="toDate">To Date</label>
+            <input type="text" id="toDate" name="toDate" class="rounded border border-dark" autocomplete="off" required>
+            <input type="submit" value="Search" class="date-search rounded border border-primary text-primary"/>&nbsp;
+
+<!--            <button type="submit"-->
+<!--                    class="date-search btn-outline-primary btn-sm d-inline-block mx-auto rounded">-->
+<!--                Search-->
+<!--            </button>-->
+        </form>
+    </div>
+</th:block>

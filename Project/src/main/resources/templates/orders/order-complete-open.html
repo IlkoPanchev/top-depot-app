@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container">
+        <th:block th:include="~{fragments/nav}"></th:block>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 th:unless="${session.editOrderData.isClosed()}" class="w-100 text-dark text-right mt-3"
+                th:text="|COMPLETE ORDER &#8470;${session.editOrderData.getId()}|">COMPLETE ORDER</h4>
+            <h4 sec:authorize="hasRole('MANAGER')" th:if="${session.editOrderData.isClosed()}"
+                class="w-100 text-dark text-right mt-3"
+                th:text="|INCOMPLETE ORDER &#8470;${session.editOrderData.getId()}|">INCOMPLETE ORDER</h4>
+        </div>
+        <th:block th:include="~{fragments/order-customer-data}"></th:block>
+        <br/>
+        <br/>
+        <div class="table-responsive text-dark">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Item &#8470;</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Subtotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="orderLine : ${session.editOrderData.orderLineEntities}">
+                    <td scope="row" th:text="${orderLine.item.id}"></td>
+                    <td th:text="${orderLine.item.name}"></td>
+                    <td th:text="${orderLine.item.description}"></td>
+                    <td><span th:text="${orderLine.item.price}"></span></td>
+                    <td><span th:text="${orderLine.quantity}"></span></td>
+                    <td><span th:text="${orderLine.subtotal}"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        TOTAL : <span th:text="${session.editOrderData.getTotalAmount()}"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div style="display: inline; margin-left: auto; margin-right: auto" class="bg-transparent tm-block">
+                <a th:href="@{/orders/complete/cancel}"
+                   class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded">Cancel</a>
+                <a th:unless="${session.editOrderData.isClosed()}" th:href="@{/orders/complete}"
+                   class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded">Complete</a>
+                <th:block sec:authorize="hasRole('MANAGER')">
+                    <a th:if="${session.editOrderData.isClosed()}" th:href="@{/orders/incomplete}"
+                       class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded">Incomplete</a>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

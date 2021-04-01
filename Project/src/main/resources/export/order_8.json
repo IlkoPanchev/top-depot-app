@@ -1,0 +1,40 @@
+{
+  "id": 8,
+  "createdOn": "14-01-2021 10:33:23",
+  "updatedOn": "27-01-2021 14:08:47",
+  "customer": {
+    "id": 1,
+    "companyName": "Abc",
+    "personName": "Angel Dimov",
+    "email": "ilko_panchev@mail.bg",
+    "isBlocked": false,
+    "address": {
+      "id": 3,
+      "region": "Sofia",
+      "city": "Sofia",
+      "street": "Tintyava 15",
+      "phone": "0887586666"
+    }
+  },
+  "orderLineEntities": [
+    {
+      "id": 10,
+      "item": {
+        "id": 1,
+        "name": "Laptop Fuji 1255 ",
+        "description": "laptop",
+        "price": 500.00,
+        "location": "F5-P0-R4",
+        "category": "laptops",
+        "supplier": "Daisy",
+        "isBlocked": false
+      },
+      "quantity": 5,
+      "subtotal": 2500.00
+    }
+  ],
+  "isClosed": true,
+  "isArchives": false,
+  "isDeleted": false,
+  "total": 2500.00
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container">
+        <th:block th:include="~{fragments/nav}"></th:block>
+        <div class="container mt-lg-5 bg-transparent h-100">
+            <h4 class="w-100 text-dark text-right mt-3">ITEMS</h4>
+        </div>
+
+        <div align="center" class="text-dark">
+            <br/>
+            <div th:replace="fragments/search-form.html :: searchForm(path=${path}, selectedPageSize=${selectedPageSize}, page=1, keyword=${keyword},
+         selectedSortOption=${selectedSortOption}, sortDirection=${sortDirection})">
+            </div>
+            <div th:replace="fragments/select-sort-option.html :: selectSortOption(path=${path}, selectedPageSize=${selectedPageSize},
+         keyword=${keyword}, sortDirection=${sortDirection}, selectedSortOption=${selectedSortOption}, sortOptions=${sortOptions})">
+            </div>
+            <div class="table-responsive text-dark">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Item &#8470;</th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Name ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Name',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Description ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Description',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Price ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Price',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Location ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Location',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Category ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Category',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Supplier ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Supplier',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Picture ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Picture',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${items}">
+                        <th scope="row" th:text="${item.id}">Item N</th>
+                        <td th:text="${item.name}">Name</td>
+                        <td th:text="${item.description}">Description</td>
+                        <td th:text="${item.price}">Price/td>
+                        <td th:text="${item.location}">Location</td>
+                        <td th:text="${item.category}">Category</td>
+                        <td th:text="${item.supplier}">Supplier</td>
+                        <td><img th:src="*{item.img}" width="50px"></td>
+                        <td>
+                            <a class="btn-href" th:if="${session.editOrderData}" th:href="@{/orders/editOrder/addItem/(id = ${item.id})}">
+                                <button class="btn-href btn-outline-primary btn-sm rounded"> Order
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div th:replace="fragments/pagination.html :: selectPageAndSize (path=${path}, pageSizes=${pageSizes}, selectedPageSize=${selectedPageSize},
+     result=${result}, pager=${pager}, keyword=${keyword}, selectedSortOption=${selectedSortOption}, sortDirection=${sortDirection})">
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+
+</html>

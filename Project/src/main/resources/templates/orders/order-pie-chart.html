@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+    <th:block th:include="~{fragments/head-date-picker}"></th:block>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            let created = [[${orderMap["created"]}]];
+            let completed = [[${orderMap["completed"]}]];
+            let archive = [[${orderMap["archive"]}]];
+            let title = 'Period:  ' + [[${fromDate}]] + ' - ' + [[${toDate}]]+ '\n Total orders : ' + [[${totalOrders}]];
+            let titleNewOrders = 'New orders: ' + [[${orderMap["created"]}]];
+            let titleCompleted = 'Completed: ' + [[${orderMap["completed"]}]];
+            let titleArchive = 'Archive: ' + [[${orderMap["archive"]}]];
+
+
+            let dataPie = google.visualization.arrayToDataTable([
+                ['Orders', 'Status'],
+                [titleNewOrders, created],
+                [titleCompleted, completed],
+                [titleArchive, archive]
+            ]);
+
+            let optionsPie = {
+                title: title,
+                is3D: true,
+                backgroundColor: '#ddd'
+            };
+
+            let chartPie = new google.visualization
+                .PieChart(document.getElementById('orderPieChart'));
+            chartPie.draw(dataPie, optionsPie);
+        }
+
+        $(window).resize(function () {
+            drawChart();
+        });
+
+
+        /*]]>*/
+    </script>
+</head>
+
+<body>
+<main>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <th:block th:include="~{fragments/nav}"></th:block>
+                </div>
+            </div>
+            <div class="container mt-lg-5 bg-transparent h-100">
+                <h4 class="w-100 text-dark text-right mt-3">ORDERS STATUS</h4>
+            </div>
+            <br/>
+            <br/>
+            <div th:replace="fragments/date-picker.html :: datePicker(path=${path})">
+            </div>
+            <br/>
+            <br/>
+            <div class="col-md-6 rounded" style="margin-left: auto; margin-right: auto">
+                <div id="orderPieChart" class="chart rounded"></div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

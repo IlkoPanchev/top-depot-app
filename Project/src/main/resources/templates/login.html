@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<main>
+    <div class="container ">
+        <div class="row">
+            <div class="col-12">
+                <th:block th:include="~{fragments/guest-nav}"></th:block>
+            </div>
+        </div>
+        <div class="container mt-lg-5 border-bottom border-dark bg-transparent h-100">
+            <h4 class="w-100 text-dark text-right mt-3">Star Logistic Ltd.</h4>
+        </div>
+        <br/>
+        <br/>
+        <div class="row tm-mt-big">
+            <div class="col-12 mx-auto tm-login-col">
+                <div class="tm-block">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <br/>
+                            <br/>
+                            <form th:action="@{/login/authenticate}" th:method="POST" class="tm-login-form">
+                                <div th:if="${error}" class="mx-auto text-danger text-center">
+                                    Wrong username or password.
+                                </div>
+                                <p></p>
+                                <div class="input-group" align="center">
+                                    <label for="username"
+                                           class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label text-dark text-right">Username</label>
+                                    <input name="username" type="text" th:value="${username}"
+                                           class="form-control validate col-xl-4 col-lg-8 col-md-8 col-sm-7 bg-transparent border-dark rounded text-dark"
+                                           id="username" required>
+                                </div>
+                                <div class="input-group mt-3" align="center">
+                                    <p></p>
+                                    <label for="password"
+                                           class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label text-dark text-right">Password</label>
+                                    <input name="password" type="password"
+                                           class="form-control validate col-xl-4 col-lg-8 col-md-8 col-sm-7 bg-transparent border-dark rounded text-dark"
+                                           id="password" required>
+                                </div>
+                                <div class="input-group mt-3">
+                                    <button type="submit"
+                                            class="btn btn-sm btn-outline-primary d-inline-block mx-auto rounded mt-3">Login
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+
+</html>
