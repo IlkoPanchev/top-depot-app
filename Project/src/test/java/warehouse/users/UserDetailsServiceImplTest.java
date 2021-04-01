@@ -1,4 +1,4 @@
-package warehouse;
+package warehouse.users;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
