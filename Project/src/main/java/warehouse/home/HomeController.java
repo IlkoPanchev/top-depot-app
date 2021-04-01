@@ -38,10 +38,6 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
 
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-
             List<OrderViewBindingModel> lastCompletedOrders = this.orderService.findAllPageableCompletedOrderByUpdated()
                     .stream()
                     .map(orderViewServiceModel -> this.modelMapper.map(orderViewServiceModel, OrderViewBindingModel.class))
