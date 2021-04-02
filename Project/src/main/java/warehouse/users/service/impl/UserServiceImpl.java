@@ -86,13 +86,6 @@ public class UserServiceImpl implements UserService {
         return userServiceModel;
     }
 
-
-    //TODO find usages of findAllUsernames()
-    @Override
-    public List<String> findAllUsernames() {
-        return this.userRepository.findAll().stream().map(UserEntity::getUsername).collect(Collectors.toList());
-    }
-
     @Override
     public void addRole(Long userId, String role) {
 
@@ -139,19 +132,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserServiceModel> findAll() {
-
-        List<UserEntity> userEntities = this.userRepository.findAll();
-
-        List<UserServiceModel> userServiceModels = userEntities.stream()
-                .map(userEntity -> this.modelMapper.map(userEntity, UserServiceModel.class))
-                .collect(Collectors.toList());
-
-        return userServiceModels;
-    }
-
-
-    @Override
     public Page<UserServiceModel> findAllPageable(Pageable pageable) {
 
         Page<UserEntity> userEntities = this.userRepository.findAll(pageable);
@@ -163,27 +143,6 @@ public class UserServiceImpl implements UserService {
 
         return userServiceModelPage;
     }
-
-//    @Override
-//    public List<UserServiceModel> filter(String keyword) {
-//
-//        SearchSpecification<UserEntity> specificationUsername = new SearchSpecification<>(new SearchCriteria("username", ":", keyword));
-//        SearchSpecification<UserEntity> specificationEmail = new SearchSpecification<>(new SearchCriteria("email", ":", keyword));
-//
-//        DepartmentEntity departmentEntity = findDepartment(keyword);
-//
-//        SearchSpecification<UserEntity> specificationDepartment = new SearchSpecification<>(new SearchCriteria("department", ":", departmentEntity));
-//
-//        List<UserEntity> userEntities = this.userRepository.findAll(Specification.where(specificationUsername).or(specificationEmail).or(specificationDepartment));
-//
-//        List<UserServiceModel> userServiceModels = userEntities
-//                .stream().map(userEntity -> this.modelMapper.map(userEntity, UserServiceModel.class))
-//                .collect(Collectors.toList());
-//
-//        return userServiceModels;
-//
-//    }
-    //TODO: remove filter()
 
     @Override
     public UserServiceModel findUserById(Long id) {
@@ -352,21 +311,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    private DepartmentEntity findDepartment(String keyword) {
-//
-//        DepartmentEntity departmentEntity = null;
-//
-//        List<String> departmentNames = Arrays.stream(DepartmentName.values()).map(DepartmentName::name).collect(Collectors.toList());
-//
-//        String name = departmentNames.stream().filter(d -> d.contains(keyword.toUpperCase())).findFirst().orElse(null);
-//
-//        if (name != null) {
-//            departmentEntity = this.departmentService.findByName(DepartmentName.valueOf(name));
-//        }
-//
-//        return departmentEntity;
-//    }
-    //TODO remove findDepartment()
 
     private RoleEntity createRole(String role) {
 
@@ -375,16 +319,4 @@ public class UserServiceImpl implements UserService {
         return roleEntity;
     }
 
-//    @Override
-//    public UserServiceModel delete(Long id) {
-//
-//        UserEntity userEntity = this.userRepository.findById(id)
-//                .orElseThrow(() -> new EntityNotFoundException("Not found user with id: " + id));
-//
-//        UserServiceModel userServiceModel = this.modelMapper.map(userEntity, UserServiceModel.class);
-//        userRepository.delete(userEntity);
-//
-//        return userServiceModel;
-//
-//    }
 }

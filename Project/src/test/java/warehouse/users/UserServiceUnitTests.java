@@ -254,17 +254,6 @@ public class UserServiceUnitTests {
 
     }
 
-    @Test@MockitoSettings(strictness = Strictness.WARN)
-    public void testFindAllMethod(){
-
-        when(mockUserRepository.findAll()).thenReturn(List.of(userEntity));
-
-        List<UserServiceModel> userServiceModels = this.userServiceToTest.findAll();
-
-        Assertions.assertEquals(userServiceModels.size(), 1);
-        Assertions.assertEquals(userServiceModels.get(0).getUsername(), USERNAME);
-
-    }
 
     @Test@MockitoSettings(strictness = Strictness.WARN)
     public void testFindAllPageableMethod(){

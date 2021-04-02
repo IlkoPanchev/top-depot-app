@@ -24,26 +24,18 @@ public interface UserService {
     @Validated(OnCreate.class)
     UserServiceModel register(@Valid UserServiceModel model);
 
-    List<String> findAllUsernames();
-
     void addRole(Long userId, String role);
 
     void removeRole(Long userId, String role);
 
     boolean userExists(String username);
 
-    List<UserServiceModel> findAll();
-
     Page<UserServiceModel> findAllPageable(Pageable pageable);
-
-//    List<UserServiceModel> filter(String keyword);
 
     UserServiceModel findUserById(Long id);
 
     @Validated(OnUpdate.class)
     UserServiceModel edit(@Valid UserServiceModel model);
-
-//    UserServiceModel delete(Long id);
 
     Set<String> getRolesByUserId(Long id);
 
