@@ -3,6 +3,8 @@ package warehouse.config;
 import com.google.gson.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import warehouse.items.validation.CategoryValidator;
 import warehouse.items.validation.SupplierValidator;
 import warehouse.utils.file.FileIOUtil;
@@ -23,6 +25,11 @@ public class ApplicationBeanConfiguration {
     public TimeBordersConvertor timeBordersConvertor(){
 
         return new TimeBordersConvertorImpl();
+    }
+
+    @Bean
+    public PasswordEncoder createPasswordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 

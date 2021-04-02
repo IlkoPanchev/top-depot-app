@@ -289,11 +289,4 @@ public class UserController {
         return "redirect:/";
     }
 
-//    @DeleteMapping("/delete")
-//    public String delete(@ModelAttribute("deleteId") @Min(1) Long id) {
-//
-//        this.userService.delete(id);
-//
-//        return "redirect:/users/all/pageable";
-//    }
 }
