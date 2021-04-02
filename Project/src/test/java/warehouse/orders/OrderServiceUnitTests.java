@@ -140,19 +140,6 @@ public class OrderServiceUnitTests {
 
     @Test
     @MockitoSettings(strictness = Strictness.WARN)
-    public void testFindAllMethod() {
-
-        when(mockOrderRepository.findAll()).thenReturn(List.of(orderEntity));
-
-       List<OrderViewServiceModel> orderViewServiceModels = orderServiceToTest.findAll();
-
-        Assertions.assertEquals(orderEntity.getId(), 1L);
-        Assertions.assertEquals(orderViewServiceModels.get(0).getId(), 1);
-
-    }
-
-    @Test
-    @MockitoSettings(strictness = Strictness.WARN)
     public void testSearchMethod(){
 
         Page<OrderEntity> orderEntities = new PageImpl<>(List.of(orderEntity), pageable, 1L);

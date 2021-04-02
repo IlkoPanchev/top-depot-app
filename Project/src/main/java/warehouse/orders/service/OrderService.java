@@ -31,15 +31,7 @@ public interface OrderService {
 
     Page<OrderViewServiceModel> search(String keyword, Pageable pageable);
 
-    List<OrderViewServiceModel> findAll();
-
-//    List<OrderViewServiceModel> findAllPageable();
-
     List<OrderViewServiceModel> findAllPageableOrderByUpdated();
-
-//    Page<OrderViewBindingModel> findAllPageableOrderByUpdated(Pageable pageable);
-
-    List<OrderViewServiceModel> findAllPageableOrderByUpdated(Pageable pageable);
 
     List<OrderViewServiceModel> findAllPageableCompletedOrderByUpdated();
 

@@ -22,6 +22,6 @@ public class ArchiveOrderEvent extends ApplicationEvent {
 
     @Override
     public String toString() {
-        return String.format("ArchiveOrderIvent - order %s", order.getId());
+        return String.format("ArchiveOrderЕvent - order %s", order.getId());
     }
 }

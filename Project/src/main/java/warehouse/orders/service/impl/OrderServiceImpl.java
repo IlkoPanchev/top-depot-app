@@ -209,15 +209,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderViewServiceModel> findAll() {
-
-        return this.orderRepository.findAll()
-                .stream()
-                .map(orderEntity -> this.modelMapper.map(orderEntity, OrderViewServiceModel.class))
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<OrderViewServiceModel> findAllPageableOrderByUpdated() {
 
 
@@ -232,43 +223,6 @@ public class OrderServiceImpl implements OrderService {
 
         return orderViewServiceModels;
     }
-
-
-//    @Override
-//    public Page<OrderViewBindingModel> findAllPageableOrderByUpdated(Pageable pageable) {
-//
-//        Page<OrderEntity> orderEntityList = this.orderRepository.findAllOrderByUpdatedOnDesc(pageable);
-//
-//        List<OrderViewServiceModel> orderViewServiceModels = orderEntityList
-//                .stream()
-//                .map(orderEntity -> this.modelMapper.map(orderEntity, OrderViewServiceModel.class))
-//                .collect(Collectors.toList());
-//
-//        List<OrderViewBindingModel> orderViewBindingModels = orderViewServiceModels
-//                .stream()
-//                .map(orderViewServiceModel -> this.modelMapper.map(orderViewServiceModel,
-//                        OrderViewBindingModel.class)).collect(Collectors.toList());
-//
-//        Page<OrderViewBindingModel> page = new PageImpl<>(orderViewBindingModels, pageable,(int) this.orderRepository.count());
-//
-//        return page;
-//    }
-
-    //TODO: decide findAllPageableOrderByUpdated(Pageable pageable)
-
-    @Override
-    public List<OrderViewServiceModel> findAllPageableOrderByUpdated(Pageable pageable) {
-
-        Page<OrderEntity> orderEntityList = this.orderRepository.findAllOrderByUpdatedOnDesc(pageable);
-
-        List<OrderViewServiceModel> orderViewServiceModels = orderEntityList
-                .stream()
-                .map(orderEntity -> this.modelMapper.map(orderEntity, OrderViewServiceModel.class))
-                .collect(Collectors.toList());
-
-        return orderViewServiceModels;
-    }
-
 
     @Override
     public List<OrderViewServiceModel> findAllPageableCompletedOrderByUpdated() {
@@ -335,22 +289,6 @@ public class OrderServiceImpl implements OrderService {
             lastWeekMap.put(orderDate, total);
         }
         return lastWeekMap;
-    }
-
-    private LocalDateTime[] getStartAndEndOfLastWeek() {
-
-        LocalDateTime[] startEnd = new LocalDateTime[2];
-
-        LocalDateTime now = LocalDateTime.now();
-        LocalDate localDateNow = now.toLocalDate();
-        LocalDateTime nowAtStartOfDay = localDateNow.atStartOfDay();
-
-        LocalDateTime weekStart = nowAtStartOfDay.minusDays(7 + nowAtStartOfDay.getDayOfWeek().getValue() - 1);
-        startEnd[0] = weekStart;
-        LocalDateTime weekEnd = nowAtStartOfDay.minusDays(nowAtStartOfDay.getDayOfWeek().getValue() - 1);
-        startEnd[1] = weekEnd;
-
-        return startEnd;
     }
 
     @Override
@@ -539,6 +477,22 @@ public class OrderServiceImpl implements OrderService {
                 this.orderRepository.saveAndFlush(archivedOrderEntity);
             }
         }
+    }
+
+    private LocalDateTime[] getStartAndEndOfLastWeek() {
+
+        LocalDateTime[] startEnd = new LocalDateTime[2];
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDate localDateNow = now.toLocalDate();
+        LocalDateTime nowAtStartOfDay = localDateNow.atStartOfDay();
+
+        LocalDateTime weekStart = nowAtStartOfDay.minusDays(7 + nowAtStartOfDay.getDayOfWeek().getValue() - 1);
+        startEnd[0] = weekStart;
+        LocalDateTime weekEnd = nowAtStartOfDay.minusDays(nowAtStartOfDay.getDayOfWeek().getValue() - 1);
+        startEnd[1] = weekEnd;
+
+        return startEnd;
     }
 
 }
