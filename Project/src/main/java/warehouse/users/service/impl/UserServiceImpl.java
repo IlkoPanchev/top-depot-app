@@ -69,6 +69,7 @@ public class UserServiceImpl implements UserService {
             UserEntity userEntity = this.modelMapper.map(userServiceModel, UserEntity.class);
             userEntity.setPassword(this.passwordEncoder.encode(userServiceModel.getPassword()));
             userEntity.setDepartment(this.departmentService.findByName(userServiceModel.getDepartment().getDepartmentName()));
+            userEntity.setEnabled(true);
 
             String role = userServiceModel.getRole();
             setRoleToUser(userEntity, role);

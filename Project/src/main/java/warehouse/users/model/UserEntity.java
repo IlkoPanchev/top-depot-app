@@ -43,7 +43,7 @@ public class UserEntity extends BaseEntity {
         return isEnabled;
     }
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false)
     public String getEmail() {
         return email;
     }

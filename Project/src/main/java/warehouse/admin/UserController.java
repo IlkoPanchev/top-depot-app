@@ -256,6 +256,7 @@ public class UserController {
     @GetMapping("/profile")
     @PreAuthorize("hasRole('USER')")
     public String profileEdit(Model model, @RequestParam("name") String name) {
+
         if (!model.containsAttribute("userRegisterBindingModel")) {
             UserServiceModel userServiceModel = this.userService.getUserByUserName(name);
             UserRegisterBindingModel userRegisterBindingModel = this.modelMapper.map(userServiceModel, UserRegisterBindingModel.class);
