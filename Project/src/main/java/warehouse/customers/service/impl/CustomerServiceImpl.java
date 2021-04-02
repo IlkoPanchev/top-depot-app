@@ -165,35 +165,6 @@ public class CustomerServiceImpl implements CustomerService {
         return customerServiceModelPage;
     }
 
-//    @Override
-//    public Page<CustomerViewBindingModel> getPage(Map<String, String> sortOptions, String sortOption, String sortDirection, String keyword, Integer page, Integer pageSize) {
-//
-//        String option = sortOptions.get(sortOption);
-//
-//        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(option).ascending() :
-//                Sort.by(option).descending();
-//        Pageable pageable = PageRequest.of(page, pageSize, sort);
-//
-//        Page<CustomerServiceModel> customerServiceModelPage;
-//
-//        if (!keyword.equals("null")) {
-//            customerServiceModelPage = this.search(keyword, pageable);
-//        } else {
-//            customerServiceModelPage = this.findAllPageable(pageable);
-//        }
-//
-//        List<CustomerViewBindingModel> customerViewBindingModels = customerServiceModelPage
-//                .stream()
-//                .map(customerServiceModel -> this.modelMapper.map(customerServiceModel, CustomerViewBindingModel.class))
-//                .collect(Collectors.toList());
-//
-//        Page<CustomerViewBindingModel> pageToReturn = new PageImpl<>(customerViewBindingModels, pageable, customerServiceModelPage.getTotalElements());
-//
-//        return pageToReturn;
-//    }
-
-    // TODO decide about getPage()
-
     @Override
     public CustomerServiceModel edit(CustomerServiceModel customerServiceModel) {
 

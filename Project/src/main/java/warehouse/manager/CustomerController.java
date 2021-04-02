@@ -269,7 +269,7 @@ public class CustomerController {
 
     private Page<CustomerViewBindingModel> getPage(Map<String, String> sortOptions, String sortOption, String sortDirection, String keyword, Integer page, Integer pageSize) {
 
-        String option = sortOptions.get(sortOption);
+        String option = this.getOption(sortOptions, sortOption);
 
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(option).ascending() :
                 Sort.by(option).descending();
@@ -294,9 +294,17 @@ public class CustomerController {
         return pageToReturn;
     }
 
+
+    private String getOption(Map<String, String> sortOptions, String sortOption) {
+
+        return sortOptions.get(sortOption);
+    }
+
+
+
     private Page<CustomerViewBindingModel> getPageUnblocked(Map<String, String> sortOptions, String sortOption, String sortDirection, String keyword, Integer page, Integer pageSize) {
 
-        String option = sortOptions.get(sortOption);
+        String option = this.getOption(sortOptions, sortOption);
 
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(option).ascending() :
                 Sort.by(option).descending();

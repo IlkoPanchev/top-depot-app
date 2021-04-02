@@ -31,13 +31,9 @@ public interface CustomerService {
 
     CustomerServiceModel findById(Long id);
 
-//    CustomerServiceModel delete(Long id);
-
     Page<CustomerServiceModel> search(String keyword, Pageable pageable);
 
     Page<CustomerServiceModel> searchUnblocked(String keyword, Pageable pageable);
-
-//    Page<CustomerViewBindingModel> getPage(Map<String, String> sortOptions, String sortOption, String sortDirection, String keyword, Integer page, Integer pageSize);
 
     @Validated(OnUpdate.class)
     CustomerServiceModel edit(@Valid CustomerServiceModel customerServiceModel);
