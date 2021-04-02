@@ -1,6 +1,7 @@
 package warehouse.pagination;
 
 public class PagerModel {
+
     private int buttonsToShow = 3;
 
     private int startPage;
