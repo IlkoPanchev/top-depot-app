@@ -153,6 +153,7 @@ public class UserServiceUnitTests {
 
 
         when(mockUserRepository.findById(any(Long.class))).thenReturn(Optional.of(userEntity));
+        when(mockRoleService.getByName(any(RoleName.class))).thenReturn(this.createExistingRoleEntity());
 
          userServiceToTest.addRole(1L, ROLE_MANAGER);
 
@@ -167,6 +168,14 @@ public class UserServiceUnitTests {
                 collect(Collectors.toList());
 
         Assertions.assertTrue(userEntityActualRoles.contains(ROLE_MANAGER));
+    }
+
+    private RoleEntity createExistingRoleEntity() {
+
+        RoleEntity roleEntity = new RoleEntity();
+        roleEntity.setRole(RoleName.ROLE_MANAGER);
+
+        return roleEntity;
     }
 
     @Test
