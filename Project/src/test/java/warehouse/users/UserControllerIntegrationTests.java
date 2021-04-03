@@ -1,6 +1,5 @@
 package warehouse.users;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
@@ -13,20 +12,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import warehouse.addresses.model.AddressAddBindingModel;
-import warehouse.departments.model.DepartmentEntity;
 import warehouse.departments.model.DepartmentName;
-import warehouse.departments.model.DepartmentServiceModel;
-import warehouse.suppliers.model.SupplierAddBindingModel;
-import warehouse.suppliers.model.SupplierEntity;
-import warehouse.suppliers.model.SupplierServiceModel;
-import warehouse.suppliers.service.SupplierService;
+import warehouse.roles.model.RoleAddBindingModel;
+import warehouse.roles.model.RoleEntity;
 import warehouse.users.model.*;
 import warehouse.users.service.UserService;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -372,7 +364,7 @@ public class UserControllerIntegrationTests {
                 new UsernamePasswordAuthenticationToken("admin", "aaa"));
 
         UserEntity userEntity = this.userService.findUserByUsername("user_3").orElse(null);
-        List<String> roles = userEntity.getRoles().stream().map(RoleEntity::getRole).collect(Collectors.toList());
+        List<String> roles = userEntity.getRoles().stream().map(r -> r.getRole().name()).collect(Collectors.toList());
         Assertions.assertTrue(roles.contains("ROLE_MANAGER"));
     }
 
@@ -427,7 +419,7 @@ public class UserControllerIntegrationTests {
                 new UsernamePasswordAuthenticationToken("admin", "aaa"));
 
         UserEntity userEntity = this.userService.findUserByUsername("user_3").orElse(null);
-        List<String> roles = userEntity.getRoles().stream().map(RoleEntity::getRole).collect(Collectors.toList());
+        List<String> roles = userEntity.getRoles().stream().map(r -> r.getRole().name()).collect(Collectors.toList());
         Assertions.assertTrue(roles.isEmpty());
     }
 

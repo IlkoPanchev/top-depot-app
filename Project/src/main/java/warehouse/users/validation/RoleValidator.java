@@ -1,6 +1,6 @@
 package warehouse.users.validation;
 
-import warehouse.users.model.RoleName;
+import warehouse.roles.model.RoleName;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

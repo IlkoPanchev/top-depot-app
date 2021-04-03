@@ -8,13 +8,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import warehouse.users.UserDetailsServiceImpl;
-import warehouse.users.model.RoleEntity;
+import warehouse.roles.model.RoleEntity;
+import warehouse.roles.model.RoleName;
 import warehouse.users.model.UserEntity;
-import warehouse.users.repository.UserRepository;
 import warehouse.users.service.UserService;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -39,7 +37,7 @@ public class UserDetailsServiceImplTest {
     @BeforeEach
     public void setUp() {
         testRoleEntity = new RoleEntity();
-        testRoleEntity.setRole("ADMIN");
+        testRoleEntity.setRole(RoleName.ROLE_ADMIN);
 
         testUserEntity = new UserEntity();
         testUserEntity.setUsername("admin");

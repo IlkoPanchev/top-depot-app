@@ -2,6 +2,7 @@ package warehouse.users.model;
 
 import warehouse.base.BaseEntity;
 import warehouse.departments.model.DepartmentEntity;
+import warehouse.roles.model.RoleEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -66,10 +67,10 @@ public class UserEntity extends BaseEntity {
         isEnabled = enabled;
     }
 
-    @OneToMany(mappedBy = "userEntity",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+    joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     public Set<RoleEntity> getRoles() {
         return roles;
     }
@@ -79,14 +80,11 @@ public class UserEntity extends BaseEntity {
     }
 
 
-
-
     public void addRole(RoleEntity roleEntity) {
         if (this.roles.contains(roleEntity)) {
             return;
         }
         this.roles.add(roleEntity);
-        roleEntity.setUserEntity(this);
     }
 
     public void removeRole(RoleEntity roleEntity) {
@@ -94,6 +92,5 @@ public class UserEntity extends BaseEntity {
             return;
         }
         this.roles.remove(roleEntity);
-        roleEntity.setUserEntity(null);
     }
 }

@@ -106,7 +106,7 @@
                                             class="browser-default custom-select bg-transparent border border-secondary rounded text-dark"
                                             id="role" name="role">
                                         <option class="dropdown-item" value="">Select role</option>
-                                        <th:block th:each="o : ${T(warehouse.users.model.RoleName).values()}">
+                                        <th:block th:each="o : ${T(warehouse.roles.model.RoleName).values()}">
                                             <option class="dropdown-item" th:text="${o}" th:value="${o}"
                                                     th:selected="${o.name()} == *{role}">Pesho
                                             </option>

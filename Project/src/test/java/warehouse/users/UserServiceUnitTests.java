@@ -11,21 +11,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.data.domain.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import warehouse.categories.model.CategoryEntity;
-import warehouse.categories.model.CategoryServiceModel;
-import warehouse.customers.model.CustomerEntity;
-import warehouse.customers.model.CustomerServiceModel;
 import warehouse.departments.model.DepartmentEntity;
 import warehouse.departments.model.DepartmentName;
 import warehouse.departments.model.DepartmentServiceModel;
 import warehouse.departments.service.DepartmentService;
-import warehouse.suppliers.model.SupplierEntity;
-import warehouse.suppliers.model.SupplierServiceModel;
-import warehouse.users.model.RoleEntity;
+import warehouse.roles.model.RoleEntity;
+import warehouse.roles.model.RoleName;
+import warehouse.roles.service.RoleService;
 import warehouse.users.model.UserEntity;
 import warehouse.users.model.UserServiceModel;
 import warehouse.users.repository.UserRepository;
@@ -70,6 +64,8 @@ public class UserServiceUnitTests {
     ValidationUtil mockValidationUtil;
     @Mock
     BCryptPasswordEncoder mockBCryptPasswordEncoder;
+    @Mock
+    RoleService mockRoleService;
 
     @BeforeEach
     public void setUp(){
@@ -77,7 +73,8 @@ public class UserServiceUnitTests {
                 new ModelMapper(),
                 mockDepartmentService,
                 mockBCryptPasswordEncoder,
-                mockValidationUtil);
+                mockValidationUtil,
+                mockRoleService);
         this.userEntity = this.createExistingUserEntity();
         this.userServiceModel = this.createUserServiceModel();
         this.existingUserServiceModel = this.createExistingUserServiceModel();
@@ -166,7 +163,7 @@ public class UserServiceUnitTests {
         List<String> userEntityActualRoles = userEntityActual.
                 getRoles().
                 stream().
-                map(RoleEntity::getRole).
+                map(r -> r.getRole().name()).
                 collect(Collectors.toList());
 
         Assertions.assertTrue(userEntityActualRoles.contains(ROLE_MANAGER));
@@ -187,7 +184,7 @@ public class UserServiceUnitTests {
     public void testRemoveRoleMethod() {
 
         RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setRole(ROLE_MANAGER);
+        roleEntity.setRole(RoleName.ROLE_MANAGER);
         userEntity.getRoles().add(roleEntity);
 
         when(mockUserRepository.findById(any(Long.class))).thenReturn(Optional.of(userEntity));
@@ -201,7 +198,7 @@ public class UserServiceUnitTests {
         List<String> userEntityActualRoles = userEntityActual.
                 getRoles().
                 stream().
-                map(RoleEntity::getRole).
+                map(r -> r.getRole().name()).
                 collect(Collectors.toList());
 
         Assertions.assertFalse(userEntityActualRoles.contains(ROLE_MANAGER));
@@ -221,7 +218,7 @@ public class UserServiceUnitTests {
     public void testRemoveRoleMethodThrowsEntityNotFoundExceptionForRole() {
 
         RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setRole(ROLE_MANAGER);
+        roleEntity.setRole(RoleName.ROLE_MANAGER);
         userEntity.getRoles().add(roleEntity);
 
         when(mockUserRepository.findById(any(Long.class))).thenReturn(Optional.of(userEntity));
@@ -450,7 +447,7 @@ public class UserServiceUnitTests {
         userEntity.setDepartment(new DepartmentEntity());
 
         RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setRole("ROLE_USER");
+        roleEntity.setRole(RoleName.ROLE_USER);
         Set<RoleEntity> roles = new HashSet<>();
         roles.add(roleEntity);
         userEntity.setRoles(roles);

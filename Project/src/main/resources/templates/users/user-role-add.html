@@ -44,7 +44,7 @@
                                                 id="role" name="role">
                                             <option class="dropdown-item" value="">Select Role</option>
                                             <option class="dropdown-item"
-                                                    th:each="o : ${T(warehouse.users.model.RoleName).values()}"
+                                                    th:each="o : ${T(warehouse.roles.model.RoleName).values()}"
                                                     th:text="${o}"
                                                     th:value="${o}" th:selected="${o.name()} == *{role}">Male
                                             </option>

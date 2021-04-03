@@ -11,6 +11,7 @@ import warehouse.departments.service.DepartmentService;
 import warehouse.items.service.ItemService;
 import warehouse.orderline.service.OrderLineService;
 import warehouse.orders.service.OrderService;
+import warehouse.roles.service.RoleService;
 import warehouse.suppliers.service.SupplierService;
 import warehouse.users.service.UserService;
 
@@ -27,6 +28,7 @@ public class AppInit implements CommandLineRunner {
     private final ItemService itemService;
     private final OrderService orderService;
     private final OrderLineService orderLineService;
+    private final RoleService roleService;
 
 
     @Autowired
@@ -38,7 +40,7 @@ public class AppInit implements CommandLineRunner {
                    SupplierService supplierService,
                    ItemService itemService,
                    OrderService orderService,
-                   OrderLineService orderLineService) {
+                   OrderLineService orderLineService, RoleService roleService) {
 
         this.departmentService = departmentService;
         this.categoryService = categoryService;
@@ -49,6 +51,7 @@ public class AppInit implements CommandLineRunner {
         this.itemService = itemService;
         this.orderService = orderService;
         this.orderLineService = orderLineService;
+        this.roleService = roleService;
     }
 
 
@@ -58,6 +61,8 @@ public class AppInit implements CommandLineRunner {
         this.departmentService.initDepartments();
 
         this.categoryService.initCategories();
+
+        this.roleService.initRoles();
 
         this.userService.initUsers();
 

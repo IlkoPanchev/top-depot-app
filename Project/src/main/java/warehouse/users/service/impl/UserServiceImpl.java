@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 import warehouse.departments.model.DepartmentEntity;
 import warehouse.departments.model.DepartmentName;
 import warehouse.departments.service.DepartmentService;
-import warehouse.suppliers.model.SupplierEntity;
-import warehouse.suppliers.model.SupplierServiceModel;
+import warehouse.roles.model.RoleEntity;
+import warehouse.roles.model.RoleName;
+import warehouse.roles.service.RoleService;
 import warehouse.users.model.*;
 import warehouse.users.repository.UserRepository;
 import warehouse.users.service.UserService;
@@ -31,14 +32,16 @@ public class UserServiceImpl implements UserService {
     private final DepartmentService departmentService;
     private final PasswordEncoder passwordEncoder;
     private final ValidationUtil validationUtil;
+    private final RoleService roleService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, DepartmentService departmentService, PasswordEncoder passwordEncoder, ValidationUtil validationUtil) {
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, DepartmentService departmentService, PasswordEncoder passwordEncoder, ValidationUtil validationUtil, RoleService roleService) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.departmentService = departmentService;
         this.passwordEncoder = passwordEncoder;
         this.validationUtil = validationUtil;
+        this.roleService = roleService;
     }
 
     @Override
@@ -72,7 +75,7 @@ public class UserServiceImpl implements UserService {
             userEntity.setEnabled(true);
 
             String role = userServiceModel.getRole();
-            setRoleToUser(userEntity, role);
+            this.setRoleToUser(userEntity, role);
 
             userServiceModel = this.modelMapper.map(this.userRepository.saveAndFlush(userEntity), UserServiceModel.class);
 
@@ -93,16 +96,16 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new EntityNotFoundException("Not found user with id: " + userId));
 
         RoleEntity roleEntity = userEntity.getRoles()
-                .stream().filter(r -> r.getRole().equals(role))
+                .stream().filter(r -> r.getRole().name().equals(role))
                 .findFirst().orElse(null);
 
         if (roleEntity == null) {
             if (role.equals("ROLE_ADMIN")) {
-                userEntity.addRole(createRole("ROLE_ADMIN"));
+                userEntity.addRole(this.getRole("ROLE_ADMIN"));
             } else if (role.equals("ROLE_MANAGER")) {
-                userEntity.addRole(createRole("ROLE_MANAGER"));
+                userEntity.addRole(this.getRole("ROLE_MANAGER"));
             } else if (role.equals("ROLE_USER")) {
-                userEntity.addRole(createRole("ROLE_USER"));
+                userEntity.addRole(this.getRole("ROLE_USER"));
             }
         }
         this.userRepository.saveAndFlush(userEntity);
@@ -115,7 +118,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new EntityNotFoundException("Not found user with id: " + userId));
 
         RoleEntity roleEntity = userEntity.getRoles()
-                .stream().filter(r -> r.getRole().equals(role))
+                .stream().filter(r -> r.getRole().name().equals(role))
                 .findFirst().orElseThrow(() -> new EntityNotFoundException("Not found role : " + role));
 
         userEntity.removeRole(roleEntity);
@@ -218,7 +221,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new EntityNotFoundException("Not found user with id: " + id));
 
         Set<String> userRoles = new TreeSet<>();
-        userEntity.getRoles().forEach(roleEntity -> userRoles.add(roleEntity.getRole()));
+        userEntity.getRoles().forEach(roleEntity -> userRoles.add(roleEntity.getRole().name()));
         return userRoles;
     }
 
@@ -292,7 +295,7 @@ public class UserServiceImpl implements UserService {
                 .findByName(DepartmentName.valueOf(department));
         user.setDepartment(departmentEntity);
 
-        setRoleToUser(user, role);
+        this.setRoleToUser(user, role);
 
         userRepository.save(user);
     }
@@ -300,22 +303,21 @@ public class UserServiceImpl implements UserService {
     private void setRoleToUser(UserEntity user, String role) {
 
         if (role.equals("ROLE_ADMIN")) {
-            user.addRole(createRole("ROLE_ADMIN"));
-            user.addRole(createRole("ROLE_MANAGER"));
-            user.addRole(createRole("ROLE_USER"));
+            user.addRole(this.getRole("ROLE_ADMIN"));
+            user.addRole(this.getRole("ROLE_MANAGER"));
+            user.addRole(this.getRole("ROLE_USER"));
         } else if (role.equals("ROLE_MANAGER")) {
-            user.addRole(createRole("ROLE_MANAGER"));
-            user.addRole(createRole("ROLE_USER"));
+            user.addRole(this.getRole("ROLE_MANAGER"));
+            user.addRole(this.getRole("ROLE_USER"));
         } else if (role.equals("ROLE_USER")) {
-            user.addRole(createRole("ROLE_USER"));
+            user.addRole(this.getRole("ROLE_USER"));
         }
     }
 
 
-    private RoleEntity createRole(String role) {
+    private RoleEntity getRole(String role) {
 
-        RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setRole(role);
+        RoleEntity roleEntity = this.roleService.getByName(RoleName.valueOf(role));
         return roleEntity;
     }
 

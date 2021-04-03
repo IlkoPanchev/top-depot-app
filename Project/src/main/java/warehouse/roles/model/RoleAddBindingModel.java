@@ -1,4 +1,4 @@
-package warehouse.users.model;
+package warehouse.roles.model;
 
 
 import warehouse.users.validation.ValidRole;
