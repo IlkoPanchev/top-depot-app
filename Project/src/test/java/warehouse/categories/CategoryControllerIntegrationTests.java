@@ -18,6 +18,7 @@ import warehouse.categories.model.CategoryAddBindingModel;
 import warehouse.categories.model.CategoryServiceModel;
 import warehouse.categories.service.CategoryService;
 
+import static org.hamcrest.Matchers.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -51,13 +52,18 @@ public class CategoryControllerIntegrationTests {
                 andExpect(model().attributeExists("categories")).
                 andExpect(model().attributeExists("result")).
                 andExpect(model().attributeExists("selectedPageSize")).
+                andExpect(model().attribute("selectedPageSize", equalTo(5))).
                 andExpect(model().attributeExists("pageSizes")).
                 andExpect(model().attributeExists("pager")).
                 andExpect(model().attributeExists("selectedSortOption")).
+                andExpect(model().attribute("selectedSortOption", equalTo("Name"))).
                 andExpect(model().attributeExists("sortOptions")).
                 andExpect(model().attributeExists("sortDirection")).
+                andExpect(model().attribute("sortDirection", equalTo("asc"))).
                 andExpect(model().attributeExists("reversedSortDirection")).
+                andExpect(model().attribute("reversedSortDirection", equalTo("desc"))).
                 andExpect(model().attributeExists("path")).
+                andExpect(model().attribute("path", equalTo("/categories/all/pageable"))).
                 andExpect(view().name("categories/category-all"));
     }
 
@@ -69,6 +75,7 @@ public class CategoryControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/categories/add"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("categoryAddBindingModel"))
+                .andExpect(model().attribute("categoryAddBindingModel", hasProperty("name", is(nullValue()))))
                 .andExpect(model().attributeExists("categoryExists"))
                 .andExpect(view().name("categories/category-add"));
         ;
@@ -140,6 +147,7 @@ public class CategoryControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/categories/edit").param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("categoryAddBindingModel"))
+                .andExpect(model().attribute("categoryAddBindingModel", hasProperty("name", is("desctop"))))
                 .andExpect(view().name("categories/category-edit"));
         ;
     }
