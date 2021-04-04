@@ -4,72 +4,6 @@
 <head>
     <th:block th:include="~{fragments/head}"></th:block>
     <th:block th:include="~{fragments/head-date-picker}"></th:block>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-
-        google.charts.load('current', {'packages': ['corechart']});
-        google.charts.setOnLoadCallback(drawChartQuantity);
-        google.charts.setOnLoadCallback(drawChartTurnover);
-
-        function drawChartQuantity() {
-            let oneName = [[${itemsNamesMap[3]}]];
-            let oneValue = [[${itemsQuantityMap[3]}]];
-            let twoName = [[${itemsNamesMap[4]}]];
-            let twoValue = [[${itemsQuantityMap[4]}]];
-            let threeName = [[${itemsNamesMap[5]}]];
-            let threeValue = [[${itemsQuantityMap[5]}]];
-            let title = 'Period: ' + [[${fromDate}]] + ' - ' + [[${toDate}]];
-
-
-            let dataPie = google.visualization.arrayToDataTable([
-                ['Items', 'Quantity'],
-                [oneName, oneValue],
-                [twoName, twoValue],
-                [threeName, threeValue]
-            ]);
-
-            let optionsPie = {
-                title: title,
-                is3D: true,
-                backgroundColor: '#ddd'
-            };
-
-            let chartPie = new google.visualization
-                .PieChart(document.getElementById('googlePieChartQuantity'));
-            chartPie.draw(dataPie, optionsPie);
-        }
-
-
-        function drawChartTurnover() {
-            let oneName = [[${itemsNamesMap[3]}]];
-            let oneValue = [[${itemsTurnoverMap[3]}]];
-            let twoName = [[${itemsNamesMap[4]}]];
-            let twoValue = [[${itemsTurnoverMap[4]}]];
-            let threeName = [[${itemsNamesMap[5]}]];
-            let threeValue = [[${itemsTurnoverMap[5]}]];
-            let title = 'Best selling items turnover ' + [[${fromDate}]] + ' - ' + [[${toDate}]];
-
-
-            let dataPie = google.visualization.arrayToDataTable([
-                ['Items', 'Quantity'],
-                [oneName, oneValue],
-                [twoName, twoValue],
-                [threeName, threeValue]
-            ]);
-
-            let optionsPie = {
-                title: title,
-                is3D: true,
-                backgroundColor: '#ddd'
-            };
-
-            let chartPie = new google.visualization
-                .PieChart(document.getElementById('googlePieChartTurnover'));
-            chartPie.draw(dataPie, optionsPie);
-        }
-
-        /*]]>*/
-    </script>
 </head>
 <body>
 <main>
@@ -124,5 +58,71 @@
     </div>
 </main>
 <th:block th:include="~{fragments/footer}"></th:block>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(drawChartQuantity);
+    google.charts.setOnLoadCallback(drawChartTurnover);
+
+    function drawChartQuantity() {
+        let oneName = [[${itemsNamesMap[3]}]];
+        let oneValue = [[${itemsQuantityMap[3]}]];
+        let twoName = [[${itemsNamesMap[4]}]];
+        let twoValue = [[${itemsQuantityMap[4]}]];
+        let threeName = [[${itemsNamesMap[5]}]];
+        let threeValue = [[${itemsQuantityMap[5]}]];
+        let title = 'Period: ' + [[${fromDate}]] + ' - ' + [[${toDate}]];
+
+
+        let dataPie = google.visualization.arrayToDataTable([
+            ['Items', 'Quantity'],
+            [oneName, oneValue],
+            [twoName, twoValue],
+            [threeName, threeValue]
+        ]);
+
+        let optionsPie = {
+            title: title,
+            is3D: true,
+            backgroundColor: '#ddd'
+        };
+
+        let chartPie = new google.visualization
+            .PieChart(document.getElementById('googlePieChartQuantity'));
+        chartPie.draw(dataPie, optionsPie);
+    }
+
+
+    function drawChartTurnover() {
+        let oneName = [[${itemsNamesMap[3]}]];
+        let oneValue = [[${itemsTurnoverMap[3]}]];
+        let twoName = [[${itemsNamesMap[4]}]];
+        let twoValue = [[${itemsTurnoverMap[4]}]];
+        let threeName = [[${itemsNamesMap[5]}]];
+        let threeValue = [[${itemsTurnoverMap[5]}]];
+        let title = 'Best selling items turnover ' + [[${fromDate}]] + ' - ' + [[${toDate}]];
+
+
+        let dataPie = google.visualization.arrayToDataTable([
+            ['Items', 'Quantity'],
+            [oneName, oneValue],
+            [twoName, twoValue],
+            [threeName, threeValue]
+        ]);
+
+        let optionsPie = {
+            title: title,
+            is3D: true,
+            backgroundColor: '#ddd'
+        };
+
+        let chartPie = new google.visualization
+            .PieChart(document.getElementById('googlePieChartTurnover'));
+        chartPie.draw(dataPie, optionsPie);
+    }
+
+    /*]]>*/
+</script>
 </body>
 </html>
