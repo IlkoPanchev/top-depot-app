@@ -822,3 +822,414 @@
 2021-04-04 14:50:30 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@61d4171d]][POST][/suppliers/unblock]
 2021-04-04 14:50:30 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@d5aea9a]][POST][/suppliers/unblock]
 2021-04-04 14:50:30 ERROR StatsInterceptor:36 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@d5aea9a]][POST][/suppliers/unblock][exception: org.springframework.security.access.AccessDeniedException: Access is denied]
+2021-04-04 14:54:08 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@586713bc]][GET][/login]
+2021-04-04 14:54:08 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@38511ab4]][GET][/css/reset.css]
+2021-04-04 14:54:08 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@569314c4]][GET][/css/bootstrap.min.css]
+2021-04-04 14:54:08 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3660f7fc]][GET][/css/style.css]
+2021-04-04 14:54:08 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7fda9f2e]][GET][/js/jquery-3.3.1.min.js]
+2021-04-04 14:54:08 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@65a6baf5]][GET][/js/script.js]
+2021-04-04 14:54:08 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@70d1e758]][GET][/js/bootstrap.min.js]
+2021-04-04 14:54:13 INFO  StatsInterceptor:25 - [preHandle][org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1468d2b7][POST][/home]
+2021-04-04 14:54:13 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7538a5d]][GET][/home]
+2021-04-04 14:54:13 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@78f1cf4e]][GET][/css/reset.css]
+2021-04-04 14:54:13 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7b85236d]][GET][/css/bootstrap.min.css]
+2021-04-04 14:54:13 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3c989c8c]][GET][/js/jquery-3.3.1.min.js]
+2021-04-04 14:54:13 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7f694887]][GET][/js/script.js]
+2021-04-04 14:54:13 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@32a971c4]][GET][/css/style.css]
+2021-04-04 14:54:13 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5c6b7fb4]][GET][/js/bootstrap.min.js]
+2021-04-04 14:54:29 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7522f45e]][GET][/customers/all/newOrder]
+2021-04-04 14:54:29 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7a298c28]][GET][/css/reset.css]
+2021-04-04 14:54:29 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@57c8a247]][GET][/css/style.css]
+2021-04-04 14:54:29 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1695d54c]][GET][/js/bootstrap.min.js]
+2021-04-04 14:54:29 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6f5ed185]][GET][/js/jquery-3.3.1.min.js]
+2021-04-04 14:54:29 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@ff398a6]][GET][/css/bootstrap.min.css]
+2021-04-04 14:54:29 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4874d2a3]][GET][/js/script.js]
+2021-04-04 14:54:33 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@677274e2]][GET][/orders/open/]
+2021-04-04 14:54:33 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@479fc90e]][GET][/css/reset.css]
+2021-04-04 14:54:33 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5712f880]][GET][/css/bootstrap.min.css]
+2021-04-04 14:54:33 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@42224cfd]][GET][/css/style.css]
+2021-04-04 14:54:33 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2af3c62f]][GET][/js/bootstrap.min.js]
+2021-04-04 14:54:33 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@403fc693]][GET][/js/jquery-3.3.1.min.js]
+2021-04-04 14:54:33 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@70e91b3a]][GET][/js/script.js]
+2021-04-04 14:54:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7afd34a6]][GET][/items/all/pageable/orderAddItem]
+2021-04-04 14:54:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@302d9097]][GET][/css/reset.css]
+2021-04-04 14:54:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1542b395]][GET][/css/bootstrap.min.css]
+2021-04-04 14:54:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4d353880]][GET][/css/style.css]
+2021-04-04 14:54:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4d748e78]][GET][/js/script.js]
+2021-04-04 14:54:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@25175d3d]][GET][/js/bootstrap.min.js]
+2021-04-04 14:54:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3fc8a4f7]][GET][/js/jquery-3.3.1.min.js]
+2021-04-04 14:54:43 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2fabb9a8]][GET][/orders/addItem/]
+2021-04-04 14:54:43 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7536e86]][GET][/css/reset.css]
+2021-04-04 14:54:43 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3820631e]][GET][/css/bootstrap.min.css]
+2021-04-04 14:54:43 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@773ad26b]][GET][/js/jquery-3.3.1.min.js]
+2021-04-04 14:54:43 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@47e81b04]][GET][/css/style.css]
+2021-04-04 14:54:43 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5218acfb]][GET][/js/bootstrap.min.js]
+2021-04-04 14:54:43 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@668d0d91]][GET][/js/script.js]
+2021-04-04 14:54:47 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6dc863ab]][POST][/orders/addItem]
+2021-04-04 14:54:47 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@78ff65db]][GET][/css/reset.css]
+2021-04-04 14:54:47 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2eea7afd]][GET][/css/bootstrap.min.css]
+2021-04-04 14:54:47 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@61b1bc6b]][GET][/js/bootstrap.min.js]
+2021-04-04 14:54:47 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@33a0693a]][GET][/js/jquery-3.3.1.min.js]
+2021-04-04 14:54:47 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@bf8042d]][GET][/css/style.css]
+2021-04-04 14:54:47 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@28105aa4]][GET][/js/script.js]
+2021-04-04 14:59:03 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@374b80b6]][GET][/orders/orderData/update]
+2021-04-04 16:04:34 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7baea18b]][GET][/orders/all/pageable]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@64e6cdad]][GET][/orders/open]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7aa44fa2]][GET][/orders/addItem]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4842a683]][POST][/orders/addItem]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@63fe055]][GET][/orders/addItem/cancel]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6e512d7f]][GET][/orders/orderData/update]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4c617143]][POST][/orders/orderData/remove]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@517f9ba3]][GET][/orders/cancel]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6affa355]][GET][/orders/save]
+2021-04-04 16:04:35 INFO  TrackOrderAspect:30 - order created by manager
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@550ce3a9]][GET][/orders/save/draft]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2e903c69]][GET][/orders/open/draft]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2b39e77d]][GET][/orders/edit]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@42130a5c]][GET][/orders/editOrder/update]
+2021-04-04 16:04:35 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4daee083]][POST][/orders/editOrder/remove]
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7db53694]][GET][/orders/editOrder/addItem]
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1bd97254]][POST][/orders/editOrder/addItem]
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@23ec291e]][GET][/orders/editOrder/addItem/cancel]
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@444958a4]][GET][/orders/edit/save]
+2021-04-04 16:04:36 INFO  TrackOrderAspect:40 - request to edit order 2 by manager
+2021-04-04 16:04:36 INFO  TrackOrderAspect:46 - order edited by manager
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@18247d9b]][GET][/orders/edit/complete]
+2021-04-04 16:04:36 INFO  TrackOrderAspect:56 - request to complete order 2 by manager
+2021-04-04 16:04:36 INFO  TrackOrderAspect:62 - order completed by manager
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3426d8e2]][GET][/orders/edit/cancel]
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@fb69ab1]][GET][/orders/complete/open]
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@35ec675e]][GET][/orders/archive/open]
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@50dfceff]][GET][/orders/complete]
+2021-04-04 16:04:36 INFO  TrackOrderAspect:73 - request to complete order 2 by user
+2021-04-04 16:04:36 INFO  TrackOrderAspect:81 - order completed by user
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@456c6754]][GET][/orders/incomplete]
+2021-04-04 16:04:36 INFO  TrackOrderAspect:93 - request to incomplete order 2 by user
+2021-04-04 16:04:36 INFO  TrackOrderAspect:99 - order incomplete by user
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@548d9d87]][GET][/orders/archive]
+2021-04-04 16:04:36 INFO  TrackOrderAspect:109 - request to archive order 2 by user
+2021-04-04 16:04:36 INFO  OrderServiceImpl:430 - Exported file - order 2
+2021-04-04 16:04:36 INFO  TrackOrderAspect:115 - order archived by user
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5d6de24e]][GET][/orders/complete/cancel]
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@11a88d87]][GET][/orders/archive/view]
+2021-04-04 16:04:36 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3d707885]][GET][/orders/archive/back]
+2021-04-04 16:10:22 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@74fda9ed]][GET][/orders/all/pageable]
+2021-04-04 16:10:22 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3bbc8c82]][GET][/orders/open]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@517d68b8]][GET][/orders/addItem]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2ce7ec5f]][POST][/orders/addItem]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@30ffc3c0]][GET][/orders/addItem/cancel]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@16a4e4c9]][GET][/orders/orderData/update]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7a6ade2c]][POST][/orders/orderData/remove]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6c6fdf5d]][GET][/orders/cancel]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@485dfac9]][GET][/orders/save]
+2021-04-04 16:10:23 INFO  TrackOrderAspect:30 - order created by manager
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6bc45472]][GET][/orders/save/draft]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@47b5c247]][GET][/orders/open/draft]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1ccdc8c8]][GET][/orders/edit]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@43815bc]][GET][/orders/editOrder/update]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@24c8bc1e]][POST][/orders/editOrder/remove]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@766534b0]][GET][/orders/editOrder/addItem]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7861a433]][POST][/orders/editOrder/addItem]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@77107573]][GET][/orders/editOrder/addItem/cancel]
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@69e3e1d9]][GET][/orders/edit/save]
+2021-04-04 16:10:23 INFO  TrackOrderAspect:40 - request to edit order 2 by manager
+2021-04-04 16:10:23 INFO  TrackOrderAspect:46 - order edited by manager
+2021-04-04 16:10:23 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2aaf7354]][GET][/orders/edit/complete]
+2021-04-04 16:10:23 INFO  TrackOrderAspect:56 - request to complete order 2 by manager
+2021-04-04 16:10:24 INFO  TrackOrderAspect:62 - order completed by manager
+2021-04-04 16:10:24 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@67bf393c]][GET][/orders/edit/cancel]
+2021-04-04 16:10:24 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2d487df4]][GET][/orders/complete/open]
+2021-04-04 16:10:24 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@37edb7fa]][GET][/orders/archive/open]
+2021-04-04 16:10:24 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@12dcfa6a]][GET][/orders/complete]
+2021-04-04 16:10:24 INFO  TrackOrderAspect:73 - request to complete order 2 by user
+2021-04-04 16:10:24 INFO  TrackOrderAspect:81 - order completed by user
+2021-04-04 16:10:24 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@26aecf31]][GET][/orders/incomplete]
+2021-04-04 16:10:24 INFO  TrackOrderAspect:93 - request to incomplete order 2 by user
+2021-04-04 16:10:24 INFO  TrackOrderAspect:99 - order incomplete by user
+2021-04-04 16:10:24 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2d44025b]][GET][/orders/archive]
+2021-04-04 16:10:24 INFO  TrackOrderAspect:109 - request to archive order 2 by user
+2021-04-04 16:10:24 INFO  OrderServiceImpl:430 - Exported file - order 2
+2021-04-04 16:10:24 INFO  TrackOrderAspect:115 - order archived by user
+2021-04-04 16:10:24 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@79d538c1]][GET][/orders/complete/cancel]
+2021-04-04 16:10:24 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1af6cd73]][GET][/orders/archive/view]
+2021-04-04 16:10:24 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@aad1270]][GET][/orders/archive/back]
+2021-04-04 16:14:18 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1e387974]][GET][/orders/all/pageable]
+2021-04-04 16:14:18 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1ff35ee7]][GET][/orders/open]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2b6d9650]][GET][/orders/addItem]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4c954b79]][POST][/orders/addItem]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7315264e]][GET][/orders/addItem/cancel]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7066c00a]][GET][/orders/orderData/update]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@718198db]][POST][/orders/orderData/remove]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@583b177a]][GET][/orders/cancel]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@408573b1]][GET][/orders/save]
+2021-04-04 16:14:19 INFO  TrackOrderAspect:30 - order created by manager
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6773c073]][GET][/orders/save/draft]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4a609803]][GET][/orders/open/draft]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6ac0c3aa]][GET][/orders/edit]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@52aa84ef]][GET][/orders/editOrder/update]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@70bbc163]][POST][/orders/editOrder/remove]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1925b113]][GET][/orders/editOrder/addItem]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@30a1b9b0]][POST][/orders/editOrder/addItem]
+2021-04-04 16:14:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@389f4282]][GET][/orders/editOrder/addItem/cancel]
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2d2c794d]][GET][/orders/edit/save]
+2021-04-04 16:14:20 INFO  TrackOrderAspect:40 - request to edit order 2 by manager
+2021-04-04 16:14:20 INFO  TrackOrderAspect:46 - order edited by manager
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2fb006dc]][GET][/orders/edit/complete]
+2021-04-04 16:14:20 INFO  TrackOrderAspect:56 - request to complete order 2 by manager
+2021-04-04 16:14:20 INFO  TrackOrderAspect:62 - order completed by manager
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@12b2fcaf]][GET][/orders/edit/cancel]
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5926f291]][GET][/orders/complete/open]
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@26abee34]][GET][/orders/archive/open]
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@298990ab]][GET][/orders/complete]
+2021-04-04 16:14:20 INFO  TrackOrderAspect:73 - request to complete order 2 by user
+2021-04-04 16:14:20 INFO  TrackOrderAspect:81 - order completed by user
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4ec25389]][GET][/orders/incomplete]
+2021-04-04 16:14:20 INFO  TrackOrderAspect:93 - request to incomplete order 2 by user
+2021-04-04 16:14:20 INFO  TrackOrderAspect:99 - order incomplete by user
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@79c4c973]][GET][/orders/archive]
+2021-04-04 16:14:20 INFO  TrackOrderAspect:109 - request to archive order 2 by user
+2021-04-04 16:14:20 INFO  OrderServiceImpl:430 - Exported file - order 2
+2021-04-04 16:14:20 INFO  TrackOrderAspect:115 - order archived by user
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2889d997]][GET][/orders/complete/cancel]
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@53bf791]][GET][/orders/archive/view]
+2021-04-04 16:14:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3597174b]][GET][/orders/archive/back]
+2021-04-04 16:15:18 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@58ec3e8b]][GET][/orders/all/pageable]
+2021-04-04 16:15:18 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@21523e1b]][GET][/orders/open]
+2021-04-04 16:15:18 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6dcf39c6]][GET][/orders/addItem]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@19740583]][POST][/orders/addItem]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@109fff4a]][GET][/orders/addItem/cancel]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@252459b2]][GET][/orders/orderData/update]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@73fa97a9]][POST][/orders/orderData/remove]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@106e816c]][GET][/orders/cancel]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4271960c]][GET][/orders/save]
+2021-04-04 16:15:19 INFO  TrackOrderAspect:30 - order created by manager
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@125447a0]][GET][/orders/save/draft]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3c3a8246]][GET][/orders/open/draft]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3a5e591b]][GET][/orders/edit]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@bf2f2ce]][GET][/orders/editOrder/update]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1895f7fe]][POST][/orders/editOrder/remove]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@32b5b8f8]][GET][/orders/editOrder/addItem]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@428169d]][POST][/orders/editOrder/addItem]
+2021-04-04 16:15:19 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5aa7bb86]][GET][/orders/editOrder/addItem/cancel]
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@47fe4c3e]][GET][/orders/edit/save]
+2021-04-04 16:15:20 INFO  TrackOrderAspect:40 - request to edit order 2 by manager
+2021-04-04 16:15:20 INFO  TrackOrderAspect:46 - order edited by manager
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4bdec54]][GET][/orders/edit/complete]
+2021-04-04 16:15:20 INFO  TrackOrderAspect:56 - request to complete order 2 by manager
+2021-04-04 16:15:20 INFO  TrackOrderAspect:62 - order completed by manager
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@786125a6]][GET][/orders/edit/cancel]
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@104972a0]][GET][/orders/complete/open]
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@29ae939c]][GET][/orders/archive/open]
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@74a46f81]][GET][/orders/complete]
+2021-04-04 16:15:20 INFO  TrackOrderAspect:73 - request to complete order 2 by user
+2021-04-04 16:15:20 INFO  TrackOrderAspect:81 - order completed by user
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@290ebbbe]][GET][/orders/incomplete]
+2021-04-04 16:15:20 INFO  TrackOrderAspect:93 - request to incomplete order 2 by user
+2021-04-04 16:15:20 INFO  TrackOrderAspect:99 - order incomplete by user
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5935ade6]][GET][/orders/archive]
+2021-04-04 16:15:20 INFO  TrackOrderAspect:109 - request to archive order 2 by user
+2021-04-04 16:15:20 INFO  OrderServiceImpl:430 - Exported file - order 2
+2021-04-04 16:15:20 INFO  TrackOrderAspect:115 - order archived by user
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@75f2a654]][GET][/orders/complete/cancel]
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7f03e5f4]][GET][/orders/archive/view]
+2021-04-04 16:15:20 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@339b9869]][GET][/orders/archive/back]
+2021-04-04 16:24:50 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@624268ab]][GET][/orders/all/pageable]
+2021-04-04 16:24:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@768d8a25]][GET][/orders/open]
+2021-04-04 16:24:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@33e80a27]][GET][/orders/addItem]
+2021-04-04 16:24:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6347ebbc]][POST][/orders/addItem]
+2021-04-04 16:24:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3c84c32f]][GET][/orders/addItem/cancel]
+2021-04-04 16:24:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@76afb9d]][GET][/orders/orderData/update]
+2021-04-04 16:24:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1a56cb99]][POST][/orders/orderData/remove]
+2021-04-04 16:24:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6049b4c9]][GET][/orders/cancel]
+2021-04-04 16:24:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4cb641a5]][GET][/orders/save]
+2021-04-04 16:24:51 INFO  TrackOrderAspect:30 - order created by manager
+2021-04-04 16:24:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6a434cdd]][GET][/orders/save/draft]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3705e3fb]][GET][/orders/open/draft]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6df8131c]][GET][/orders/edit]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6d952747]][GET][/orders/editOrder/update]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@790bd0e]][POST][/orders/editOrder/remove]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4c752425]][GET][/orders/editOrder/addItem]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@785ba20d]][POST][/orders/editOrder/addItem]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@80f3111]][GET][/orders/editOrder/addItem/cancel]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@28bf7bea]][GET][/orders/edit/save]
+2021-04-04 16:24:52 INFO  TrackOrderAspect:40 - request to edit order 2 by manager
+2021-04-04 16:24:52 INFO  TrackOrderAspect:46 - order edited by manager
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@71f9f8ba]][GET][/orders/edit/complete]
+2021-04-04 16:24:52 INFO  TrackOrderAspect:56 - request to complete order 2 by manager
+2021-04-04 16:24:52 INFO  TrackOrderAspect:62 - order completed by manager
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@74534564]][GET][/orders/edit/cancel]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@64d49e35]][GET][/orders/complete/open]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@575a6540]][GET][/orders/archive/open]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5acbef42]][GET][/orders/complete]
+2021-04-04 16:24:52 INFO  TrackOrderAspect:73 - request to complete order 2 by user
+2021-04-04 16:24:52 INFO  TrackOrderAspect:81 - order completed by user
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@508863eb]][GET][/orders/incomplete]
+2021-04-04 16:24:52 INFO  TrackOrderAspect:93 - request to incomplete order 2 by user
+2021-04-04 16:24:52 INFO  TrackOrderAspect:99 - order incomplete by user
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@316745d8]][GET][/orders/archive]
+2021-04-04 16:24:52 INFO  TrackOrderAspect:109 - request to archive order 2 by user
+2021-04-04 16:24:52 INFO  OrderServiceImpl:430 - Exported file - order 2
+2021-04-04 16:24:52 INFO  TrackOrderAspect:115 - order archived by user
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@64641bb2]][GET][/orders/complete/cancel]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4b87ea3c]][GET][/orders/archive/view]
+2021-04-04 16:24:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@25ea3a5f]][GET][/orders/archive/back]
+2021-04-04 16:25:37 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3aae9e8f]][GET][/orders/all/pageable]
+2021-04-04 16:25:37 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1e11d73c]][GET][/orders/open]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6dcf39c6]][GET][/orders/addItem]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@19740583]][POST][/orders/addItem]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@109fff4a]][GET][/orders/addItem/cancel]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@252459b2]][GET][/orders/orderData/update]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@73fa97a9]][POST][/orders/orderData/remove]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@106e816c]][GET][/orders/cancel]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4271960c]][GET][/orders/save]
+2021-04-04 16:25:38 INFO  TrackOrderAspect:30 - order created by manager
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@125447a0]][GET][/orders/save/draft]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3c3a8246]][GET][/orders/open/draft]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5c96cbe7]][GET][/orders/edit]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@145c6e4d]][GET][/orders/editOrder/update]
+2021-04-04 16:25:38 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5ded2dfc]][POST][/orders/editOrder/remove]
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2ca9e25a]][GET][/orders/editOrder/addItem]
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@428169d]][POST][/orders/editOrder/addItem]
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5aa7bb86]][GET][/orders/editOrder/addItem/cancel]
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@47fe4c3e]][GET][/orders/edit/save]
+2021-04-04 16:25:39 INFO  TrackOrderAspect:40 - request to edit order 2 by manager
+2021-04-04 16:25:39 INFO  TrackOrderAspect:46 - order edited by manager
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4bdec54]][GET][/orders/edit/complete]
+2021-04-04 16:25:39 INFO  TrackOrderAspect:56 - request to complete order 2 by manager
+2021-04-04 16:25:39 INFO  TrackOrderAspect:62 - order completed by manager
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@786125a6]][GET][/orders/edit/cancel]
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@104972a0]][GET][/orders/complete/open]
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@29ae939c]][GET][/orders/archive/open]
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@74a46f81]][GET][/orders/complete]
+2021-04-04 16:25:39 INFO  TrackOrderAspect:73 - request to complete order 2 by user
+2021-04-04 16:25:39 INFO  TrackOrderAspect:81 - order completed by user
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@290ebbbe]][GET][/orders/incomplete]
+2021-04-04 16:25:39 INFO  TrackOrderAspect:93 - request to incomplete order 2 by user
+2021-04-04 16:25:39 INFO  TrackOrderAspect:99 - order incomplete by user
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5935ade6]][GET][/orders/archive]
+2021-04-04 16:25:39 INFO  TrackOrderAspect:109 - request to archive order 2 by user
+2021-04-04 16:25:39 INFO  OrderServiceImpl:430 - Exported file - order 2
+2021-04-04 16:25:39 INFO  TrackOrderAspect:115 - order archived by user
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@75f2a654]][GET][/orders/complete/cancel]
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7f03e5f4]][GET][/orders/archive/view]
+2021-04-04 16:25:39 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@339b9869]][GET][/orders/archive/back]
+2021-04-04 16:26:50 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3aae9e8f]][GET][/orders/all/pageable]
+2021-04-04 16:26:50 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1e11d73c]][GET][/orders/open]
+2021-04-04 16:26:50 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6dcf39c6]][GET][/orders/addItem]
+2021-04-04 16:26:50 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@19740583]][POST][/orders/addItem]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@109fff4a]][GET][/orders/addItem/cancel]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@252459b2]][GET][/orders/orderData/update]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@73fa97a9]][POST][/orders/orderData/remove]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@106e816c]][GET][/orders/cancel]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4271960c]][GET][/orders/save]
+2021-04-04 16:26:51 INFO  TrackOrderAspect:30 - order created by manager
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@125447a0]][GET][/orders/save/draft]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3c3a8246]][GET][/orders/open/draft]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5c96cbe7]][GET][/orders/edit]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@145c6e4d]][GET][/orders/editOrder/update]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5ded2dfc]][POST][/orders/editOrder/remove]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2ca9e25a]][GET][/orders/editOrder/addItem]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7655dc27]][POST][/orders/editOrder/addItem]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5aa7bb86]][GET][/orders/editOrder/addItem/cancel]
+2021-04-04 16:26:51 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@47fe4c3e]][GET][/orders/edit/save]
+2021-04-04 16:26:51 INFO  TrackOrderAspect:40 - request to edit order 2 by manager
+2021-04-04 16:26:51 INFO  TrackOrderAspect:46 - order edited by manager
+2021-04-04 16:26:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4bdec54]][GET][/orders/edit/complete]
+2021-04-04 16:26:52 INFO  TrackOrderAspect:56 - request to complete order 2 by manager
+2021-04-04 16:26:52 INFO  TrackOrderAspect:62 - order completed by manager
+2021-04-04 16:26:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@786125a6]][GET][/orders/edit/cancel]
+2021-04-04 16:26:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@104972a0]][GET][/orders/complete/open]
+2021-04-04 16:26:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@29ae939c]][GET][/orders/archive/open]
+2021-04-04 16:26:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@74a46f81]][GET][/orders/complete]
+2021-04-04 16:26:52 INFO  TrackOrderAspect:73 - request to complete order 2 by user
+2021-04-04 16:26:52 INFO  TrackOrderAspect:81 - order completed by user
+2021-04-04 16:26:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@290ebbbe]][GET][/orders/incomplete]
+2021-04-04 16:26:52 INFO  TrackOrderAspect:93 - request to incomplete order 2 by user
+2021-04-04 16:26:52 INFO  TrackOrderAspect:99 - order incomplete by user
+2021-04-04 16:26:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5935ade6]][GET][/orders/archive]
+2021-04-04 16:26:52 INFO  TrackOrderAspect:109 - request to archive order 2 by user
+2021-04-04 16:26:52 INFO  OrderServiceImpl:430 - Exported file - order 2
+2021-04-04 16:26:52 INFO  TrackOrderAspect:115 - order archived by user
+2021-04-04 16:26:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@75f2a654]][GET][/orders/complete/cancel]
+2021-04-04 16:26:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7f03e5f4]][GET][/orders/archive/view]
+2021-04-04 16:26:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@339b9869]][GET][/orders/archive/back]
+2021-04-04 16:27:52 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@366c9912]][GET][/orders/all/pageable]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1150b923]][GET][/orders/open]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4ca83ec3]][GET][/orders/addItem]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@52b7a3e1]][POST][/orders/addItem]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2100b770]][GET][/orders/addItem/cancel]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@d35d84a]][GET][/orders/orderData/update]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@23b260ed]][POST][/orders/orderData/remove]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3020f22]][GET][/orders/cancel]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@505e483f]][GET][/orders/save]
+2021-04-04 16:27:53 INFO  TrackOrderAspect:30 - order created by manager
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@55c901b2]][GET][/orders/save/draft]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6dbe6891]][GET][/orders/open/draft]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4bd29a01]][GET][/orders/edit]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@68ad030d]][GET][/orders/editOrder/update]
+2021-04-04 16:27:53 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4ba29b51]][POST][/orders/editOrder/remove]
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@27959922]][GET][/orders/editOrder/addItem]
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1e4f8430]][POST][/orders/editOrder/addItem]
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@26501edd]][GET][/orders/editOrder/addItem/cancel]
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2b097d19]][GET][/orders/edit/save]
+2021-04-04 16:27:54 INFO  TrackOrderAspect:40 - request to edit order 2 by manager
+2021-04-04 16:27:54 INFO  TrackOrderAspect:46 - order edited by manager
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@640c2749]][GET][/orders/edit/complete]
+2021-04-04 16:27:54 INFO  TrackOrderAspect:56 - request to complete order 2 by manager
+2021-04-04 16:27:54 INFO  TrackOrderAspect:62 - order completed by manager
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3bb59485]][GET][/orders/edit/cancel]
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@35427786]][GET][/orders/complete/open]
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3e1ba156]][GET][/orders/archive/open]
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@37c1e2a4]][GET][/orders/complete]
+2021-04-04 16:27:54 INFO  TrackOrderAspect:73 - request to complete order 2 by user
+2021-04-04 16:27:54 INFO  TrackOrderAspect:81 - order completed by user
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@60bd11f7]][GET][/orders/incomplete]
+2021-04-04 16:27:54 INFO  TrackOrderAspect:93 - request to incomplete order 2 by user
+2021-04-04 16:27:54 INFO  TrackOrderAspect:99 - order incomplete by user
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@135fb22d]][GET][/orders/archive]
+2021-04-04 16:27:54 INFO  TrackOrderAspect:109 - request to archive order 2 by user
+2021-04-04 16:27:54 INFO  OrderServiceImpl:430 - Exported file - order 2
+2021-04-04 16:27:54 INFO  TrackOrderAspect:115 - order archived by user
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1eedf268]][GET][/orders/complete/cancel]
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6fe47be]][GET][/orders/archive/view]
+2021-04-04 16:27:54 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@12bb3666]][GET][/orders/archive/back]
+2021-04-04 16:28:58 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@19a799cb]][GET][/orders/all/pageable]
+2021-04-04 16:28:59 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5232cec1]][GET][/orders/open]
+2021-04-04 16:28:59 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5a4833ab]][GET][/orders/addItem]
+2021-04-04 16:28:59 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3e11996e]][POST][/orders/addItem]
+2021-04-04 16:28:59 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@144caca6]][GET][/orders/addItem/cancel]
+2021-04-04 16:28:59 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@438a2337]][GET][/orders/orderData/update]
+2021-04-04 16:28:59 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2512eaaa]][POST][/orders/orderData/remove]
+2021-04-04 16:28:59 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@7c98bac0]][GET][/orders/cancel]
+2021-04-04 16:28:59 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3b870ed3]][GET][/orders/save]
+2021-04-04 16:29:00 INFO  TrackOrderAspect:30 - order created by manager
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6dc8a602]][GET][/orders/save/draft]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@620ba2b0]][GET][/orders/open/draft]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3a5e591b]][GET][/orders/edit]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@bf2f2ce]][GET][/orders/editOrder/update]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@1895f7fe]][POST][/orders/editOrder/remove]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@32b5b8f8]][GET][/orders/editOrder/addItem]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@428169d]][POST][/orders/editOrder/addItem]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5aa7bb86]][GET][/orders/editOrder/addItem/cancel]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@47fe4c3e]][GET][/orders/edit/save]
+2021-04-04 16:29:00 INFO  TrackOrderAspect:40 - request to edit order 2 by manager
+2021-04-04 16:29:00 INFO  TrackOrderAspect:46 - order edited by manager
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@4bdec54]][GET][/orders/edit/complete]
+2021-04-04 16:29:00 INFO  TrackOrderAspect:56 - request to complete order 2 by manager
+2021-04-04 16:29:00 INFO  TrackOrderAspect:62 - order completed by manager
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@786125a6]][GET][/orders/edit/cancel]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@b0bd567]][GET][/orders/complete/open]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6a8d638]][GET][/orders/archive/open]
+2021-04-04 16:29:00 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@2d7fe300]][GET][/orders/complete]
+2021-04-04 16:29:00 INFO  TrackOrderAspect:73 - request to complete order 2 by user
+2021-04-04 16:29:01 INFO  TrackOrderAspect:81 - order completed by user
+2021-04-04 16:29:01 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5ebd3708]][GET][/orders/incomplete]
+2021-04-04 16:29:01 INFO  TrackOrderAspect:93 - request to incomplete order 2 by user
+2021-04-04 16:29:01 INFO  TrackOrderAspect:99 - order incomplete by user
+2021-04-04 16:29:01 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@3ba55a6b]][GET][/orders/archive]
+2021-04-04 16:29:01 INFO  TrackOrderAspect:109 - request to archive order 2 by user
+2021-04-04 16:29:01 INFO  OrderServiceImpl:430 - Exported file - order 2
+2021-04-04 16:29:01 INFO  TrackOrderAspect:115 - order archived by user
+2021-04-04 16:29:01 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@5411a529]][GET][/orders/complete/cancel]
+2021-04-04 16:29:01 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6121b045]][GET][/orders/archive/view]
+2021-04-04 16:29:01 INFO  StatsInterceptor:25 - [preHandle][SecurityContextHolderAwareRequestWrapper[ org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest@6a7a8e1e]][GET][/orders/archive/back]

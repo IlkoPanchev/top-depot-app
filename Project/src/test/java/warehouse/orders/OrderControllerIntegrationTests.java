@@ -28,7 +28,7 @@ import warehouse.suppliers.service.SupplierService;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -72,14 +72,18 @@ public class OrderControllerIntegrationTests {
                 andExpect(model().attributeExists("orders")).
                 andExpect(model().attributeExists("result")).
                 andExpect(model().attributeExists("selectedPageSize")).
+                andExpect(model().attribute("selectedPageSize", equalTo(5))).
                 andExpect(model().attributeExists("pageSizes")).
                 andExpect(model().attributeExists("pager")).
                 andExpect(model().attributeExists("selectedSortOption")).
+                andExpect(model().attribute("selectedSortOption", equalTo("Updated"))).
                 andExpect(model().attributeExists("sortOptions")).
                 andExpect(model().attributeExists("sortDirection")).
                 andExpect(model().attribute("sortDirection", equalTo("desc"))).
                 andExpect(model().attributeExists("reversedSortDirection")).
+                andExpect(model().attribute("reversedSortDirection", equalTo("asc"))).
                 andExpect(model().attributeExists("path")).
+                andExpect(model().attribute("path", equalTo("/orders/all/pageable"))).
                 andExpect(view().name("orders/order-all"));
 
     }
@@ -104,6 +108,7 @@ public class OrderControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/orders/addItem").param("id", "1")).
                 andExpect(status().isOk()).
                 andExpect(model().attributeExists("itemViewBindingModel")).
+                andExpect(model().attribute("itemViewBindingModel", hasProperty("name", is("Name_1")))).
                 andExpect(view().name("orders/order-add-item"));
         ;
     }
@@ -183,7 +188,7 @@ public class OrderControllerIntegrationTests {
     @Test
     @Order(9)
     @WithMockUser(username = "manager", roles = {"USER", "MANAGER"})
-    public void testSaveOrderMethodIntegrationTests() throws Exception {
+    public void testSaveOrderMethod() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.
                 get("/orders/save").sessionAttr("orderData", orderData)).
@@ -272,6 +277,7 @@ public class OrderControllerIntegrationTests {
                 param("id", "1")).
                 andExpect(status().isOk()).
                 andExpect(model().attributeExists("itemViewBindingModel")).
+                andExpect(model().attribute("itemViewBindingModel", hasProperty("name", is("Name_1")))).
                 andExpect(view().name("orders/order-add-item-edit-order"));
 
     }
@@ -433,6 +439,7 @@ public class OrderControllerIntegrationTests {
                 get("/orders/archive/view").param("id", "1")).
                 andExpect(status().isOk()).
                 andExpect(model().attributeExists("orderViewBindingModel")).
+                andExpect(model().attribute("orderViewBindingModel", hasProperty("total", is(new BigDecimal("100.00"))))).
                 andExpect(view().name("orders/order-archive-view"));
 
 
