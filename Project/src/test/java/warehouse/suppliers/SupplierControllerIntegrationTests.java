@@ -26,7 +26,8 @@ import warehouse.suppliers.model.SupplierServiceModel;
 import warehouse.suppliers.service.SupplierService;
 
 
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
@@ -65,7 +66,9 @@ public class SupplierControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/suppliers/add"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("supplierAddBindingModel"))
+                .andExpect(model().attribute("supplierAddBindingModel", hasProperty("name", is(nullValue()))))
                 .andExpect(model().attributeExists("addressAddBindingModel"))
+                .andExpect(model().attribute("addressAddBindingModel", hasProperty("region", is(nullValue()))))
                 .andExpect(model().attributeExists("supplierExists"))
                 .andExpect(view().name("suppliers/supplier-add"));
         ;
@@ -160,14 +163,18 @@ public class SupplierControllerIntegrationTests {
                 andExpect(model().attributeExists("suppliers")).
                 andExpect(model().attributeExists("result")).
                 andExpect(model().attributeExists("selectedPageSize")).
+                andExpect(model().attribute("selectedPageSize", equalTo(5))).
                 andExpect(model().attributeExists("pageSizes")).
                 andExpect(model().attributeExists("pager")).
                 andExpect(model().attributeExists("selectedSortOption")).
+                andExpect(model().attribute("selectedSortOption", equalTo("Name"))).
                 andExpect(model().attributeExists("sortOptions")).
                 andExpect(model().attributeExists("sortDirection")).
                 andExpect(model().attribute("sortDirection", equalTo("asc"))).
                 andExpect(model().attributeExists("reversedSortDirection")).
+                andExpect(model().attribute("reversedSortDirection", equalTo("desc"))).
                 andExpect(model().attributeExists("path")).
+                andExpect(model().attribute("path", equalTo("/suppliers/all/pageable"))).
                 andExpect(view().name("suppliers/supplier-all"));
 
     }
@@ -181,7 +188,9 @@ public class SupplierControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/suppliers/edit").param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("supplierAddBindingModel"))
+                .andExpect(model().attribute("supplierAddBindingModel", hasProperty("name", is("Supplier_1"))))
                 .andExpect(model().attributeExists("addressAddBindingModel"))
+                .andExpect(model().attribute("addressAddBindingModel", hasProperty("region", is("Region_1"))))
                 .andExpect(view().name("suppliers/supplier-edit"));
         ;
     }
