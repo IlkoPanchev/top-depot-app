@@ -26,6 +26,8 @@ import warehouse.suppliers.model.SupplierAddBindingModel;
 import warehouse.suppliers.model.SupplierEntity;
 import warehouse.suppliers.model.SupplierServiceModel;
 
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -60,13 +62,18 @@ public class CustomerControllerIntegrationTests {
                 andExpect(model().attributeExists("customers")).
                 andExpect(model().attributeExists("result")).
                 andExpect(model().attributeExists("selectedPageSize")).
+                andExpect(model().attribute("selectedPageSize", equalTo(5))).
                 andExpect(model().attributeExists("pageSizes")).
                 andExpect(model().attributeExists("pager")).
                 andExpect(model().attributeExists("selectedSortOption")).
+                andExpect(model().attribute("selectedSortOption", equalTo("Company"))).
                 andExpect(model().attributeExists("sortOptions")).
                 andExpect(model().attributeExists("sortDirection")).
+                andExpect(model().attribute("sortDirection", equalTo("asc"))).
                 andExpect(model().attributeExists("reversedSortDirection")).
+                andExpect(model().attribute("reversedSortDirection", equalTo("desc"))).
                 andExpect(model().attributeExists("path")).
+                andExpect(model().attribute("path", equalTo("/customers/all/pageable"))).
                 andExpect(view().name("customers/customer-all"));
     }
 
@@ -80,13 +87,18 @@ public class CustomerControllerIntegrationTests {
                 andExpect(model().attributeExists("customers")).
                 andExpect(model().attributeExists("result")).
                 andExpect(model().attributeExists("selectedPageSize")).
+                andExpect(model().attribute("selectedPageSize", equalTo(5))).
                 andExpect(model().attributeExists("pageSizes")).
                 andExpect(model().attributeExists("pager")).
                 andExpect(model().attributeExists("selectedSortOption")).
+                andExpect(model().attribute("selectedSortOption", equalTo("Company"))).
                 andExpect(model().attributeExists("sortOptions")).
                 andExpect(model().attributeExists("sortDirection")).
+                andExpect(model().attribute("sortDirection", equalTo("asc"))).
                 andExpect(model().attributeExists("reversedSortDirection")).
+                andExpect(model().attribute("reversedSortDirection", equalTo("desc"))).
                 andExpect(model().attributeExists("path")).
+                andExpect(model().attribute("path", equalTo("/customers/all/newOrder"))).
                 andExpect(view().name("customers/customer-all-new-order"));
     }
 
@@ -98,7 +110,9 @@ public class CustomerControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/customers/add"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("customerAddBindingModel"))
+                .andExpect(model().attribute("customerAddBindingModel", hasProperty("companyName", is(nullValue()))))
                 .andExpect(model().attributeExists("addressAddBindingModel"))
+                .andExpect(model().attribute("addressAddBindingModel", hasProperty("region", is(nullValue()))))
                 .andExpect(model().attributeExists("customerExist"))
                 .andExpect(view().name("customers/customer-add"));
         ;
@@ -191,7 +205,9 @@ public class CustomerControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/customers/edit").param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("customerAddBindingModel"))
+                .andExpect(model().attribute("customerAddBindingModel", hasProperty("companyName", is("Company_Name_1"))))
                 .andExpect(model().attributeExists("addressAddBindingModel"))
+                .andExpect(model().attribute("addressAddBindingModel", hasProperty("region", is("Region_1"))))
                 .andExpect(view().name("customers/customer-edit"));
         ;
     }
