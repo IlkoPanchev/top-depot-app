@@ -114,6 +114,7 @@ public class CustomerControllerIntegrationTests {
                 .andExpect(model().attributeExists("addressAddBindingModel"))
                 .andExpect(model().attribute("addressAddBindingModel", hasProperty("region", is(nullValue()))))
                 .andExpect(model().attributeExists("customerExist"))
+                .andExpect(model().attribute("customerExist", equalTo(false)))
                 .andExpect(view().name("customers/customer-add"));
         ;
     }

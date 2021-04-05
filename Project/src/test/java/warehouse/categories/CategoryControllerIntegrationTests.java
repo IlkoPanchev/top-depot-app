@@ -77,6 +77,7 @@ public class CategoryControllerIntegrationTests {
                 .andExpect(model().attributeExists("categoryAddBindingModel"))
                 .andExpect(model().attribute("categoryAddBindingModel", hasProperty("name", is(nullValue()))))
                 .andExpect(model().attributeExists("categoryExists"))
+                .andExpect(model().attribute("categoryExists", equalTo(false)))
                 .andExpect(view().name("categories/category-add"));
         ;
     }

@@ -98,6 +98,7 @@ public class ItemControllerIntegrationTest {
                 .andExpect(model().attributeExists("suppliers"))
                 .andExpect(model().attributeExists("categories"))
                 .andExpect(model().attributeExists("itemExists"))
+                .andExpect(model().attribute("itemExists", equalTo(false)))
                 .andExpect(view().name("items/item-add"));
         ;
     }

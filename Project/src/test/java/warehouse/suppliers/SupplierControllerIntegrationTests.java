@@ -70,6 +70,7 @@ public class SupplierControllerIntegrationTests {
                 .andExpect(model().attributeExists("addressAddBindingModel"))
                 .andExpect(model().attribute("addressAddBindingModel", hasProperty("region", is(nullValue()))))
                 .andExpect(model().attributeExists("supplierExists"))
+                .andExpect(model().attribute("supplierExists", equalTo(false)))
                 .andExpect(view().name("suppliers/supplier-add"));
         ;
     }
@@ -190,7 +191,7 @@ public class SupplierControllerIntegrationTests {
                 .andExpect(model().attributeExists("supplierAddBindingModel"))
                 .andExpect(model().attribute("supplierAddBindingModel", hasProperty("name", is("Supplier_1"))))
                 .andExpect(model().attributeExists("addressAddBindingModel"))
-                .andExpect(model().attribute("addressAddBindingModel", hasProperty("region", is("Region_1"))))
+                .andExpect(model().attribute("addressAddBindingModel", hasProperty("region", is("Sofia city"))))
                 .andExpect(view().name("suppliers/supplier-edit"));
         ;
     }
