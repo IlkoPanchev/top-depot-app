@@ -76,12 +76,12 @@ public class OrderControllerIntegrationTests {
                 andExpect(model().attributeExists("pageSizes")).
                 andExpect(model().attributeExists("pager")).
                 andExpect(model().attributeExists("selectedSortOption")).
-                andExpect(model().attribute("selectedSortOption", equalTo("Name"))).
+                andExpect(model().attribute("selectedSortOption", equalTo("Updated"))).
                 andExpect(model().attributeExists("sortOptions")).
                 andExpect(model().attributeExists("sortDirection")).
-                andExpect(model().attribute("sortDirection", equalTo("asc"))).
+                andExpect(model().attribute("sortDirection", equalTo("desc"))).
                 andExpect(model().attributeExists("reversedSortDirection")).
-                andExpect(model().attribute("reversedSortDirection", equalTo("desc"))).
+                andExpect(model().attribute("reversedSortDirection", equalTo("asc"))).
                 andExpect(model().attributeExists("path")).
                 andExpect(model().attribute("path", equalTo("/orders/all/pageable"))).
                 andExpect(view().name("orders/order-all"));

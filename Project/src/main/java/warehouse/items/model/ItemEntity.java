@@ -56,7 +56,7 @@ public class ItemEntity extends BaseEntity {
         this.location = location;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     public CategoryEntity getCategory() {
         return category;
@@ -67,7 +67,7 @@ public class ItemEntity extends BaseEntity {
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="supplier_id", referencedColumnName = "id", nullable = false)
     public SupplierEntity getSupplier() {
         return supplier;

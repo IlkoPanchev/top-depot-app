@@ -148,7 +148,7 @@ public class ItemControllerIntegrationTest {
     @Test
     @Order(6)
     @WithMockUser(username = "manager_1", password = "mmm", roles = {"USER", "MANAGER"})
-    public void testGetAllEditOrderMethodWithDefaultRequestParamsContainsCorrectAttributesAndView() throws Exception {
+    public void testEditOrderMethodWithDefaultRequestParamsContainsCorrectAttributesAndView() throws Exception {
 
         mockMvc.perform(get("/items/all/pageable/editOrder")).
                 andExpect(status().isOk()).
@@ -169,7 +169,7 @@ public class ItemControllerIntegrationTest {
     @Test
     @Order(7)
     @WithMockUser(username = "manager_1", password = "mmm", roles = {"USER", "MANAGER"})
-    public void testGetAllOrderAddItemMethodWithDefaultRequestParamsContainsCorrectAttributesAndView() throws Exception {
+    public void testOrderAddItemMethodWithDefaultRequestParamsContainsCorrectAttributesAndView() throws Exception {
 
         mockMvc.perform(get("/items/all/pageable/orderAddItem")).
                 andExpect(status().isOk()).
@@ -190,7 +190,7 @@ public class ItemControllerIntegrationTest {
     @Test
     @Order(8)
     @WithMockUser(username = "manager", roles = {"USER", "MANAGER"})
-    public void testEditEditMethodGetContainsCorrectAttributesAndView() throws Exception {
+    public void testEditMethodGetContainsCorrectAttributesAndView() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/items/edit").param("id", "1"))
                 .andExpect(status().isOk())

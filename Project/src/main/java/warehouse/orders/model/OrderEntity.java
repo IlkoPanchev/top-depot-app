@@ -57,7 +57,7 @@ public class OrderEntity extends BaseEntity {
         this.orderLineEntities = orderLineEntities;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     public CustomerEntity getCustomer() {
         return customer;
