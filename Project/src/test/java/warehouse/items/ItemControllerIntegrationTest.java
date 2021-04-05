@@ -26,6 +26,8 @@ import warehouse.items.service.ItemService;
 
 import java.math.BigDecimal;
 
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -68,13 +70,18 @@ public class ItemControllerIntegrationTest {
                 andExpect(model().attributeExists("items")).
                 andExpect(model().attributeExists("result")).
                 andExpect(model().attributeExists("selectedPageSize")).
+                andExpect(model().attribute("selectedPageSize", equalTo(5))).
                 andExpect(model().attributeExists("pageSizes")).
                 andExpect(model().attributeExists("pager")).
                 andExpect(model().attributeExists("selectedSortOption")).
+                andExpect(model().attribute("selectedSortOption", equalTo("Name"))).
                 andExpect(model().attributeExists("sortOptions")).
                 andExpect(model().attributeExists("sortDirection")).
+                andExpect(model().attribute("sortDirection", equalTo("asc"))).
                 andExpect(model().attributeExists("reversedSortDirection")).
+                andExpect(model().attribute("reversedSortDirection", equalTo("desc"))).
                 andExpect(model().attributeExists("path")).
+                andExpect(model().attribute("path", equalTo("/items/all/pageable"))).
                 andExpect(view().name("items/item-all"));
 
     }
@@ -87,6 +94,7 @@ public class ItemControllerIntegrationTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/items/add"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("itemAddBindingModel"))
+                .andExpect(model().attribute("itemAddBindingModel", hasProperty("name", is(nullValue()))))
                 .andExpect(model().attributeExists("suppliers"))
                 .andExpect(model().attributeExists("categories"))
                 .andExpect(model().attributeExists("itemExists"))
@@ -155,13 +163,18 @@ public class ItemControllerIntegrationTest {
                 andExpect(model().attributeExists("items")).
                 andExpect(model().attributeExists("result")).
                 andExpect(model().attributeExists("selectedPageSize")).
+                andExpect(model().attribute("selectedPageSize", equalTo(5))).
                 andExpect(model().attributeExists("pageSizes")).
                 andExpect(model().attributeExists("pager")).
                 andExpect(model().attributeExists("selectedSortOption")).
+                andExpect(model().attribute("selectedSortOption", equalTo("Name"))).
                 andExpect(model().attributeExists("sortOptions")).
                 andExpect(model().attributeExists("sortDirection")).
+                andExpect(model().attribute("sortDirection", equalTo("asc"))).
                 andExpect(model().attributeExists("reversedSortDirection")).
+                andExpect(model().attribute("reversedSortDirection", equalTo("desc"))).
                 andExpect(model().attributeExists("path")).
+                andExpect(model().attribute("path", equalTo("/items/all/pageable/editOrder"))).
                 andExpect(view().name("items/item-all-order-edit"));
 
     }
@@ -176,13 +189,18 @@ public class ItemControllerIntegrationTest {
                 andExpect(model().attributeExists("items")).
                 andExpect(model().attributeExists("result")).
                 andExpect(model().attributeExists("selectedPageSize")).
+                andExpect(model().attribute("selectedPageSize", equalTo(5))).
                 andExpect(model().attributeExists("pageSizes")).
                 andExpect(model().attributeExists("pager")).
                 andExpect(model().attributeExists("selectedSortOption")).
+                andExpect(model().attribute("selectedSortOption", equalTo("Name"))).
                 andExpect(model().attributeExists("sortOptions")).
                 andExpect(model().attributeExists("sortDirection")).
+                andExpect(model().attribute("sortDirection", equalTo("asc"))).
                 andExpect(model().attributeExists("reversedSortDirection")).
+                andExpect(model().attribute("reversedSortDirection", equalTo("desc"))).
                 andExpect(model().attributeExists("path")).
+                andExpect(model().attribute("path", equalTo("/items/all/pageable/orderAddItem"))).
                 andExpect(view().name("items/item-all-order-add-item"));
 
     }
@@ -195,6 +213,7 @@ public class ItemControllerIntegrationTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/items/edit").param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("itemAddBindingModel"))
+                .andExpect(model().attribute("itemAddBindingModel", hasProperty("name", is("Name_1"))))
                 .andExpect(model().attributeExists("suppliers"))
                 .andExpect(model().attributeExists("categories"))
                 .andExpect(view().name("items/item-edit"));
