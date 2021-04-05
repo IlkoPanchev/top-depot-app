@@ -32,13 +32,9 @@ public interface ItemService {
 
     Page<ItemViewServiceModel> searchUnblocked(String keyword, Pageable pageable);
 
-//    List<ItemViewServiceModel> filter(String keyword);
-
     ItemViewServiceModel findById(Long id);
 
     boolean itemExists(String name);
-
-//    Page<ItemViewBindingModel> getPage(Map<String, String> sortOptions, String sortOption, String sortDirection, String keyword, Integer page, Integer pageSize);
 
     ItemViewServiceModel block(Long id);
 

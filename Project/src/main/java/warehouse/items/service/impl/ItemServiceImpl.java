@@ -181,59 +181,6 @@ public class ItemServiceImpl implements ItemService {
         return itemViewServiceModelPage;
     }
 
-    //TODO: remove filter()
-
-//    @Override
-//    public List<ItemViewServiceModel> filter(String keyword) {
-//
-//        SearchSpecification<ItemEntity> specificationName = new SearchSpecification<>(new SearchCriteria("name", ":", keyword));
-//        SearchSpecification<ItemEntity> specificationDescription = new SearchSpecification<>(new SearchCriteria("description", ":", keyword));
-//        SearchSpecification<ItemEntity> specificationPrice = new SearchSpecification<>(new SearchCriteria("price", ":", null));
-//        double price;
-//        try {
-//            price = Double.parseDouble(keyword);
-//            specificationPrice = new SearchSpecification<>(new SearchCriteria("price", ":", price));
-//        }
-//        catch (NumberFormatException e){
-//
-//        }
-//        SearchSpecification<ItemEntity> specificationLocation = new SearchSpecification<>(new SearchCriteria("location", ":", keyword));
-//        CategoryEntity categoryEntity = findCategory(keyword);
-//        SearchSpecification<ItemEntity> specificationCategory = new SearchSpecification<>(new SearchCriteria("category", ":", categoryEntity));
-//        SupplierEntity supplierEntity = findSupplier(keyword);
-//        SearchSpecification<ItemEntity> specificationSupplier = new SearchSpecification<>(new SearchCriteria("supplier", ":", supplierEntity));
-//
-//        List<ItemEntity> itemEntities = this.itemRepository.findAll(Specification.where(specificationName)
-//                .or(specificationDescription)
-//                .or(specificationPrice)
-//                .or(specificationLocation)
-//                .or(specificationCategory)
-//                .or(specificationSupplier));
-//
-//        List<ItemViewServiceModel> itemViewServiceModels = itemEntities.stream()
-//                .map(itemEntity -> this.modelMapper.map(itemEntity, ItemViewServiceModel.class)).collect(Collectors.toList());
-//
-//        return itemViewServiceModels;
-//    }
-
-    //TODO: remove findCategory()
-//    private CategoryEntity findCategory(String keyword) {
-//
-//        List<CategoryEntity> categoryEntities = this.categoryRepository.findAll();
-//
-//        CategoryEntity categoryEntity = categoryEntities.stream().filter(c -> c.getName().contains(keyword)).findFirst().orElse(null);
-//
-//        return categoryEntity;
-//    }
-    //TODO: remove findSupplier()
-//    private SupplierEntity findSupplier(String keyword) {
-//
-//        List<SupplierEntity> itemEntities = this.supplierRepository.findAll();
-//
-//        SupplierEntity supplierEntity = itemEntities.stream().filter(i -> i.getName().toLowerCase().contains(keyword.toLowerCase())).findFirst().orElse(null);
-//
-//        return supplierEntity;
-//    }
 
     @Override
     public ItemViewServiceModel findById(Long id) {
@@ -253,32 +200,6 @@ public class ItemServiceImpl implements ItemService {
         return itemEntity.isPresent();
     }
 
-//    @Override
-//    public Page<ItemViewBindingModel> getPage(Map<String, String> sortOptions, String sortOption, String sortDirection, String keyword, Integer page, Integer pageSize) {
-//
-//        String option = sortOptions.get(sortOption);
-//
-//        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(option).ascending() :
-//                Sort.by(option).descending();
-//        Pageable pageable = PageRequest.of(page, pageSize, sort);
-//
-//        Page<ItemViewServiceModel> itemViewServiceModelPage;
-//
-//        if (!keyword.equals("null")) {
-//            itemViewServiceModelPage = this.search(keyword, pageable);
-//        } else {
-//            itemViewServiceModelPage = this.findAllPageable(pageable);
-//        }
-//
-//        List<ItemViewBindingModel> itemViewBindingModels = itemViewServiceModelPage
-//                .stream()
-//                .map(itemViewServiceModel -> this.modelMapper.map(itemViewServiceModel, ItemViewBindingModel.class))
-//                .collect(Collectors.toList());
-//
-//        Page<ItemViewBindingModel> pageToReturn = new PageImpl<>(itemViewBindingModels, pageable, itemViewServiceModelPage.getTotalElements());
-//
-//        return pageToReturn;
-//    }
 
     @Override
     public ItemViewServiceModel block(Long id) {
