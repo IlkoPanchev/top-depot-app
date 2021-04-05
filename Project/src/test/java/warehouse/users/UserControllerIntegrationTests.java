@@ -6,6 +6,7 @@ import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.support.NullValue;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,13 +16,15 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import warehouse.departments.model.DepartmentName;
 import warehouse.roles.model.RoleAddBindingModel;
 import warehouse.roles.model.RoleEntity;
+import warehouse.roles.model.RoleName;
 import warehouse.users.model.*;
 import warehouse.users.service.UserService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -56,8 +59,11 @@ public class UserControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/register"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("userRegisterBindingModel"))
+                .andExpect(model().attribute("userRegisterBindingModel", hasProperty("username", is(nullValue()))))
                 .andExpect(model().attributeExists("confirmPasswordCorrect"))
+                .andExpect(model().attribute("confirmPasswordCorrect", equalTo(false)))
                 .andExpect(model().attributeExists("userExists"))
+                .andExpect(model().attribute("userExists", equalTo(false)))
                 .andExpect(view().name("users/user-register"));
         ;
     }
@@ -164,14 +170,19 @@ public class UserControllerIntegrationTests {
                 andExpect(model().attributeExists("users")).
                 andExpect(model().attributeExists("result")).
                 andExpect(model().attributeExists("selectedPageSize")).
+                andExpect(model().attribute("selectedPageSize", equalTo(5))).
                 andExpect(model().attributeExists("pageSizes")).
                 andExpect(model().attributeExists("pager")).
                 andExpect(model().attributeExists("selectedSortOption")).
+                andExpect(model().attribute("selectedSortOption", equalTo("Username"))).
                 andExpect(model().attributeExists("sortOptions")).
                 andExpect(model().attributeExists("sortDirection")).
                 andExpect(model().attribute("sortDirection", equalTo("asc"))).
+                andExpect(model().attribute("sortDirection", equalTo("asc"))).
                 andExpect(model().attributeExists("reversedSortDirection")).
+                andExpect(model().attribute("reversedSortDirection", equalTo("desc"))).
                 andExpect(model().attributeExists("path")).
+                andExpect(model().attribute("path", equalTo("/users/all/pageable"))).
                 andExpect(view().name("users/user-all"));
 
     }
@@ -184,7 +195,9 @@ public class UserControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/edit").param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("userRegisterBindingModel"))
+                .andExpect(model().attribute("userRegisterBindingModel", hasProperty("username", is("admin"))))
                 .andExpect(model().attributeExists("confirmPasswordCorrect"))
+                .andExpect(model().attribute("confirmPasswordCorrect", equalTo(false)))
                 .andExpect(view().name("users/user-edit"));
         ;
     }
@@ -320,7 +333,7 @@ public class UserControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/roles/addRole").param("id", "6"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("roleAddBindingModel"))
-
+                .andExpect(model().attribute("roleAddBindingModel", hasProperty("role", is(nullValue()))))
                 .andExpect(view().name("users/user-role-add"));
         ;
     }
@@ -376,7 +389,7 @@ public class UserControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/roles/remove").param("id", "6"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("roleAddBindingModel"))
-
+                .andExpect(model().attribute("roleAddBindingModel", hasProperty("role", is(nullValue()))))
                 .andExpect(view().name("users/user-role-remove"));
         ;
     }
@@ -431,7 +444,9 @@ public class UserControllerIntegrationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/profile").param("name", "admin"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("userRegisterBindingModel"))
+                .andExpect(model().attribute("userRegisterBindingModel", hasProperty("username", is("admin"))))
                 .andExpect(model().attributeExists("confirmPasswordCorrect"))
+                .andExpect(model().attribute("confirmPasswordCorrect", equalTo(false)))
                 .andExpect(view().name("users/user-profile-edit"));
         ;
     }
