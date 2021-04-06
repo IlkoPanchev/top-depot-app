@@ -312,7 +312,7 @@ public class SupplierServiceImplUnitTests {
         when(mockOrderService.getDateTimeFirstArchiveOrder()).thenReturn(LocalDateTime.now());
 
         List<Object[]> result = this.getResult();
-        when(mockSupplierRepository.findSupplierTurnover(any(LocalDateTime.class), any(LocalDateTime.class), any(String.class)))
+        when(mockSupplierRepository.findSupplierTurnover(any(LocalDateTime.class), any(LocalDateTime.class), any(String.class), any(Pageable.class)))
                 .thenReturn(result);
 
         List<SupplierTurnoverViewModel> supplierTurnoverViewModels = this.supplierServiceToTest.getSupplierTurnover("", "", "null");
@@ -340,7 +340,7 @@ public class SupplierServiceImplUnitTests {
 
         List<Object[]> result = this.getResult();
         when(mockSupplierRepository
-                .findTopSuppliers(any(LocalDateTime.class), any(LocalDateTime.class))).thenReturn(result);
+                .findTopSuppliers(any(LocalDateTime.class), any(LocalDateTime.class), any(Pageable.class))).thenReturn(result);
 
         HashMap<Integer, String> resultMap = new HashMap<>();
         resultMap.put(1, "2021-03-12");
@@ -369,7 +369,7 @@ public class SupplierServiceImplUnitTests {
 
         List<Object[]> result = this.getResult();
         when(mockSupplierRepository
-                .findTopSuppliers(any(LocalDateTime.class), any(LocalDateTime.class))).thenReturn(result);
+                .findTopSuppliers(any(LocalDateTime.class), any(LocalDateTime.class), any(Pageable.class))).thenReturn(result);
 
         HashMap<Integer, BigDecimal> topSuppliersTurnoverMap = this.supplierServiceToTest.getTopSuppliersTurnoverMap("", "");
 

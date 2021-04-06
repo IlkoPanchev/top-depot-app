@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -214,7 +215,7 @@ public class SupplierServiceImpl implements SupplierService {
         String[] timeBordersPieChart = this.timeBordersConvertor
                 .getTimeBordersAsString(fromDate, toDate, this.orderService.getDateTimeFirstArchiveOrder());
 
-        List<Object[]> result = this.supplierRepository.findTopSuppliers(timeBorders[0], timeBorders[1]);
+        List<Object[]> result = this.supplierRepository.findTopSuppliers(timeBorders[0], timeBorders[1], PageRequest.of(0, 5));
 
         return this.timeBordersConvertor.getBordersAndNamesMap(suppliersNamesMap, timeBordersPieChart, result);
     }
@@ -228,7 +229,7 @@ public class SupplierServiceImpl implements SupplierService {
         LocalDateTime[] timeBorders = this.timeBordersConvertor
                 .getTimeBordersAsLocalDateTime(fromDate, toDate, this.orderService.getDateTimeFirstArchiveOrder());
 
-        List<Object[]> result = this.supplierRepository.findTopSuppliers(timeBorders[0], timeBorders[1]);
+        List<Object[]> result = this.supplierRepository.findTopSuppliers(timeBorders[0], timeBorders[1], PageRequest.of(0, 5));
 
         int key = 2;
 
@@ -249,7 +250,7 @@ public class SupplierServiceImpl implements SupplierService {
         LocalDateTime[] timeBorders = this.timeBordersConvertor
                 .getTimeBordersAsLocalDateTime(fromDate, toDate, this.orderService.getDateTimeFirstArchiveOrder());
 
-        List<Object[]> result = this.supplierRepository.findSupplierTurnover(timeBorders[0], timeBorders[1], keyword);
+        List<Object[]> result = this.supplierRepository.findSupplierTurnover(timeBorders[0], timeBorders[1], keyword, PageRequest.of(0, 5));
 
         for (Object[] objects : result) {
             SupplierTurnoverViewModel supplier = new SupplierTurnoverViewModel();

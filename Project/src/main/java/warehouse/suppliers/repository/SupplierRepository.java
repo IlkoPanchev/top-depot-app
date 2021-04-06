@@ -21,41 +21,35 @@ public interface SupplierRepository extends JpaRepository<SupplierEntity, Long> 
             " lower(s.addressEntity.city), lower(s.addressEntity.street), lower(s.addressEntity.phone)) LIKE lower(concat('%', ?1,'%'))")
     Page<SupplierEntity> search(String keyword, Pageable pageable);
 
-    @Query(value = "SELECT s.name AS 'name', sum(ol.subtotal) AS 'turnover' FROM suppliers AS s\n" +
-            "            JOIN items AS i\n" +
-            "            ON s.id = i.supplier_id\n" +
-            "            JOIN order_lines AS ol\n" +
-            "            ON i.id = ol.item_id\n" +
-            "            JOIN orders_order_lines AS ool\n" +
-            "            ON ol.id = ool.order_line_id\n" +
-            "            JOIN orders AS o\n" +
-            "            ON ool.order_id = o.id\n" +
-            "\t\t\tWHERE o.updated_on BETWEEN :fromDate AND :toDate\n" +
-            "            AND o.is_archives = TRUE\n" +
-            "            GROUP BY s.id\n" +
-            "            ORDER BY turnover DESC, s.name\n" +
-            "            LIMIT 3;", nativeQuery = true)
-    List<Object[]> findTopSuppliers(@Param("fromDate") LocalDateTime fromDate, @Param("toDate") LocalDateTime toDate);
+    @Query("select s.name as name, sum(ol.subtotal) as turnover from SupplierEntity as s" +
+            " join ItemEntity as i" +
+            " on s.id = i.supplier.id" +
+            " join OrderLineEntity as ol" +
+            " on i.id = ol.item.id" +
+            " join OrderEntity as o" +
+            " on ol.order.id = o.id" +
+            " where o.updatedOn between :fromDate and :toDate" +
+            " and o.archives = true" +
+            " group by s.id" +
+            " order by turnover desc, s.name")
+    List<Object[]> findTopSuppliers(@Param("fromDate") LocalDateTime fromDate, @Param("toDate") LocalDateTime toDate, Pageable pageable);
 
-    @Query(value = "SELECT s.name AS 'name', sum(ol.subtotal) AS 'turnover' , sum(ol.quantity) AS 'quantity' FROM suppliers AS s\n" +
-            "                       JOIN addresses AS a\n" +
-            "                        ON s.address_id = a.id\n" +
-            "                        JOIN items AS i\n" +
-            "                        ON s.id = i.supplier_id\n" +
-            "                        JOIN order_lines AS ol\n" +
-            "                       ON i.id = ol.item_id\n" +
-            "                        JOIN orders_order_lines AS ool\n" +
-            "                        ON ol.id = ool.order_line_id\n" +
-            "                        JOIN orders AS o\n" +
-            "                        ON ool.order_id = o.id\n" +
-            "             WHERE o.updated_on BETWEEN :fromDate AND :toDate\n" +
-            "            AND CONCAT(lower(s.name), lower(s.email), lower(a.region),\n" +
-            "            lower(a.city), lower(a.street), lower(a.phone)) LIKE lower(concat('%', :keyword,'%'))\n" +
-            "                        AND o.is_archives = TRUE\n" +
-            "                        GROUP BY s.id\n" +
-            "                        ORDER BY s.name, turnover DESC\n" +
-            "                        LIMIT 5;", nativeQuery = true)
-    List<Object[]> findSupplierTurnover(@Param("fromDate") LocalDateTime fromDate, @Param("toDate") LocalDateTime toDate, @Param("keyword") String keyword);
+    @Query("select s.name as name, sum(ol.subtotal) as turnover, sum(ol.quantity) as quantity from SupplierEntity as s" +
+            " join AddressEntity as a" +
+            " on s.addressEntity.id = a.id" +
+            " join ItemEntity as i" +
+            " on s.id = i.supplier.id" +
+            " join OrderLineEntity as ol" +
+            " on i.id = ol.item.id" +
+            " join OrderEntity as o" +
+            " on ol.order.id = o.id" +
+            " where o.updatedOn between :fromDate and :toDate" +
+            " and concat(lower(s.name), lower(s.email), lower(s.addressEntity.region),lower(s.addressEntity.city)," +
+            " lower(s.addressEntity.street), lower(s.addressEntity.phone)) like lower(concat('%', :keyword,'%'))" +
+            " and o.archives = true" +
+            " group by s.id" +
+            " order by s.name, turnover desc")
+    List<Object[]> findSupplierTurnover(@Param("fromDate") LocalDateTime fromDate, @Param("toDate") LocalDateTime toDate, @Param("keyword") String keyword, Pageable pageable);
 
     @Query("select s.name from SupplierEntity AS s")
     List<String> findAllSupplierNames();
