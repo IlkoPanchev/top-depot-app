@@ -78,6 +78,13 @@ public class OrderServiceImpl implements OrderService {
             orderEntity.setCreatedOn(LocalDateTime.now());
             orderEntity.setUpdatedOn(LocalDateTime.now());
 
+            Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
+            for (OrderLineEntity orderLineEntity : orderLineEntities) {
+                orderLineEntity.setOrder(orderEntity);
+            }
+
+            orderEntity.setOrderLineEntities(orderLineEntities);
+
             orderEntity = this.orderRepository.saveAndFlush(orderEntity);
             orderAddServiceModel = this.modelMapper.map(orderEntity, OrderAddServiceModel.class);
 
@@ -98,6 +105,13 @@ public class OrderServiceImpl implements OrderService {
             OrderEntity orderEntity = this.modelMapper.map(orderAddServiceModel, OrderEntity.class);
 
             orderEntity.setUpdatedOn(LocalDateTime.now());
+
+            Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
+            for (OrderLineEntity orderLineEntity : orderLineEntities) {
+                orderLineEntity.setOrder(orderEntity);
+            }
+
+            orderEntity.setOrderLineEntities(orderLineEntities);
 
             orderEntity = this.orderRepository.saveAndFlush(orderEntity);
             orderAddServiceModel = this.modelMapper.map(orderEntity, OrderAddServiceModel.class);
@@ -121,6 +135,13 @@ public class OrderServiceImpl implements OrderService {
             orderEntity.setClosed(true);
             orderEntity.setUpdatedOn(LocalDateTime.now());
 
+            Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
+            for (OrderLineEntity orderLineEntity : orderLineEntities) {
+                orderLineEntity.setOrder(orderEntity);
+            }
+
+            orderEntity.setOrderLineEntities(orderLineEntities);
+
             orderEntity = this.orderRepository.saveAndFlush(orderEntity);
             orderAddServiceModel = this.modelMapper.map(orderEntity, OrderAddServiceModel.class);
 
@@ -143,6 +164,13 @@ public class OrderServiceImpl implements OrderService {
             orderEntity.setClosed(false);
             orderEntity.setUpdatedOn(LocalDateTime.now());
 
+            Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
+            for (OrderLineEntity orderLineEntity : orderLineEntities) {
+                orderLineEntity.setOrder(orderEntity);
+            }
+
+            orderEntity.setOrderLineEntities(orderLineEntities);
+
             orderEntity = this.orderRepository.saveAndFlush(orderEntity);
             orderAddServiceModel = this.modelMapper.map(orderEntity, OrderAddServiceModel.class);
 
@@ -164,6 +192,13 @@ public class OrderServiceImpl implements OrderService {
 
             orderEntity.setArchives(true);
             orderEntity.setUpdatedOn(LocalDateTime.now());
+
+            Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
+            for (OrderLineEntity orderLineEntity : orderLineEntities) {
+                orderLineEntity.setOrder(orderEntity);
+            }
+
+            orderEntity.setOrderLineEntities(orderLineEntities);
 
             orderEntity = this.orderRepository.saveAndFlush(orderEntity);
             orderAddServiceModel = this.modelMapper.map(orderEntity, OrderAddServiceModel.class);
@@ -441,6 +476,7 @@ public class OrderServiceImpl implements OrderService {
                 OrderEntity orderEntity = new OrderEntity();
 
                 Set<OrderLineEntity> orderLineEntities = new HashSet<>();
+                OrderLineEntity orderLineEntity = this.orderLineService.getById(i);
                 orderLineEntities.add(this.orderLineService.getById(i));
                 orderEntity.setOrderLineEntities(orderLineEntities);
 
@@ -463,6 +499,7 @@ public class OrderServiceImpl implements OrderService {
                 }
 
                 this.orderRepository.saveAndFlush(orderEntity);
+                orderLineEntity.setOrder(orderEntity);
 
             }
 

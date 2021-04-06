@@ -287,7 +287,7 @@ public class ItemServiceImpl implements ItemService {
         String[] timeBordersPieChart = this.timeBordersConvertor
                 .getTimeBordersAsString(fromDate, toDate, this.orderService.getDateTimeFirstArchiveOrder());
 
-        List<Object[]> result = this.itemRepository.findTopItems(timeBorders[0], timeBorders[1]);
+        List<Object[]> result = this.itemRepository.findTopItems(timeBorders[0], timeBorders[1], PageRequest.of(0, 5));
 
         return this.timeBordersConvertor.getBordersAndNamesMap(itemsNamesMap, timeBordersPieChart, result);
     }
@@ -301,7 +301,7 @@ public class ItemServiceImpl implements ItemService {
         LocalDateTime[] timeBorders = this.timeBordersConvertor.
                 getTimeBordersAsLocalDateTime(fromDate, toDate, this.orderService.getDateTimeFirstArchiveOrder());
 
-        List<Object[]> result = this.itemRepository.findTopItems(timeBorders[0], timeBorders[1]);
+        List<Object[]> result = this.itemRepository.findTopItems(timeBorders[0], timeBorders[1], PageRequest.of(0, 5));
 
         int key = 2;
         for (Object[] objects : result) {
@@ -319,7 +319,7 @@ public class ItemServiceImpl implements ItemService {
         LocalDateTime[] timeBorders = this.timeBordersConvertor.
                 getTimeBordersAsLocalDateTime(fromDate, toDate, this.orderService.getDateTimeFirstArchiveOrder());
 
-        List<Object[]> result = this.itemRepository.findTopItems(timeBorders[0], timeBorders[1]);
+        List<Object[]> result = this.itemRepository.findTopItems(timeBorders[0], timeBorders[1], PageRequest.of(0, 5));
 
         int key = 2;
         for (Object[] objects : result) {

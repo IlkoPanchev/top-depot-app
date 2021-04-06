@@ -44,10 +44,7 @@ public class OrderEntity extends BaseEntity {
     }
 
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name = "orders_order_lines",
-            joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "order_line_id", referencedColumnName = "id"))
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy(value = "id ASC")
     public Set<OrderLineEntity> getOrderLineEntities() {
         return orderLineEntities;

@@ -2,6 +2,7 @@ package warehouse.orderline.model;
 
 import warehouse.base.BaseEntity;
 import warehouse.items.model.ItemEntity;
+import warehouse.orders.model.OrderEntity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ public class OrderLineEntity extends BaseEntity {
     private ItemEntity item;
     private int quantity;
     private BigDecimal subtotal;
+    private OrderEntity order;
 
     @ManyToOne
     public ItemEntity getItem() {
@@ -39,6 +41,15 @@ public class OrderLineEntity extends BaseEntity {
 
     public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
+    }
+
+    @ManyToOne()
+    public OrderEntity getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderEntity order) {
+        this.order = order;
     }
 
 }
