@@ -338,7 +338,7 @@ public class CustomerServiceUnitTests {
         when(mockOrderService.getDateTimeFirstArchiveOrder()).thenReturn(LocalDateTime.now());
 
         List<Object[]> result = this.getResult();
-        when(mockCustomerRepository.findCustomerTurnover(any(LocalDateTime.class), any(LocalDateTime.class), any(String.class)))
+        when(mockCustomerRepository.findCustomerTurnover(any(LocalDateTime.class), any(LocalDateTime.class), any(String.class), any(Pageable.class)))
                 .thenReturn(result);
 
         List<CustomerTurnoverViewModel> customerTurnoverViewModels = this.customerServiceToTest.getCustomerTurnover("", "", "null");

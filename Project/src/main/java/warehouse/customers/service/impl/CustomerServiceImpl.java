@@ -227,7 +227,7 @@ public class CustomerServiceImpl implements CustomerService {
         LocalDateTime[] timeBorders = this.timeBordersConvertor
                 .getTimeBordersAsLocalDateTime(fromDate, toDate, this.orderService.getDateTimeFirstArchiveOrder());
 
-        List<Object[]> result = this.customerRepository.findCustomerTurnover(timeBorders[0], timeBorders[1], keyword);
+        List<Object[]> result = this.customerRepository.findCustomerTurnover(timeBorders[0], timeBorders[1], keyword, PageRequest.of(0, 5));
 
         for (Object[] objects : result) {
             CustomerTurnoverViewModel customer = new CustomerTurnoverViewModel();

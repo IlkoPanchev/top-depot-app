@@ -29,24 +29,22 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> 
             " lower(c.addressEntity.city), lower(c.addressEntity.street), lower(c.addressEntity.phone)) LIKE lower(concat('%', ?1,'%'))")
     Page<CustomerEntity> searchUnblocked(String keyword, Pageable pageable);
 
-    @Query(value = "SELECT c.company_name AS 'company_name', c.person_name AS 'person_name', sum(ol.subtotal) AS 'turnover'," +
-            " count(distinct o.id) AS 'orders_count', sum(ol.quantity) AS 'items_count' FROM customers AS c\n" +
-            "                                   JOIN addresses AS a\n" +
-            "                                    ON c.address_id = a.id\n" +
-            "                                    JOIN orders AS o\n" +
-            "                                    ON c.id = o.customer_id\n" +
-            "                                    JOIN orders_order_lines AS ool\n" +
-            "                                   ON o.id = ool.order_id\n" +
-            "                                    JOIN order_lines AS ol\n" +
-            "                                    ON ol.id = ool.order_line_id\n" +
-            "                                    JOIN items AS i\n" +
-            "                                    ON ol.item_id = i.id\n" +
-            "                         WHERE o.updated_on BETWEEN :fromDate AND :toDate\n" +
-            "                        AND CONCAT(lower(c.company_name), lower(c.person_name), lower(c.email), lower(a.region),\n" +
-            "                        lower(a.city), lower(a.street), lower(a.phone)) LIKE lower(concat('%', :keyword,'%'))\n" +
-            "                                    AND o.is_archives = TRUE\n" +
-            "                                    GROUP BY c.id\n" +
-            "                                    ORDER BY c.company_name, c.person_name, turnover DESC\n" +
-            "                                    LIMIT 5;", nativeQuery = true)
-    List<Object[]> findCustomerTurnover(@Param("fromDate") LocalDateTime fromDate, @Param("toDate") LocalDateTime toDate, @Param("keyword") String keyword);
+    @Query("select c.companyName as company_name," +
+            " c.personName as person_name," +
+            " sum(ol.subtotal) as turnover," +
+            " count(distinct o.id) as orders_count," +
+            " sum(ol.quantity) as items_count from CustomerEntity as c" +
+            " join AddressEntity as a" +
+            " on c.addressEntity.id = a.id" +
+            " join OrderEntity as o" +
+            " on c.id = o.customer.id" +
+            " join OrderLineEntity as ol" +
+            " on o.id = ol.order.id" +
+            " join ItemEntity as i" +
+            " on ol.item.id = i.id" +
+            " where o.updatedOn between :fromDate and :toDate" +
+            " and concat(lower(c.companyName), lower(c.personName), lower(c.email)," +
+            " lower(a.region),lower(a.city), lower(a.street), lower(a.phone)) LIKE lower(concat('%', :keyword,'%'))" +
+            " and o.archives = true group by c.id order by c.companyName, c.personName, turnover desc")
+    List<Object[]> findCustomerTurnover(@Param("fromDate") LocalDateTime fromDate, @Param("toDate") LocalDateTime toDate, @Param("keyword") String keyword, Pageable pageable);
 }
