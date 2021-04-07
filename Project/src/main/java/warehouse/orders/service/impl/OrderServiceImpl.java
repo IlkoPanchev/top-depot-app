@@ -78,10 +78,7 @@ public class OrderServiceImpl implements OrderService {
             orderEntity.setCreatedOn(LocalDateTime.now());
             orderEntity.setUpdatedOn(LocalDateTime.now());
 
-            Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
-            for (OrderLineEntity orderLineEntity : orderLineEntities) {
-                orderLineEntity.setOrder(orderEntity);
-            }
+            Set<OrderLineEntity> orderLineEntities = this.getOrderLineEntities(orderEntity);
 
             orderEntity.setOrderLineEntities(orderLineEntities);
 
@@ -106,10 +103,7 @@ public class OrderServiceImpl implements OrderService {
 
             orderEntity.setUpdatedOn(LocalDateTime.now());
 
-            Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
-            for (OrderLineEntity orderLineEntity : orderLineEntities) {
-                orderLineEntity.setOrder(orderEntity);
-            }
+            Set<OrderLineEntity> orderLineEntities = this.getOrderLineEntities(orderEntity);
 
             orderEntity.setOrderLineEntities(orderLineEntities);
 
@@ -135,10 +129,7 @@ public class OrderServiceImpl implements OrderService {
             orderEntity.setClosed(true);
             orderEntity.setUpdatedOn(LocalDateTime.now());
 
-            Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
-            for (OrderLineEntity orderLineEntity : orderLineEntities) {
-                orderLineEntity.setOrder(orderEntity);
-            }
+            Set<OrderLineEntity> orderLineEntities = this.getOrderLineEntities(orderEntity);
 
             orderEntity.setOrderLineEntities(orderLineEntities);
 
@@ -164,10 +155,7 @@ public class OrderServiceImpl implements OrderService {
             orderEntity.setClosed(false);
             orderEntity.setUpdatedOn(LocalDateTime.now());
 
-            Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
-            for (OrderLineEntity orderLineEntity : orderLineEntities) {
-                orderLineEntity.setOrder(orderEntity);
-            }
+            Set<OrderLineEntity> orderLineEntities = this.getOrderLineEntities(orderEntity);
 
             orderEntity.setOrderLineEntities(orderLineEntities);
 
@@ -193,10 +181,7 @@ public class OrderServiceImpl implements OrderService {
             orderEntity.setArchives(true);
             orderEntity.setUpdatedOn(LocalDateTime.now());
 
-            Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
-            for (OrderLineEntity orderLineEntity : orderLineEntities) {
-                orderLineEntity.setOrder(orderEntity);
-            }
+            Set<OrderLineEntity> orderLineEntities = this.getOrderLineEntities(orderEntity);
 
             orderEntity.setOrderLineEntities(orderLineEntities);
 
@@ -530,6 +515,15 @@ public class OrderServiceImpl implements OrderService {
         startEnd[1] = weekEnd;
 
         return startEnd;
+    }
+
+    private Set<OrderLineEntity> getOrderLineEntities(OrderEntity orderEntity) {
+
+        Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
+        for (OrderLineEntity orderLineEntity : orderLineEntities) {
+            orderLineEntity.setOrder(orderEntity);
+        }
+        return orderLineEntities;
     }
 
 }
