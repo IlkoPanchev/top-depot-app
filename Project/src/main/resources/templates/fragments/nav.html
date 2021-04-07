@@ -87,7 +87,7 @@
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a th:text="|Hello ${#authentication.name}|" class="nav-link"
+                <a th:text="|Hello, ${#authentication.name}!|" class="nav-link"
                    th:href="@{/users/profile(name = ${#authentication.name})}">
                 </a>
             </li>

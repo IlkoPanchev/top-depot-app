@@ -36,7 +36,7 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long>, JpaSpec
             " join OrderEntity as o" +
             " on ol.order.id = o.id" +
             " where o.updatedOn between :fromDate and :toDate" +
-            " and o.archives = true group by ol.item.id order by quantity desc , i.name asc")
+            " and o.archives = true group by i.name order by quantity desc , i.name asc")
     List<Object[]> findTopItems(@Param("fromDate") LocalDateTime fromDate, @Param("toDate") LocalDateTime toDate, Pageable pageable);
 
 
