@@ -20,8 +20,8 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
     List<OrderEntity> findAllByUpdatedOnBeforeAndClosedFalseAndArchivesFalseAndDeletedFalse(LocalDateTime upTo);
 
-    @Query("SELECT o FROM OrderEntity o WHERE o.deleted = false AND CONCAT(o.createdOn, o.updatedOn, lower(o.customer.companyName), lower(o.customer.personName)," +
-            " o.archives, o.closed, o.total) LIKE lower(concat('%', ?1,'%'))")
+    @Query("SELECT o FROM OrderEntity o WHERE o.deleted = false AND CONCAT(concat(o.createdOn, ''), concat(o.updatedOn, ''), lower(o.customer.companyName), lower(o.customer.personName)," +
+            " concat(o.total, '')) LIKE lower(concat('%', ?1,'%'))")
     Page<OrderEntity> search(String keyword, Pageable pageable);
 
     @Query("SELECT o FROM OrderEntity o WHERE o.closed = false AND o.archives = false AND o.deleted = false AND o.createdOn < o.updatedOn ORDER BY o.updatedOn DESC")

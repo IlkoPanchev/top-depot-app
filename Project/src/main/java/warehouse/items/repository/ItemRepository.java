@@ -22,11 +22,11 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long>, JpaSpec
 
     Page<ItemEntity> findAllByBlockedFalse(Pageable pageable);
 
-    @Query("SELECT i FROM ItemEntity i WHERE CONCAT(lower(i.name), lower(i.description), lower(i.price), lower(i.location)," +
+    @Query("SELECT i FROM ItemEntity i WHERE CONCAT(lower(i.name), lower(i.description), concat(i.price, ''), lower(i.location)," +
             " lower(i.category.name), lower(i.supplier.name)) LIKE lower(concat('%', ?1, '%'))")
     Page<ItemEntity> search(String keyword, Pageable pageable);
 
-    @Query("SELECT i FROM ItemEntity i WHERE i.blocked = false AND CONCAT(lower(i.name), lower(i.description), lower(i.price), lower(i.location)," +
+    @Query("SELECT i FROM ItemEntity i WHERE i.blocked = false AND CONCAT(lower(i.name), lower(i.description), concat(i.price, ''), lower(i.location)," +
             " lower(i.category.name), lower(i.supplier.name)) LIKE lower(concat('%', ?1, '%'))")
     Page<ItemEntity> searchUnblocked(String keyword, Pageable pageable);
 
