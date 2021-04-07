@@ -333,6 +333,13 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     public void initItems() {
 
+        List<String> imgLinks = List.of("http://res.cloudinary.com/ipanchev/image/upload/v1617814213/qsixc8pkyitmed9x9i3s.jpg",
+                "http://res.cloudinary.com/ipanchev/image/upload/v1616226988/id08tagytlyglzz84nyb.jpg",
+                "http://res.cloudinary.com/ipanchev/image/upload/v1617814236/hw69wmhuzdfargmptsyn.jpg",
+                "http://res.cloudinary.com/ipanchev/image/upload/v1617814248/eka24shqhsjjvawtknnd.jpg",
+                "http://res.cloudinary.com/ipanchev/image/upload/v1617814263/txqxkhiybbfiav8laceb.jpg",
+                "http://res.cloudinary.com/ipanchev/image/upload/v1617814276/axskgdmlhgt1gaumaxlb.jpg");
+
         if (this.itemRepository.count() == 0) {
 
             for (int i = 1; i < INIT_COUNT; i++) {
@@ -344,7 +351,7 @@ public class ItemServiceImpl implements ItemService {
                 itemEntity.setLocation(String.format("Location_%d", i));
                 itemEntity.setCategory(this.categoryService.getById(i));
                 itemEntity.setSupplier(this.supplierService.getById(i));
-                itemEntity.setImg("http://res.cloudinary.com/ipanchev/image/upload/v1616226988/id08tagytlyglzz84nyb.jpg");
+                itemEntity.setImg(imgLinks.get(i - 1));
 
                 this.itemRepository.saveAndFlush(itemEntity);
 
