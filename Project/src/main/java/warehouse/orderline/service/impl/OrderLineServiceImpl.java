@@ -52,7 +52,7 @@ public class OrderLineServiceImpl implements OrderLineService {
     public OrderLineEntity getById(long id) {
 
         OrderLineEntity orderLineEntity = this.orderLineRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Not found category with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Not found order line with id: " + id));
 
         return orderLineEntity;
     }

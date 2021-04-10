@@ -1,7 +1,7 @@
 {
   "id": 2,
-  "createdOn": "06-04-2021 12:29:45",
-  "updatedOn": "06-04-2021 13:58:28",
+  "createdOn": "10-04-2021 17:57:08",
+  "updatedOn": "10-04-2021 17:57:12",
   "customer": {
     "id": 2,
     "companyName": "Company_Name_2",
@@ -29,12 +29,12 @@
         "supplier": "Supplier_2",
         "isBlocked": false
       },
-      "quantity": 3,
-      "subtotal": 600.00
+      "quantity": 2,
+      "subtotal": 400.00
     }
   ],
-  "isClosed": true,
+  "isClosed": false,
   "isArchives": false,
   "isDeleted": false,
-  "total": 600.00
+  "total": 400.00
 }

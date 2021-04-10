@@ -56,11 +56,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         return user;
 
-//        return new User(
-//                userEntity.getUsername(),
-//                userEntity.getPassword(),
-//                authorities
-//        );
 
     }
 }

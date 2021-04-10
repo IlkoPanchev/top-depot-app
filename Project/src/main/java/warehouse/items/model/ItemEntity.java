@@ -95,27 +95,5 @@ public class ItemEntity extends BaseEntity {
         this.img = img;
     }
 
-    //    @ManyToMany(mappedBy = "items", targetEntity = OrderEntity.class, fetch = FetchType.EAGER)
-//    @ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
-//
-//    public Set<OrderEntity> getOrders() {
-//        return orders;
-//    }
-//
-//    public void setOrders(Set<OrderEntity> orders) {
-//        this.orders = orders;
-//    }
-
-//    @OneToMany(mappedBy = "item", fetch = FetchType.LAZY)
-//    public List<OrderLine> getOrderLines() {
-//        return orderLines;
-//    }
-//
-//    public void setOrderLines(List<OrderLine> orderLines) {
-//        this.orderLines = orderLines;
-//    }
-
-
-
 
 }

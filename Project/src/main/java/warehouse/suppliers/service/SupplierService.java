@@ -24,15 +24,11 @@ public interface SupplierService {
 
     Page<SupplierServiceModel> findAllPageable(Pageable pageable);
 
-//    List<SupplierServiceModel> updateAll();
-
     SupplierEntity findByName(String name);
 
     Page<SupplierServiceModel> search(String keyword, Pageable pageable);
 
     SupplierServiceModel findById(Long id);
-
-//    SupplierServiceModel delete(Long id);
 
     boolean supplierExists(String name);
 
