@@ -34,7 +34,7 @@
                         <tr th:each="u : ${unauthorizedErrors}" th:object="${u}">
                             <th scope="row" th:text="${u.getURI()}">URI</th>
                             <td th:text="${u.getUsername()}">Username</td>
-                            <td th:text="${#temporals.format(u.getLocalDateTime(), 'dd.MM.yyyy HH:mm')}">DateTime</td>
+                            <td th:text="${#temporals.format(u.getLocalDateTime(), 'dd.MM.yyyy HH:mm:ss')}">DateTime</td>
                         </tr>
                         </tbody>
                     </table>

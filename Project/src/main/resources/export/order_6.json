@@ -1,40 +1,40 @@
 {
   "id": 6,
-  "createdOn": "11-01-2021 16:34:06",
-  "updatedOn": "12-01-2021 16:53:55",
+  "createdOn": "10-04-2021 09:22:05",
+  "updatedOn": "10-04-2021 09:22:05",
   "customer": {
-    "id": 1,
-    "companyName": "Abc",
-    "personName": "Angel Dimov",
-    "email": "ilko_panchev@mail.bg",
+    "id": 6,
+    "companyName": "Company_Name_6",
+    "personName": "Person_Name_6",
+    "email": "cust_email_6_@mail.bg",
     "isBlocked": false,
     "address": {
-      "id": 3,
-      "region": "Sofia",
-      "city": "Sofia",
-      "street": "Tintyava 15",
-      "phone": "0887586666"
+      "id": 6,
+      "region": "Region_6",
+      "city": "City_6",
+      "street": "Street_street_6",
+      "phone": "+359 882 123456"
     }
   },
   "orderLineEntities": [
     {
-      "id": 7,
+      "id": 6,
       "item": {
-        "id": 1,
-        "name": "Laptop Fuji 1255",
-        "description": "laptop",
-        "price": 500.00,
-        "location": "F5-P0-R4",
-        "category": "laptops",
-        "supplier": "Daisy",
+        "id": 6,
+        "name": "Name_6",
+        "description": "description_6",
+        "price": 600.00,
+        "location": "Location_6",
+        "category": "tablets",
+        "supplier": "Supplier_6",
         "isBlocked": false
       },
-      "quantity": 1,
-      "subtotal": 500.00
+      "quantity": 6,
+      "subtotal": 3600.00
     }
   ],
   "isClosed": true,
   "isArchives": false,
   "isDeleted": false,
-  "total": 500.00
+  "total": 3600.00
 }

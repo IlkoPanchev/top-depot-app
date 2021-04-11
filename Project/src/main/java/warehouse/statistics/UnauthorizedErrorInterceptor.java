@@ -37,6 +37,7 @@ public class UnauthorizedErrorInterceptor implements HandlerInterceptor {
                 UnauthorizedError unauthorizedError = new UnauthorizedError(request.getRequestURI(), currentPrincipalName, LocalDateTime.now());
 
                 this.unauthorizedErrorService.getUnauthorizedErrorList().add(unauthorizedError);
+                String debug = "";
             }
 
 
