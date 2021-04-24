@@ -1,5 +1,6 @@
 package warehouse.orderline.service.impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import warehouse.items.model.ItemEntity;
 import warehouse.items.service.ItemService;
@@ -11,6 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static warehouse.constants.GlobalConstants.*;
 
@@ -19,10 +21,14 @@ public class OrderLineServiceImpl implements OrderLineService {
 
     private final OrderLineRepository orderLineRepository;
     private final ItemService itemService;
+    private final ModelMapper modelMapper;
 
-    public OrderLineServiceImpl(OrderLineRepository orderLineRepository, ItemService itemService) {
+    public OrderLineServiceImpl(OrderLineRepository orderLineRepository,
+                                ItemService itemService,
+                                ModelMapper modelMapper) {
         this.orderLineRepository = orderLineRepository;
         this.itemService = itemService;
+        this.modelMapper = modelMapper;
     }
 
     @Transactional
@@ -52,8 +58,15 @@ public class OrderLineServiceImpl implements OrderLineService {
     public OrderLineEntity getById(long id) {
 
         OrderLineEntity orderLineEntity = this.orderLineRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Not found order line with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Not found category with id: " + id));
 
+        return orderLineEntity;
+    }
+
+    @Override
+    public Optional<OrderLineEntity> findById(long id) {
+
+        Optional<OrderLineEntity> orderLineEntity = this.orderLineRepository.findById(id);
         return orderLineEntity;
     }
 }

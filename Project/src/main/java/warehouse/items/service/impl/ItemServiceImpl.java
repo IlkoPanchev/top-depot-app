@@ -2,6 +2,7 @@ package warehouse.items.service.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
@@ -18,6 +19,12 @@ import warehouse.items.model.ItemAddServiceModel;
 import warehouse.items.model.ItemViewServiceModel;
 import warehouse.items.repository.ItemRepository;
 import warehouse.items.service.ItemService;
+import warehouse.orderline.model.OrderLineAddServiceModel;
+import warehouse.orderline.model.OrderLineEntity;
+import warehouse.orderline.model.OrderLineViewServiceModel;
+import warehouse.orderline.service.OrderLineService;
+import warehouse.orders.model.OrderAddServiceModel;
+import warehouse.orders.model.OrderViewServiceModel;
 import warehouse.orders.service.OrderService;
 import warehouse.suppliers.model.SupplierEntity;
 import warehouse.suppliers.model.SupplierServiceModel;
@@ -33,48 +40,46 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static warehouse.constants.GlobalConstants.*;
 
 @Service
 public class ItemServiceImpl implements ItemService {
+
     private final ModelMapper modelMapper;
     private final ItemRepository itemRepository;
-    private final CategoryRepository categoryRepository;
-    private final SupplierRepository supplierRepository;
     private final CloudinaryService cloudinaryService;
     private final CategoryService categoryService;
     private final SupplierService supplierService;
     private final OrderService orderService;
     private final TimeBordersConvertor timeBordersConvertor;
     private final ValidationUtil validationUtil;
+    private final OrderLineService orderLineService;
+
 
     @Autowired
     public ItemServiceImpl(ModelMapper modelMapper,
                            ItemRepository itemRepository,
-                           CategoryRepository categoryRepository,
-                           SupplierRepository supplierRepository,
                            CloudinaryService cloudinaryService,
                            CategoryService categoryService,
                            SupplierService supplierService,
                            OrderService orderService,
-                           TimeBordersConvertor timeBordersConvertor, ValidationUtil validationUtil) {
+                           TimeBordersConvertor timeBordersConvertor,
+                           ValidationUtil validationUtil,
+                           @Lazy OrderLineService orderLineService) {
         this.modelMapper = modelMapper;
         this.itemRepository = itemRepository;
-        this.categoryRepository = categoryRepository;
-        this.supplierRepository = supplierRepository;
         this.cloudinaryService = cloudinaryService;
         this.categoryService = categoryService;
         this.supplierService = supplierService;
         this.orderService = orderService;
         this.timeBordersConvertor = timeBordersConvertor;
         this.validationUtil = validationUtil;
+        this.orderLineService = orderLineService;
     }
+
 
     @Override
     public ItemAddServiceModel add(ItemAddServiceModel itemAddServiceModel) throws IOException {
@@ -86,6 +91,10 @@ public class ItemServiceImpl implements ItemService {
             this.validateSupplier(itemAddServiceModel);
 
             ItemEntity itemEntity = this.modelMapper.map(itemAddServiceModel, ItemEntity.class);
+
+            //TODO add item upload Multipart file
+
+//            String img = "http://res.cloudinary.com/ipanchev/image/upload/v1616226988/id08tagytlyglzz84nyb.jpg";
 
             itemEntity.setImg(this.getCloudinaryLink(itemAddServiceModel));
 
@@ -238,6 +247,10 @@ public class ItemServiceImpl implements ItemService {
             itemEntity = this.modelMapper.map(itemAddServiceModel, ItemEntity.class);
             itemEntity.setBlocked(currentStatus);
 
+            //TODO edit item upload Multipart file
+
+//            String img = "http://res.cloudinary.com/ipanchev/image/upload/v1616226988/id08tagytlyglzz84nyb.jpg";
+
             itemEntity.setImg(this.getCloudinaryLink(itemAddServiceModel));
 
             CategoryEntity categoryEntity = new CategoryEntity();
@@ -340,6 +353,7 @@ public class ItemServiceImpl implements ItemService {
                 itemEntity.setName(String.format("Name_%d", i));
                 itemEntity.setDescription(String.format("description_%d", i));
                 itemEntity.setPrice((BigDecimal.valueOf(100)).multiply(BigDecimal.valueOf(i)));
+                itemEntity.setStock(i * 10);
                 itemEntity.setLocation(String.format("Location_%d", i));
                 itemEntity.setCategory(this.categoryService.getById(i));
                 itemEntity.setSupplier(this.supplierService.getById(i));
@@ -359,6 +373,135 @@ public class ItemServiceImpl implements ItemService {
                 .orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
 
         return itemEntity;
+    }
+
+    @Override
+    public boolean isStockEnough(Long id, int quantity) {
+
+        ItemEntity itemEntity = this.itemRepository
+                .findById(id).orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
+
+        return itemEntity.getStock() >= quantity;
+    }
+
+    @Override
+    public boolean isStockEnoughEditOrder(OrderViewServiceModel orderViewServiceModel,
+                                          Long id, int newQuantity) {
+
+        Set<OrderLineViewServiceModel> orderLineViewServiceModels = orderViewServiceModel.
+                getOrderLineEntities();
+
+        for (OrderLineViewServiceModel orderLineViewServiceModel : orderLineViewServiceModels) {
+
+            if (orderLineViewServiceModel.getId().equals(id)){
+
+                int oldQuantity = orderLineViewServiceModel.getQuantity();
+
+                if ( oldQuantity < newQuantity){
+
+                    int difference = newQuantity - oldQuantity;
+
+                    ItemEntity itemEntity = this.itemRepository
+                            .findById(orderLineViewServiceModel.getItem().getId()).orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
+
+                    return     itemEntity.getStock() >= difference;
+                }
+            }
+        }
+
+        return true;
+    }
+
+
+    @Override
+    public void saveOrderUpdateStock(OrderAddServiceModel orderAddServiceModel) {
+
+        Set<OrderLineAddServiceModel> orderLineAddServiceModels = orderAddServiceModel.getOrderLineEntities();
+
+        for (OrderLineAddServiceModel orderLineAddServiceModel : orderLineAddServiceModels) {
+            ItemEntity itemEntity = this.itemRepository
+                    .findById(orderLineAddServiceModel
+                            .getItem()
+                            .getId())
+                    .orElseThrow(() -> new EntityNotFoundException("Not found item with id: " +
+                            orderLineAddServiceModel.getItem().getId()));
+            itemEntity.setStock(itemEntity.getStock() - orderLineAddServiceModel.getQuantity());
+
+            this.itemRepository.saveAndFlush(itemEntity);
+        }
+
+    }
+
+    @Override
+    public void editOrderUpdateStock(OrderViewServiceModel orderViewServiceModel, OrderAddServiceModel orderAddServiceModel) {
+
+        Set<OrderLineViewServiceModel> orderLineViewServiceModels = orderViewServiceModel.
+                getOrderLineEntities();
+
+        Set<OrderLineAddServiceModel> orderLineAddServiceModels = orderAddServiceModel.
+                getOrderLineEntities();
+
+        Map<Long, OrderLineViewServiceModel> orderLineViewServiceModelHashMap = new HashMap<>();
+
+        for (OrderLineViewServiceModel orderLineViewServiceModel : orderLineViewServiceModels) {
+
+            orderLineViewServiceModelHashMap.put(orderLineViewServiceModel.getId(), orderLineViewServiceModel);
+
+            Optional<OrderLineEntity> existingOrderLine = this.orderLineService.
+                    findById(orderLineViewServiceModel.getId());
+
+            if (existingOrderLine.isEmpty()){
+                this.increaseItemStock(orderLineViewServiceModel.getItem().getId(), orderLineViewServiceModel.getQuantity());
+            }
+        }
+
+
+
+        for (OrderLineAddServiceModel orderLineAddServiceModel : orderLineAddServiceModels) {
+
+            if (orderLineViewServiceModelHashMap.containsKey(orderLineAddServiceModel.getId())){
+
+                int oldQuantity = orderLineViewServiceModelHashMap.get(orderLineAddServiceModel.getId()).getQuantity();
+                int newQuantity = orderLineAddServiceModel.getQuantity();
+
+                int difference = 0;
+                if (oldQuantity < newQuantity){
+                    difference = newQuantity - oldQuantity;
+                    this.decreaseItemStock(orderLineAddServiceModel.getItem().getId(), difference);
+                }
+                else if (oldQuantity > newQuantity){
+                    difference = oldQuantity - newQuantity;
+                    this.increaseItemStock(orderLineAddServiceModel.getItem().getId(), difference);
+                }
+
+            }
+            else if (!orderLineViewServiceModelHashMap.containsKey(orderLineAddServiceModel.getId())){
+
+                this.decreaseItemStock(orderLineAddServiceModel.getItem().getId(),
+                        orderLineAddServiceModel.getQuantity());
+            }
+        }
+
+    }
+
+    @Override
+    public void decreaseItemStock(Long id, int quantity) {
+
+        ItemEntity itemEntity = this.itemRepository
+                .findById(id).orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
+
+        itemEntity.setStock(itemEntity.getStock() - quantity);
+        this.itemRepository.saveAndFlush(itemEntity);
+    }
+
+    @Override
+    public void increaseItemStock(Long id, int quantity) {
+
+        ItemEntity itemEntity = this.itemRepository
+                .findById(id).orElseThrow(() -> new EntityNotFoundException("Not found item with id: " + id));
+
+        itemEntity.setStock(itemEntity.getStock() + quantity);
+        this.itemRepository.saveAndFlush(itemEntity);
     }
 
     private String getCloudinaryLink(ItemAddServiceModel itemAddServiceModel) throws IOException {

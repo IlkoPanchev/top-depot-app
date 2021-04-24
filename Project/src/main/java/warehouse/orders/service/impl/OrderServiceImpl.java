@@ -9,6 +9,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import warehouse.constants.GlobalConstants;
 import warehouse.customers.service.CustomerService;
+import warehouse.items.service.ItemService;
 import warehouse.orderline.model.OrderLineEntity;
 import warehouse.orderline.service.OrderLineService;
 import warehouse.orders.model.OrderEntity;
@@ -47,6 +48,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderLineService orderLineService;
     private final CustomerService customerService;
     private final ValidationUtil validationUtil;
+    private final ItemService itemService;
 
 
     @Autowired
@@ -57,7 +59,8 @@ public class OrderServiceImpl implements OrderService {
                             FileIOUtil fileIOUtil,
                             @Lazy OrderLineService orderLineService,
                             CustomerService customerService,
-                            ValidationUtil validationUtil) {
+                            ValidationUtil validationUtil,
+                            @Lazy ItemService itemService) {
         this.orderRepository = orderRepository;
         this.modelMapper = modelMapper;
         this.timeBordersConvertor = timeBordersConvertor;
@@ -66,6 +69,7 @@ public class OrderServiceImpl implements OrderService {
         this.orderLineService = orderLineService;
         this.customerService = customerService;
         this.validationUtil = validationUtil;
+        this.itemService = itemService;
     }
 
     @Override
@@ -437,6 +441,12 @@ public class OrderServiceImpl implements OrderService {
 
         OrderEntity orderEntity = this.orderRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Not found category with id: " + id));
+
+        Set<OrderLineEntity> orderLineEntities = orderEntity.getOrderLineEntities();
+
+        for (OrderLineEntity orderLineEntity : orderLineEntities) {
+            this.itemService.increaseItemStock(orderLineEntity.getItem().getId(), orderLineEntity.getQuantity());
+        }
 
         orderEntity.setDeleted(true);
         this.orderRepository.saveAndFlush(orderEntity);

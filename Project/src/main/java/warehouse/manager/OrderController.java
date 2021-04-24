@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import warehouse.customers.model.CustomerServiceModel;
 import warehouse.customers.model.CustomerViewBindingModel;
 import warehouse.customers.service.CustomerService;
@@ -42,8 +43,8 @@ import static warehouse.constants.GlobalConstants.*;
 @Validated
 public class OrderController {
 
-    private static final String[] ORDER_SORT_OPTIONS = {"Updated", "Created", "Company", "Person", "Completed","Archive", "Total"};
-    private static final Map<String, String> ORDER_SORT_OPTIONS_MAP = Map.of("Updated","updatedOn",
+    private static final String[] ORDER_SORT_OPTIONS = {"Updated", "Created", "Company", "Person", "Completed", "Archive", "Total"};
+    private static final Map<String, String> ORDER_SORT_OPTIONS_MAP = Map.of("Updated", "updatedOn",
             "Created", "createdOn",
             "Company", "customer.companyName",
             "Person", "customer.personName",
@@ -124,13 +125,32 @@ public class OrderController {
     }
 
     @GetMapping("/open")
-    public String add(HttpSession httpSession, @RequestParam("id") @Min(1) Long id) {
+    public String add(Model model, HttpSession httpSession, @RequestParam("id") @Min(1) Long id) {
 
         this.orderDataManager.removeOrderData(httpSession);
         OrderData orderData = this.orderDataManager.getOrderData(httpSession);
         CustomerServiceModel customerServiceModel = this.customerService.findById(id);
         CustomerViewBindingModel customerViewBindingModel = this.modelMapper.map(customerServiceModel, CustomerViewBindingModel.class);
         orderData.setCustomer(customerViewBindingModel);
+
+        if (!model.containsAttribute("notEnoughStock")) {
+            model.addAttribute("notEnoughStock", 0);
+        }
+
+        return "orders/order-add";
+    }
+
+    @GetMapping("/open-not-stock")
+    public String addNotStock(Model model, HttpSession httpSession, @RequestParam("id") @Min(1) Long id) {
+
+        OrderData orderData = this.orderDataManager.getOrderData(httpSession);
+        CustomerServiceModel customerServiceModel = this.customerService.findById(id);
+        CustomerViewBindingModel customerViewBindingModel = this.modelMapper.map(customerServiceModel, CustomerViewBindingModel.class);
+        orderData.setCustomer(customerViewBindingModel);
+
+        if (!model.containsAttribute("notEnoughStock")) {
+            model.addAttribute("notEnoughStock", 0);
+        }
 
         return "orders/order-add";
     }
@@ -140,9 +160,20 @@ public class OrderController {
     public String addItem(Model model, @RequestParam("id") @Min(1) Long id) {
 
         if (!model.containsAttribute("itemViewBindingModel")) {
+
             ItemViewServiceModel itemViewServiceModel = this.itemService.findById(id);
             ItemViewBindingModel itemViewBindingModel = this.modelMapper.map(itemViewServiceModel, ItemViewBindingModel.class);
             model.addAttribute("itemViewBindingModel", itemViewBindingModel);
+        }
+
+        if (!model.containsAttribute("isStockEnough")) {
+
+            model.addAttribute("isStockEnough", true);
+        }
+
+        if (!model.containsAttribute("quantity")) {
+
+            model.addAttribute("quantity", 0);
         }
 
 
@@ -150,18 +181,30 @@ public class OrderController {
     }
 
     @PostMapping("/addItem")
-    public String addItemConfirm(@RequestParam("id") @Min(1) Long id, @RequestParam("quantity") int quantity, HttpSession httpSession) {
+    public String addItemConfirm(@RequestParam("id") @Min(1) Long id,
+                                 @RequestParam("quantity") int quantity,
+                                 HttpSession httpSession,
+                                 RedirectAttributes redirectAttributes) {
 
         OrderData orderData = this.orderDataManager.getOrderData(httpSession);
         ItemViewServiceModel itemViewServiceModel = this.itemService.findById(id);
         ItemViewBindingModel itemViewBindingModel = this.modelMapper.map(itemViewServiceModel, ItemViewBindingModel.class);
-        orderData.addOrderLine(itemViewBindingModel, quantity);
 
-        return "orders/order-add";
+        if (this.itemService.isStockEnough(id, quantity)) {
+
+            orderData.addOrderLine(itemViewBindingModel, quantity);
+
+            return "orders/order-add";
+        }
+
+        redirectAttributes.addFlashAttribute("isStockEnough", false);
+        redirectAttributes.addAttribute("id", id);
+        redirectAttributes.addFlashAttribute("quantity", quantity);
+        return "redirect:addItem";
     }
 
     @GetMapping("/addItem/cancel")
-    public String addItemCancel(){
+    public String addItemCancel() {
 
         return "orders/order-add";
     }
@@ -194,14 +237,28 @@ public class OrderController {
 
 
     @GetMapping("/save")
-    public String save(HttpSession httpSession, HttpServletRequest httpServletRequest) {
+    public String save(HttpSession httpSession,
+                       HttpServletRequest httpServletRequest,
+                       RedirectAttributes redirectAttributes) {
 
         OrderData orderData = this.orderDataManager.getOrderData(httpSession);
+
+        Set<OrderLineViewBindingModel> orderLineViewBindingModels = orderData.getOrderLineEntities();
+        for (OrderLineViewBindingModel orderLineViewBindingModel : orderLineViewBindingModels) {
+            boolean isStockEnough = this.itemService.isStockEnough(orderLineViewBindingModel.getItem().getId(),
+                    orderLineViewBindingModel.getQuantity());
+            if (!isStockEnough) {
+                redirectAttributes.addAttribute("id", orderData.getCustomer().getId());
+                redirectAttributes.addFlashAttribute("notEnoughStock", orderLineViewBindingModel.getItem().getId());
+                return "redirect:open-not-stock";
+            }
+        }
 
         OrderAddBindingModel orderAddBindingModel = this.modelMapper.map(orderData, OrderAddBindingModel.class);
         OrderAddServiceModel orderAddServiceModel = this.modelMapper.map(orderAddBindingModel, OrderAddServiceModel.class);
 
         this.orderService.addOrder(orderAddServiceModel);
+        this.itemService.saveOrderUpdateStock(orderAddServiceModel);
         this.orderDataManager.removeOrderData(httpSession);
         return "redirect:/orders/all/pageable";
     }
@@ -241,6 +298,31 @@ public class OrderController {
 
     }
 
+    @GetMapping("/edit-not-stock")
+    public String editOrderNotStock(Model model, @RequestParam("id") @Min(1) Long id, HttpSession httpSession) {
+
+
+        OrderViewServiceModel orderViewServiceModel = this.orderService.findById(id);
+
+        this.orderDataManager.removeEditOrderData(httpSession);
+        OrderViewBindingModel orderViewBindingModel = this.modelMapper.map(orderViewServiceModel, OrderViewBindingModel.class);
+        OrderData orderData = this.modelMapper.map(orderViewBindingModel, OrderData.class);
+        //set order by OrderLineViewBindingModel.getName
+        Comparator<OrderLineViewBindingModel> comparator = Comparator.comparing((OrderLineViewBindingModel o) -> o.getItem().getName());
+        Set<OrderLineViewBindingModel> orderLineViewBindingModels = new TreeSet<>(comparator);
+        orderLineViewBindingModels.addAll(orderData.getOrderLineEntities());
+        orderData.setOrderLineEntities(orderLineViewBindingModels);
+
+        if (!model.containsAttribute("notEnoughStock")) {
+            model.addAttribute("notEnoughStock", 0);
+        }
+
+        this.orderDataManager.setEditOrderData(httpSession, orderData);
+
+        return "orders/order-edit";
+
+    }
+
     @GetMapping("/editOrder/update")
     public String editOrderUpdateOrderData(@RequestParam("id") @Min(1) Long id, @RequestParam("quantity") int quantity, HttpSession httpSession) {
 
@@ -269,50 +351,79 @@ public class OrderController {
         }
 
 
+        if (!model.containsAttribute("isStockEnough")) {
+
+            model.addAttribute("isStockEnough", true);
+        }
+
+        if (!model.containsAttribute("quantity")) {
+
+            model.addAttribute("quantity", 0);
+        }
+
+
         return "orders/order-add-item-edit-order";
     }
 
     @PostMapping("/editOrder/addItem")
-    public String editOrderAddItemConfirm(@RequestParam("id") @Min(1) Long id, @RequestParam("quantity") int quantity, HttpSession httpSession) {
+    public String editOrderAddItemConfirm(@RequestParam("id") @Min(1) Long id,
+                                          @RequestParam("quantity") int quantity,
+                                          HttpSession httpSession,
+                                          RedirectAttributes redirectAttributes) {
 
         OrderData orderData = this.orderDataManager.getEditOrderData(httpSession);
         ItemViewServiceModel itemViewServiceModel = this.itemService.findById(id);
         ItemViewBindingModel itemViewBindingModel = this.modelMapper.map(itemViewServiceModel, ItemViewBindingModel.class);
-        orderData.addOrderLine(itemViewBindingModel, quantity);
 
-        return "orders/order-edit";
+        if (this.itemService.isStockEnough(id, quantity)) {
+
+            orderData.addOrderLine(itemViewBindingModel, quantity);
+
+            return "orders/order-edit";
+        }
+
+        redirectAttributes.addFlashAttribute("isStockEnough", false);
+        redirectAttributes.addAttribute("id", id);
+        redirectAttributes.addFlashAttribute("quantity", quantity);
+        return "redirect:/orders/editOrder/addItem";
     }
 
     @GetMapping("/editOrder/addItem/cancel")
-    public String editOrderAddItemCancel(){
+    public String editOrderAddItemCancel() {
 
         return "orders/order-edit";
     }
 
     @GetMapping("/edit/save")
-    public String editOrderSave(HttpSession httpSession,  HttpServletRequest httpServletRequest) {
+    public String editOrderSave(HttpSession httpSession,
+                                HttpServletRequest httpServletRequest,
+                                RedirectAttributes redirectAttributes) {
 
         OrderData orderData = this.orderDataManager.getEditOrderData(httpSession);
+
+        OrderViewServiceModel orderViewServiceModel = this.orderService.findById(orderData.getId());
+
+        Set<OrderLineViewBindingModel> orderLineViewBindingModels = orderData.getOrderLineEntities();
+
+        for (OrderLineViewBindingModel orderLineViewBindingModel : orderLineViewBindingModels) {
+
+            boolean isStockEnough = this.itemService.isStockEnoughEditOrder(orderViewServiceModel,
+                    orderLineViewBindingModel.getId(),
+                    orderLineViewBindingModel.getQuantity());
+            if (!isStockEnough) {
+                redirectAttributes.addAttribute("id", orderData.getId());
+                redirectAttributes.addFlashAttribute("notEnoughStock", orderLineViewBindingModel.getItem().getId());
+                return "redirect:/orders/edit-not-stock";
+            }
+        }
 
         OrderAddBindingModel orderAddBindingModel = this.modelMapper.map(orderData, OrderAddBindingModel.class);
         OrderAddServiceModel orderAddServiceModel = this.modelMapper.map(orderAddBindingModel, OrderAddServiceModel.class);
 
         this.orderService.editOrder(orderAddServiceModel);
+
+        this.itemService.editOrderUpdateStock(orderViewServiceModel, orderAddServiceModel);
         this.orderDataManager.removeEditOrderData(httpSession);
-        return "redirect:/orders/all/pageable";
-    }
-
-    @GetMapping("/edit/complete")
-    public String editOrderComplete(HttpSession httpSession, HttpServletRequest httpServletRequest) {
-
-        OrderData orderData = this.orderDataManager.getEditOrderData(httpSession);
-
-        OrderAddBindingModel orderAddBindingModel = this.modelMapper.map(orderData, OrderAddBindingModel.class);
-        OrderAddServiceModel orderAddServiceModel = this.modelMapper.map(orderAddBindingModel, OrderAddServiceModel.class);
-
-        this.orderService.completeOrder(orderAddServiceModel);
-        this.orderDataManager.removeEditOrderData(httpSession);
-
         return "redirect:/orders/all/pageable";
     }
 
@@ -442,8 +553,8 @@ public class OrderController {
 
     @GetMapping("/pieChart")
     @PreAuthorize("hasRole('USER')")
-    public String getPieChart(Model model,  @RequestParam(name = "fromDate", defaultValue = "") String fromDate,
-                              @RequestParam(name = "toDate", defaultValue = "") String toDate){
+    public String getPieChart(Model model, @RequestParam(name = "fromDate", defaultValue = "") String fromDate,
+                              @RequestParam(name = "toDate", defaultValue = "") String toDate) {
 
         HashMap<String, Integer> orderMap = this.orderService.getPieChartMap(fromDate, toDate);
         HashMap<String, String> timeBordersMap = this.orderService.getTimeBordersMap(fromDate, toDate);
@@ -458,7 +569,7 @@ public class OrderController {
     }
 
     @GetMapping("/areaChart")
-    public String getSalesLastWeek(Model model){
+    public String getSalesLastWeek(Model model) {
 
         this.orderService.getLastWeek();
         model.addAttribute("ordersLastWeekDatesMap", this.orderService.getWeekDatesMap());
@@ -466,8 +577,6 @@ public class OrderController {
 
         return "orders/order-area-chart";
     }
-
-
 
 
 }

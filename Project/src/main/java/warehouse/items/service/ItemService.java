@@ -6,6 +6,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import warehouse.categories.model.CategoryServiceModel;
 import warehouse.items.model.*;
+import warehouse.orders.model.OrderAddServiceModel;
+import warehouse.orders.model.OrderViewServiceModel;
 import warehouse.users.model.UserServiceModel;
 import warehouse.validated.OnCreate;
 import warehouse.validated.OnUpdate;
@@ -52,4 +54,19 @@ public interface ItemService {
     void initItems();
 
     ItemEntity getById(long id);
+
+    boolean isStockEnough(Long id, int quantity);
+
+    boolean isStockEnoughEditOrder(OrderViewServiceModel orderViewServiceModel,
+                                   Long id, int quantity);
+
+    void saveOrderUpdateStock(OrderAddServiceModel orderAddServiceModel);
+
+    void editOrderUpdateStock(OrderViewServiceModel orderViewServiceModel,
+                              OrderAddServiceModel orderAddServiceModel);
+
+    void decreaseItemStock(Long id, int quantity);
+
+    void increaseItemStock(Long id, int quantity);
+
 }
