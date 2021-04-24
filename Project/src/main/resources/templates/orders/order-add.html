@@ -41,6 +41,9 @@
                     <td><span th:text="${orderLine.item.price}"></span></td>
                     <td>
                         <input type="hidden" th:attr="name='id'" th:value="${orderLine.item.id}"/>
+                        <div th:if="${notEnoughStock} == ${orderLine.item.id}" class="mx-auto text-center">
+                            <span class="text-danger err-msg">Not enough stock</span>
+                        </div>
                         <input type="number" style="width: 5em" min="1" th:value="${orderLine.quantity}"
                                name="quantity"
                                class="rounded border border-dark quantity"/>
@@ -76,7 +79,7 @@
                     Save Draft
                 </a>
                 <a th:href="@{/orders/save}" class="btn btn-outline-primary btn-sm d-inline-block mx-auto rounded">
-                     Save
+                    Save
                 </a>
             </div>
         </div>

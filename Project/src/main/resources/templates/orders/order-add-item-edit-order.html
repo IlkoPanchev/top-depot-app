@@ -7,7 +7,7 @@
 
 <body>
 <main>
-    <div class="container ">
+    <div class="container">
         <th:block th:include="~{fragments/nav}"></th:block>
         <div class="container mt-lg-5 bg-transparent h-100">
             <h4 class="w-100 text-dark text-right mt-3">EDIT ORDER</h4>
@@ -15,34 +15,74 @@
         <div class="row tm-mt-big">
             <div class="col-12 mx-auto tm-login-col">
                 <div class="bg-white tm-block rounded border border-primary text-dark" th:object="${itemViewBindingModel}">
-                    <div class="text-dark" >
-                        <div th:replace="fragments/item-data.html :: itemData"></div>
+                    <div th:replace="fragments/item-data.html :: itemData"></div>
+
+                    <br/>
+                    <form action="#" th:action="@{/orders/editOrder/addItem}" method="post">
+                        <div th:unless="${isStockEnough}" class="mx-auto text-center">
+                            <span class="text-danger err-msg">Not enough stock</span>
+                        </div>
+                        <input type="hidden" th:value="${itemViewBindingModel.id}" name="id"/>
+                        <div class="row">
+                            <input th:value="${quantity}" type="number" min="1" step="1" th:max="*{stock}" style="width: 8em" id="quantity"
+                                   name="quantity" placeholder="quantity"
+                                   class="rounded border border-dark mx-auto text-center col-form-label" required/>
+                        </div>
                         <br/>
-                        <form action="#" th:action="@{/orders/editOrder/addItem}" th:method="POST">
-                            <input type="hidden" th:value="${itemViewBindingModel.id}" name="id"/>
-                            <div class="row">
-                                <input type="number" min="1" step="1" style="width: 8em" id="quantity"
-                                       name="quantity" placeholder="quantity"
-                                       class="rounded border border-dark mx-auto text-center col-form-label" required/>
+                        <div class="row">
+                            <div class="mx-auto">
+                                <button type="button" onClick="editOrderCancelItem()"
+                                        class="btn-href btn-outline-primary btn-sm d-inline-block mx-auto rounded">
+                                    Cancel
+                                </button>
+                                <button type="submit"
+                                        class="btn-href btn-outline-primary btn-sm d-inline-block mx-auto rounded">
+                                    Order
+                                </button>
                             </div>
-                            <br/>
-                            <div class="row">
-                                <div class="mx-auto">
-                                    <button type="button" onClick="editOrderCancelItem()"
-                                            class="btn-href btn-outline-primary btn-sm d-inline-block mx-auto rounded">
-                                        Cancel
-                                    </button>
-                                    <button type="submit"
-                                            class="btn-href btn-outline-primary btn-sm d-inline-block mx-auto rounded">
-                                        Order
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+    <!--    <div class="container ">-->
+    <!--        <th:block th:include="~{fragments/nav}"></th:block>-->
+    <!--        <div class="container mt-lg-5 bg-transparent h-100">-->
+    <!--            <h4 class="w-100 text-dark text-right mt-3">EDIT ORDER</h4>-->
+    <!--        </div>-->
+    <!--        <div class="row tm-mt-big">-->
+    <!--            <div class="col-12 mx-auto tm-login-col">-->
+    <!--                <div class="bg-white tm-block rounded border border-primary text-dark" th:object="${itemViewBindingModel}">-->
+    <!--                    <div class="text-dark" >-->
+    <!--                        <div th:replace="fragments/item-data.html :: itemData"></div>-->
+    <!--                        <br/>-->
+    <!--                        <form action="#" th:action="@{/orders/editOrder/addItem}" th:method="POST">-->
+    <!--                            <input type="hidden" th:value="${itemViewBindingModel.id}" name="id"/>-->
+    <!--                            <div class="row">-->
+    <!--                                <input type="number" min="1" step="1" style="width: 8em" id="quantity"-->
+    <!--                                       name="quantity" placeholder="quantity"-->
+    <!--                                       class="rounded border border-dark mx-auto text-center col-form-label" required/>-->
+    <!--                            </div>-->
+    <!--                            <br/>-->
+    <!--                            <div class="row">-->
+    <!--                                <div class="mx-auto">-->
+    <!--                                    <button type="button" onClick="editOrderCancelItem()"-->
+    <!--                                            class="btn-href btn-outline-primary btn-sm d-inline-block mx-auto rounded">-->
+    <!--                                        Cancel-->
+    <!--                                    </button>-->
+    <!--                                    <button type="submit"-->
+    <!--                                            class="btn-href btn-outline-primary btn-sm d-inline-block mx-auto rounded">-->
+    <!--                                        Order-->
+    <!--                                    </button>-->
+    <!--                                </div>-->
+    <!--                            </div>-->
+    <!--                        </form>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </main>
 <th:block th:include="~{fragments/footer}"></th:block>
 </body>

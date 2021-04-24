@@ -92,10 +92,6 @@ public class ItemServiceImpl implements ItemService {
 
             ItemEntity itemEntity = this.modelMapper.map(itemAddServiceModel, ItemEntity.class);
 
-            //TODO add item upload Multipart file
-
-//            String img = "http://res.cloudinary.com/ipanchev/image/upload/v1616226988/id08tagytlyglzz84nyb.jpg";
-
             itemEntity.setImg(this.getCloudinaryLink(itemAddServiceModel));
 
             CategoryEntity categoryEntity = new CategoryEntity();
@@ -246,10 +242,6 @@ public class ItemServiceImpl implements ItemService {
             boolean currentStatus = itemEntity.isBlocked();
             itemEntity = this.modelMapper.map(itemAddServiceModel, ItemEntity.class);
             itemEntity.setBlocked(currentStatus);
-
-            //TODO edit item upload Multipart file
-
-//            String img = "http://res.cloudinary.com/ipanchev/image/upload/v1616226988/id08tagytlyglzz84nyb.jpg";
 
             itemEntity.setImg(this.getCloudinaryLink(itemAddServiceModel));
 
