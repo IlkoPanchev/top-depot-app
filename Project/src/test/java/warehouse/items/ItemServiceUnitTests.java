@@ -28,6 +28,7 @@ import warehouse.items.model.ItemViewServiceModel;
 import warehouse.items.repository.ItemRepository;
 import warehouse.items.service.ItemService;
 import warehouse.items.service.impl.ItemServiceImpl;
+import warehouse.orderline.service.OrderLineService;
 import warehouse.orders.service.OrderService;
 import warehouse.suppliers.model.SupplierEntity;
 import warehouse.suppliers.repository.SupplierRepository;
@@ -64,10 +65,6 @@ public class ItemServiceUnitTests {
     @Mock
     ItemRepository mockItemRepository;
     @Mock
-    CategoryRepository mockCategoryRepository;
-    @Mock
-    SupplierRepository mockSupplierRepository;
-    @Mock
     CloudinaryService mockCloudinaryService;
     @Mock
     CategoryService mockCategoryService;
@@ -79,19 +76,20 @@ public class ItemServiceUnitTests {
     TimeBordersConvertor mockTimeBordersConvertor;
     @Mock
     ValidationUtil mockValidationUtil;
+    @Mock
+    OrderLineService mockOrderLineService;
 
     @BeforeEach
     public void SetUp(){
         this.itemServiceToTest = new ItemServiceImpl(new ModelMapper(),
                 mockItemRepository,
-                mockCategoryRepository,
-                mockSupplierRepository,
                 mockCloudinaryService,
                 mockCategoryService,
                 mockSupplierService,
                 mockOrderService,
                 mockTimeBordersConvertor,
-                mockValidationUtil);
+                mockValidationUtil,
+                mockOrderLineService);
         this.itemEntity = this.createExistingItemEntity();
         this.itemAddServiceModel = this.createItemAddServiceModel();
         this.existingItemAddServiceModel = this.createExistingItemAddServiceModel();
