@@ -26,6 +26,7 @@ import warehouse.customers.service.CustomerService;
 import warehouse.items.model.ItemAddServiceModel;
 import warehouse.items.model.ItemEntity;
 import warehouse.items.model.ItemViewServiceModel;
+import warehouse.items.service.ItemService;
 import warehouse.orderline.model.OrderLineAddServiceModel;
 import warehouse.orderline.model.OrderLineEntity;
 import warehouse.orderline.model.OrderLineViewServiceModel;
@@ -77,6 +78,8 @@ public class OrderServiceUnitTests {
     CustomerService mockCustomerService;
     @Mock
     ValidationUtil mockValidationUtil;
+    @Mock
+    ItemService mockItemService;
 
     @BeforeEach
     public void SetUp() {
@@ -88,7 +91,7 @@ public class OrderServiceUnitTests {
                 new FileIOUtilImpl(),
                 mockOrderLineService,
                 mockCustomerService,
-                mockValidationUtil);
+                mockValidationUtil, mockItemService);
         this.orderEntity = this.createExistingOrderEntity();
         this.orderAddServiceModel = this.createOrderAddServiceModel();
         this.pageable = this.initPageable();
@@ -592,6 +595,5 @@ public class OrderServiceUnitTests {
 
         return PageRequest.of(page, pageSize, sort);
     }
-
 
 }
