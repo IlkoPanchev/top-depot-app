@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
+import org.modelmapper.ModelMapper;
 import warehouse.addresses.model.AddressEntity;
 import warehouse.items.model.ItemEntity;
 import warehouse.items.service.ItemService;
@@ -36,7 +37,7 @@ public class OrderLineServiceUnitTests {
 
     @BeforeEach
     public void setUp(){
-        this.orderLineServiceToTest = new OrderLineServiceImpl(mockOrderLineRepository, mockItemService);
+        this.orderLineServiceToTest = new OrderLineServiceImpl(mockOrderLineRepository, mockItemService, new ModelMapper());
         this.orderLineEntity = this.createExistingOrderLineEntity();
     }
 
