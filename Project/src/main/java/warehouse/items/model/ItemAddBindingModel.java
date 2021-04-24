@@ -11,10 +11,12 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class ItemAddBindingModel {
+
     private Long id;
     private String name;
     private String description;
     private BigDecimal price;
+    private int stock;
     private String location;
     private String category;
     private String supplier;
@@ -56,6 +58,16 @@ public class ItemAddBindingModel {
         this.price = price;
     }
 
+    @Min(value = 0, message = "Quantity must be positive number")
+    public int getStock() {
+        return stock;
+    }
+
+    public ItemAddBindingModel setStock(int stock) {
+        this.stock = stock;
+        return this;
+    }
+
     @NotBlank(message = "Enter location")
     public String getLocation() {
         return location;
@@ -91,4 +103,5 @@ public class ItemAddBindingModel {
     public void setImg(MultipartFile img) {
         this.img = img;
     }
+
 }

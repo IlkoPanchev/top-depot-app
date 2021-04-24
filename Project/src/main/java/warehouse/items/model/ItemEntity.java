@@ -14,6 +14,7 @@ public class ItemEntity extends BaseEntity {
     private String name;
     private String description;
     private BigDecimal price;
+    private int stock;
     private String location;
     private CategoryEntity category;
     private SupplierEntity supplier;
@@ -47,6 +48,16 @@ public class ItemEntity extends BaseEntity {
         this.price = price;
     }
 
+    @Column(name = "stock", nullable = false)
+    public int getStock() {
+        return stock;
+    }
+
+    public ItemEntity setStock(int stock) {
+        this.stock = stock;
+        return this;
+    }
+
     @Column(name = "location", nullable = false)
     public String getLocation() {
         return location;
@@ -57,7 +68,7 @@ public class ItemEntity extends BaseEntity {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     public CategoryEntity getCategory() {
         return category;
     }
@@ -68,7 +79,7 @@ public class ItemEntity extends BaseEntity {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="supplier_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name="supplier_id", referencedColumnName = "id")
     public SupplierEntity getSupplier() {
         return supplier;
     }
@@ -94,6 +105,7 @@ public class ItemEntity extends BaseEntity {
     public void setImg(String img) {
         this.img = img;
     }
+
 
 
 }

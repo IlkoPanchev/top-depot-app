@@ -5,6 +5,8 @@ import com.google.gson.annotations.Expose;
 import java.math.BigDecimal;
 
 public class ItemViewBindingModel {
+
+
     @Expose
     private Long id;
     @Expose
@@ -13,6 +15,8 @@ public class ItemViewBindingModel {
     private String description;
     @Expose
     private BigDecimal price;
+    @Expose
+    private int stock;
     @Expose
     private String location;
     @Expose
@@ -50,6 +54,15 @@ public class ItemViewBindingModel {
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public ItemViewBindingModel setStock(int stock) {
+        this.stock = stock;
+        return this;
     }
 
     public void setPrice(BigDecimal price) {

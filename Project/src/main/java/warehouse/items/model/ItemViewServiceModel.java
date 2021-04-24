@@ -3,10 +3,12 @@ package warehouse.items.model;
 import java.math.BigDecimal;
 
 public class ItemViewServiceModel {
+
     private Long id;
     private String name;
     private String description;
     private BigDecimal price;
+    private int stock;
     private String location;
     private String category;
     private String supplier;
@@ -43,6 +45,15 @@ public class ItemViewServiceModel {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public ItemViewServiceModel setStock(int stock) {
+        this.stock = stock;
+        return this;
     }
 
     public String getLocation() {

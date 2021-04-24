@@ -25,6 +25,7 @@ public class ItemAddServiceModel {
     private String name;
     private String description;
     private BigDecimal price;
+    private int stock;
     private String location;
     private String category;
     private String supplier;
@@ -65,6 +66,16 @@ public class ItemAddServiceModel {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Min(value = 0, message = "Quantity must be positive number")
+    public int getStock() {
+        return stock;
+    }
+
+    public ItemAddServiceModel setStock(int stock) {
+        this.stock = stock;
+        return this;
     }
 
     @NotBlank(message = "Enter location")
@@ -108,4 +119,5 @@ public class ItemAddServiceModel {
     public void setImg(MultipartFile img) {
         this.img = img;
     }
+
 }
