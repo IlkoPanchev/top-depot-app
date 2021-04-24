@@ -35,6 +35,9 @@
                         <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Price ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
                  selectedSortOption=${selectedSortOption}, sortOptionName='Price',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
                         </th>
+                        <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Stock ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
+                 selectedSortOption=${selectedSortOption}, sortOptionName='Stock',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
+                        </th>
                         <th scope="col" th:replace="fragments/change-sort-direction.html :: changeSortDirection (path=${path}, columnName='Location ', selectedPageSize=${selectedPageSize}, keyword=${keyword},
                  selectedSortOption=${selectedSortOption}, sortOptionName='Location',  sortDirection=${sortDirection}, reversedSortDirection=${reversedSortDirection})">
                         </th>
@@ -56,6 +59,7 @@
                         <td th:text="${item.name}">Name</td>
                         <td th:text="${item.description}">Description</td>
                         <td th:text="${item.price}">Price/td>
+                        <td th:text="${item.stock}">Stock/td>
                         <td th:text="${item.location}">Location</td>
                         <td th:text="${item.category}">Category</td>
                         <td th:text="${item.supplier}">Supplier</td>

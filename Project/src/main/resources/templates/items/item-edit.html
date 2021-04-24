@@ -37,7 +37,7 @@
                                     <label for="description"
                                            class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Description</label>
                                     <textarea name="description" th:field="*{description}" th:errorclass="border-danger" type="text"
-                                           class="form-control validate bg-white border border-secondary rounded text-dark"
+                                              class="form-control validate bg-white border border-secondary rounded text-dark"
                                               id="description"></textarea>
                                 </div>
                                 <div class="input-group mt-3">
@@ -48,6 +48,18 @@
                                            class="form-control validate bg-white border border-secondary rounded text-dark"
                                            id="price">
                                     <th:block th:each="e : ${#fields.errors('price')}">
+                                        <div class="mx-auto text-center error-field">
+                                            <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
+                                        </div>
+                                    </th:block>
+                                </div>
+                                <div class="input-group mt-3">
+                                    <label for="stock"
+                                           class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Stock</label>
+                                    <input name="stock" th:field="*{stock}" th:errorclass="border-danger" type="number" required step="1"
+                                           class="form-control validate bg-white border border-secondary rounded text-dark"
+                                           id="stock">
+                                    <th:block th:each="e : ${#fields.errors('stock')}">
                                         <div class="mx-auto text-center error-field">
                                             <span th:text="${e}" class="text-danger err-msg">Will be replaced by e</span>
                                         </div>

@@ -21,6 +21,14 @@
                             <span class="font-weight-bold item-data" th:text="|Price                |">Price </span>
                             <span class="overflow-visible" th:text="*{price}"></span>
                         </div>
+                        <div th:unless="${isStockEnough}" class="row item-data-row">
+                            <span class="font-weight-bold item-data text-danger" th:text="|Stock                |">Stock </span>
+                            <span class="overflow-visible text-danger" th:text="*{stock}"></span>
+                        </div>
+                        <div th:if="${isStockEnough}" class="row item-data-row">
+                            <span class="font-weight-bold item-data" th:text="|Stock                |">Stock </span>
+                            <span class="overflow-visible" th:text="*{stock}"></span>
+                        </div>
                         <div class="row item-data-row">
                             <span class="font-weight-bold item-data" th:text="|Location         |">Location </span>
                             <span class="overflow-visible" th:text="*{location}"></span>
