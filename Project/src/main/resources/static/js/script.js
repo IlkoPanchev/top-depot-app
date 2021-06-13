@@ -72,4 +72,16 @@ function editOrderCancelItem() {
     window.location = '/orders/editOrder/addItem/cancel';
 }
 
+$(document).ready(function() {
+    function alertNoStock(){
+
+        let errMsg = $(document).find('.err-msg').text();
+
+        if(errMsg !== ''){
+            alert('Not enough stock!');
+        }
+    }
+    setTimeout(function (){alertNoStock()}, 200)
+});
+
 
